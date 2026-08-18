@@ -27,7 +27,7 @@ a { color:inherit; text-decoration:none; }
 .portrait-wrap { align-self:stretch; position:relative; min-height:650px; overflow:hidden; }
 .portrait-media { position:relative; width:100%; height:calc(100% - 44px); overflow:hidden; }
 .portrait-media:after { content:""; position:absolute; inset:0; box-shadow:inset 0 0 90px rgba(16,19,18,.2); pointer-events:none; }
-.portrait-wrap img { object-fit:cover; object-position:50% 24%; filter:grayscale(1) contrast(1.03); transition:filter .6s ease, transform 1s ease; }
+.portrait-wrap img { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 24%; filter:grayscale(1) contrast(1.03); transition:filter .6s ease, transform 1s ease; }
 .portrait-wrap:hover img { filter:grayscale(.15); transform:scale(1.015); }
 .character-wrap { overflow:visible; }
 .character-media { overflow:visible; background:radial-gradient(circle at 52% 45%,rgba(87,168,255,.18),transparent 58%); }
