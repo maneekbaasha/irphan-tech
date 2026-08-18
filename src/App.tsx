@@ -14,7 +14,7 @@ export default function App() {
   return <main>
     <nav className="nav" aria-label="Navigation principale">
       <a className="monogram" href="#accueil" aria-label="Retour à l’accueil">IRPHAN<span>.TECH</span></a>
-      <div className="nav-links"><a href="#formation">Formation</a><a href="#parcours">Expérience</a><a href="#expertise">Compétences</a><a className="nav-contact" href="mailto:mohamed.irphan09@gmail.com">Contact <Arrow /></a><ThemeToggle /></div>
+      <div className="nav-links"><a href="#formation">Formation</a><a href="#projets">Projets</a><a href="#experience">Expérience</a><a href="#expertise">Compétences</a><a className="nav-contact" href="mailto:mohamed.irphan09@gmail.com">Contact <Arrow /></a><ThemeToggle /></div>
     </nav>
 
     <section className="hero" id="accueil">
@@ -22,7 +22,7 @@ export default function App() {
         <p className="kicker enter delay-1"><span className="status-dot" /> Cybersécurité · Audit · Défense</p>
         <h1 className="enter delay-2"><small>Bonjour, je suis</small>Irphan<br /><em>Mohamed</em></h1>
         <p className="hero-lead enter delay-3">J’analyse les systèmes, leurs usages et leurs angles morts pour transformer la complexité en décisions de sécurité claires.</p>
-        <div className="hero-actions enter delay-4"><a className="button primary" href="#parcours">Découvrir mon parcours <span>↓</span></a><a className="text-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a></div>
+        <div className="hero-actions enter delay-4"><a className="button primary" href="#projets">Découvrir mes projets <span>↓</span></a><a className="text-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a></div>
       </div>
       <div className="portrait-wrap gaming-wrap enter delay-3" aria-label="Personnage gaming inspiré d’Irphan Mohamed">
         <div className="portrait-media gaming-media"><img src="/irphan-gaming-character.webp" alt="Personnage gaming d’Irphan Mohamed avec un ordinateur" width="900" height="1350" decoding="async" fetchPriority="high" /></div>
@@ -45,13 +45,13 @@ export default function App() {
       <div><p className="big-statement">Une approche de la sécurité à la croisée de la <strong>technique</strong>, du <strong>risque</strong> et de l’<strong>humain</strong>.</p><p className="body-copy">Après huit années dans un environnement technologique exigeant chez Apple, j’ai choisi de mettre mon expérience du diagnostic, de la pédagogie et de la résolution de problèmes au service de la cybersécurité. Aujourd’hui, je développe une pratique orientée terrain : observer, vérifier, documenter et rendre les risques compréhensibles.</p></div>
     </section>
 
-    <section className="work-section" id="parcours">
+    <section className="work-section" id="projets">
       <div className="section-heading reveal"><p className="section-index">03 — Projets</p><h2>Du terrain.<br />Des preuves.</h2></div>
       <div className="project-grid">{projects.map((project) => <article className="project-card reveal" key={project.number}><div className="card-top"><span>{project.number}</span><span>{project.eyebrow}</span></div><h3>{project.title}</h3><p>{project.text}</p><div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></article>)}</div>
       <p className="confidential-note reveal">Mission réalisée dans le respect de la confidentialité client. Les méthodes et livrables sont présentés sans données sensibles.</p>
     </section>
 
-    <section className="journey" aria-label="Parcours professionnel">
+    <section className="journey" id="experience" aria-label="Parcours professionnel">
       <div className="section-heading reveal"><p className="section-index">04 — Expérience</p><h2>Parcours<br />professionnel</h2></div>
       <div className="timeline">
         <article className="timeline-item reveal"><p>2025 — 2026</p><div><h3>Consultant cybersécurité · Mission d’audit</h3><span>CyberLion — CECCA</span><p>Audit de maturité, OSINT, cartographie, tests de sécurité, stratégie GRC et rédaction de livrables décisionnels.</p></div></article>
