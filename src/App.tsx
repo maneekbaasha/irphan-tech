@@ -25,7 +25,7 @@ export default function App() {
         <div className="hero-actions enter delay-4"><a className="button primary" href="#parcours">Découvrir mon parcours <span>↓</span></a><a className="text-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a></div>
       </div>
       <div className="portrait-wrap gaming-wrap enter delay-3" aria-label="Personnage gaming inspiré d’Irphan Mohamed">
-        <div className="portrait-media gaming-media"><img src="/irphan-gaming-character.png" alt="Personnage gaming d’Irphan Mohamed avec un ordinateur" /></div>
+        <div className="portrait-media gaming-media"><img src="/irphan-gaming-character.png" alt="Personnage gaming d’Irphan Mohamed avec un ordinateur" width="1024" height="1536" decoding="async" fetchPriority="high" /></div>
         <div className="portrait-caption"><span>Basé en Île-de-France</span><span>Analyse · Défense · Conseil</span></div>
       </div>
     </section>
