@@ -36,6 +36,7 @@ export default function App() {
         <article className="education-card reveal"><p>2026</p><h3>Administrateur d’infrastructures sécurisées</h3><span>Titre professionnel RNCP niveau 6 · en cours de validation</span></article>
         <article className="education-card reveal"><p>2024 — 2025</p><h3>Cybersécurité FullStack</h3><span>Jedha Bootcamp · Blue Team, Red Team, GRC, réseaux et systèmes</span></article>
         <article className="education-card reveal"><p>2025 — 2026</p><h3>Certifications & fondamentaux</h3><span>INFOSEC Cybersecurity Foundations · préparation CompTIA Security+</span></article>
+        <article className="education-card reveal"><p>2026</p><h3>Cisco Networking Basics</h3><span>Certification Cisco Networking Academy · fondamentaux des réseaux et de la connectivité</span></article>
       </div>
     </section>
 
