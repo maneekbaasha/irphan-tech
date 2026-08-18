@@ -8,6 +8,7 @@ const projects = [
   { number: "01", eyebrow: "Audit & exposition", title: "Comprendre avant de protéger", text: "Étude de l’exposition publique d’une PME, analyse OSINT et identification des risques humains, techniques et organisationnels.", tags: ["OSINT", "Surface d’attaque", "Risques"] },
   { number: "02", eyebrow: "Architecture", title: "Rendre le système lisible", text: "Construction d’une cartographie réseau et applicative pour relier actifs, flux, dépendances et priorités de sécurisation.", tags: ["Réseau", "Cartographie", "Analyse"] },
   { number: "03", eyebrow: "Remédiation", title: "Transformer les constats en décisions", text: "Tests de sécurité exploratoires, restitution des vulnérabilités et plan d’actions priorisé à court, moyen et long terme.", tags: ["Pentest", "ISO 27001", "Recommandations"] },
+  { number: "04", eyebrow: "Web & sécurité", title: "Construire un portfolio souverain", text: "Développement et déploiement continu d’un portfolio React avec Cloudflare Workers, en-têtes de sécurité, suivi Git et audit des dépendances.", tags: ["React", "Cloudflare", "CI/CD", "Sécurité web"], url: "https://github.com/maneekbaasha/irphan-tech" },
 ];
 
 export default function App() {
@@ -47,7 +48,7 @@ export default function App() {
 
     <section className="work-section" id="projets">
       <div className="section-heading reveal"><p className="section-index">03 — Projets</p><h2>Du terrain.<br />Des preuves.</h2></div>
-      <div className="project-grid">{projects.map((project) => <article className="project-card reveal" key={project.number}><div className="card-top"><span>{project.number}</span><span>{project.eyebrow}</span></div><h3>{project.title}</h3><p>{project.text}</p><div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></article>)}</div>
+      <div className="project-grid">{projects.map((project) => <article className="project-card reveal" key={project.number}><div className="card-top"><span>{project.number}</span><span>{project.eyebrow}</span></div><h3>{project.title}</h3><p>{project.text}</p><div className="project-bottom">{project.url && <a className="project-link" href={project.url} target="_blank" rel="noreferrer">Voir le code source <Arrow /></a>}<div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
       <p className="confidential-note reveal">Mission réalisée dans le respect de la confidentialité client. Les méthodes et livrables sont présentés sans données sensibles.</p>
     </section>
 
@@ -69,7 +70,7 @@ export default function App() {
     <section className="contact" id="contact">
       <p className="kicker reveal"><span className="status-dot" /> Ouvert aux échanges professionnels</p>
       <h2 className="reveal">Parlons de ce que je peux<br /><em>apporter à votre équipe.</em></h2>
-      <div className="contact-actions reveal"><a className="button light" href="mailto:mohamed.irphan09@gmail.com">Écrire un e-mail <Arrow /></a><a className="text-link light-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">Voir mon LinkedIn <Arrow /></a></div>
+      <div className="contact-actions reveal"><a className="button light" href="mailto:mohamed.irphan09@gmail.com">Écrire un e-mail <Arrow /></a><a className="text-link light-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a className="text-link light-link" href="https://github.com/maneekbaasha" target="_blank" rel="noreferrer">GitHub <Arrow /></a></div>
       <footer><span>© 2026 Irphan.tech</span><a href="#accueil">Retour en haut ↑</a></footer>
     </section>
   </main>;
