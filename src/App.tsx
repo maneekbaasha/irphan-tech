@@ -15,7 +15,7 @@ export default function App() {
   return <main>
     <nav className="nav" aria-label="Navigation principale">
       <a className="monogram" href="#accueil" aria-label="Retour à l’accueil">IRPHAN<span>CYBERSECURITY</span></a>
-      <div className="nav-links"><a href="#formation">Formation</a><a href="#projets">Projets</a><a href="#experience">Expérience</a><a href="#expertise">Compétences</a><a className="nav-contact" href="mailto:mohamed.irphan09@gmail.com">Contact <Arrow /></a><ThemeToggle /></div>
+      <div className="nav-links"><a href="#formation">Formation</a><a href="#projets">Projets</a><a href="#experience">Expérience</a><a href="#expertise">Compétences</a><a className="nav-contact" href="mailto:info@irphan.eu">Contact <Arrow /></a><ThemeToggle /></div>
     </nav>
 
     <section className="hero" id="accueil">
@@ -70,7 +70,7 @@ export default function App() {
     <section className="contact" id="contact">
       <p className="kicker reveal"><span className="status-dot" /> Ouvert aux échanges professionnels</p>
       <h2 className="reveal">Parlons de ce que je peux<br /><em>apporter à votre équipe.</em></h2>
-      <div className="contact-actions reveal"><a className="button light" href="mailto:mohamed.irphan09@gmail.com">Écrire un e-mail <Arrow /></a><a className="text-link light-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a className="text-link light-link" href="https://github.com/maneekbaasha" target="_blank" rel="noreferrer">GitHub <Arrow /></a></div>
+      <div className="contact-actions reveal"><a className="button light" href="mailto:info@irphan.eu">Écrire un e-mail <Arrow /></a><a className="text-link light-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a className="text-link light-link" href="https://github.com/maneekbaasha" target="_blank" rel="noreferrer">GitHub <Arrow /></a></div>
       <footer><span>© 2026 Irphan</span><a href="#accueil">Retour en haut ↑</a></footer>
     </section>
   </main>;
