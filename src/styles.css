@@ -44,7 +44,7 @@ a { color:inherit; text-decoration:none; }
 .gaming-wrap:hover img { filter:saturate(1.08) contrast(1.04); transform:scale(1.025); }
 @keyframes gaming-breathe { 0%,100%{transform:scale(1.01)}50%{transform:scale(1.035)} }
 .portrait-caption { height:44px; display:flex; align-items:end; justify-content:space-between; text-transform:uppercase; letter-spacing:.12em; font-size:9px; color:#aeb2af; }
-.statement,.work-section,.journey,.expertise { padding:120px 8vw; color:#f3f5f3; }
+.statement,.work-section,.lab-profiles,.journey,.expertise { padding:120px 8vw; color:#f3f5f3; }
 .education { padding:120px 8vw; background:#09111e; color:#f3f5f3; }
 .education-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-left:25%; }
 .education-card { min-height:260px; padding:26px; border:1px solid var(--line); background:linear-gradient(145deg,#101d31,#09121f); position:relative; overflow:hidden; }
@@ -72,6 +72,19 @@ a { color:inherit; text-decoration:none; }
 .tags { display:flex; flex-wrap:wrap; gap:7px; }
 .tags span,.skill-cloud span { border:1px solid rgba(87,168,255,.34); border-radius:99px; padding:8px 12px; font-size:10px; }
 .confidential-note { font-size:11px; color:#7e867f; margin:24px 0 0 auto; max-width:520px; line-height:1.5; }
+.lab-profiles { background:#0c1422; }
+.lab-profile-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.lab-profile-card { min-height:410px; padding:25px; border:1px solid var(--line); background:linear-gradient(145deg,#101d31,#09121f); display:flex; flex-direction:column; transition:transform .3s ease,border-color .3s ease,background .3s ease; }
+.lab-profile-card:hover { transform:translateY(-7px); border-color:rgba(87,168,255,.65); background:linear-gradient(145deg,#142844,#0a1728); }
+.lab-profile-top { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:13px; color:#a9b2bd; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; }
+.lab-profile-top>span:last-of-type { overflow:hidden; text-overflow:ellipsis; }
+.lab-monogram { width:42px; height:42px; border:1px solid rgba(102,217,255,.38); color:var(--cyan); display:grid; place-items:center; font-family:monospace; font-size:11px; letter-spacing:0; }
+.lab-profile-copy { margin-top:78px; }
+.lab-profile-copy h3 { margin:0 0 19px; font-size:29px; line-height:1.08; letter-spacing:-.04em; }
+.lab-profile-copy p { margin:0; color:#a6ada8; font-size:13px; line-height:1.7; }
+.lab-profile-stats { display:flex; flex-wrap:wrap; gap:7px; margin-top:auto; padding-top:32px; }
+.lab-profile-stats span { border:1px solid rgba(87,168,255,.3); border-radius:99px; padding:7px 10px; color:#b9c7d7; font-size:9px; text-transform:uppercase; letter-spacing:.08em; }
+.lab-note { max-width:650px; margin:32px 0 0 auto; color:#87909b; font-family:Georgia,serif; font-size:16px; font-style:italic; line-height:1.6; }
 .journey { background:#09111e; }
 .timeline { margin-left:25%; border-top:1px solid var(--line); }
 .timeline-item { display:grid; grid-template-columns:1fr 3fr; gap:30px; padding:34px 0; border-bottom:1px solid var(--line); }
@@ -100,12 +113,14 @@ footer { margin-top:auto; padding-top:80px; border-top:1px solid rgba(255,255,25
 [data-theme="light"] .hero { background:radial-gradient(circle at 80% 30%,#d9e9f8 0,#edf3f8 38%,#f7f9fb 70%); color:#101720; }
 [data-theme="light"] .nav { color:#101410; }
 [data-theme="light"] .nav-contact,[data-theme="light"] .theme-toggle { border-color:rgba(10,14,11,.35); }
-[data-theme="light"] .statement,[data-theme="light"] .journey { background:#f3f4ef; color:#101410; }
+[data-theme="light"] .statement,[data-theme="light"] .lab-profiles,[data-theme="light"] .journey { background:#f3f4ef; color:#101410; }
 [data-theme="light"] .education,[data-theme="light"] .work-section,[data-theme="light"] .expertise { background:#e4e7df; color:#101410; }
-[data-theme="light"] .education-card,[data-theme="light"] .project-card { background:#f7f7f3; color:#101410; }
-[data-theme="light"] .hero-lead,[data-theme="light"] .body-copy,[data-theme="light"] .education-card span,[data-theme="light"] .project-card p,[data-theme="light"] .timeline-item div p { color:#59615a; }
+[data-theme="light"] .education-card,[data-theme="light"] .project-card,[data-theme="light"] .lab-profile-card { background:#f7f7f3; color:#101410; }
+[data-theme="light"] .lab-profile-card:hover { background:#fff; }
+[data-theme="light"] .hero-lead,[data-theme="light"] .body-copy,[data-theme="light"] .education-card span,[data-theme="light"] .project-card p,[data-theme="light"] .lab-profile-copy p,[data-theme="light"] .timeline-item div p { color:#59615a; }
+[data-theme="light"] .lab-profile-stats span { color:#3e5266; }
 @media (max-width:900px) {
   .nav-links>a:not(.nav-contact){display:none}.hero{grid-template-columns:1fr;padding-top:120px}.hero-copy{padding:0}.portrait-wrap{min-height:58vh;margin-top:20px}.portrait-media{height:calc(100% - 35px)}
-  .statement,.section-heading{grid-template-columns:1fr;gap:30px}.project-grid,.education-grid{grid-template-columns:1fr}.education-grid{margin-left:0}.project-card{min-height:330px}.project-card h3{margin-top:50px}.timeline,.skill-cloud,.learning-note{margin-left:0}.timeline-item{grid-template-columns:1fr}.statement,.education,.work-section,.journey,.expertise,.contact{padding:88px 6vw}.section-heading h2{font-size:58px}
+  .statement,.section-heading{grid-template-columns:1fr;gap:30px}.project-grid,.education-grid,.lab-profile-grid{grid-template-columns:1fr}.education-grid{margin-left:0}.project-card{min-height:330px}.project-card h3{margin-top:50px}.lab-profile-card{min-height:330px}.lab-profile-copy{margin-top:50px}.timeline,.skill-cloud,.learning-note{margin-left:0}.timeline-item{grid-template-columns:1fr}.statement,.education,.work-section,.lab-profiles,.journey,.expertise,.contact{padding:88px 6vw}.section-heading h2{font-size:58px}
 }
 @media (max-width:520px) { .nav{height:74px}.hero h1{font-size:21vw}.hero-actions,.contact-actions{align-items:flex-start;flex-direction:column}.portrait-wrap{min-height:430px}.big-statement{font-size:40px}.timeline-item h3{font-size:21px}.contact h2{font-size:46px}footer{gap:20px;align-items:flex-start;flex-direction:column}.nav-contact{font-size:11px} }
