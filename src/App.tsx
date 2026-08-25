@@ -11,11 +11,38 @@ const projects = [
   { number: "04", eyebrow: "Web & sécurité", title: "Construire un portfolio souverain", text: "Développement et déploiement continu d’un portfolio React avec Cloudflare Workers, en-têtes de sécurité, suivi Git et audit des dépendances.", tags: ["React", "Cloudflare", "CI/CD", "Sécurité web"], url: "https://github.com/maneekbaasha/irphan-tech" },
 ];
 
+const labProfiles = [
+  {
+    initials: "THM",
+    platform: "TryHackMe",
+    title: "Apprendre par la pratique",
+    text: "Parcours guidés et laboratoires consacrés aux fondamentaux de la cybersécurité, au réseau et au pentest junior.",
+    stats: ["Niveau 8", "5 522 points", "53 rooms", "9 badges", "Top 9 %"],
+    url: "https://tryhackme.com/p/maneekbaasha",
+  },
+  {
+    initials: "RM",
+    platform: "Root-Me",
+    title: "Résoudre et compromettre",
+    text: "Challenges techniques et environnements réalistes pour développer une démarche structurée d’énumération et d’exploitation.",
+    stats: ["36 challenges", "2 compromissions", "490 points"],
+    url: "https://www.root-me.org/maneekbaasha?lang=fr",
+  },
+  {
+    initials: "HTB",
+    platform: "Hack The Box",
+    title: "Approfondir les méthodes",
+    text: "Modules Academy et exercices pratiques pour consolider les compétences offensives, Linux et sécurité des systèmes.",
+    stats: ["HTB Academy", "Badges publics"],
+    url: "https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a",
+  },
+];
+
 export default function App() {
   return <main>
     <nav className="nav" aria-label="Navigation principale">
       <a className="monogram" href="#accueil" aria-label="Retour à l’accueil">IRPHAN<span>CYBERSECURITY</span></a>
-      <div className="nav-links"><a href="#formation">Formation</a><a href="#projets">Projets</a><a href="#experience">Expérience</a><a href="#expertise">Compétences</a><a className="nav-contact" href="mailto:info@irphan.eu">Contact <Arrow /></a><ThemeToggle /></div>
+      <div className="nav-links"><a href="#formation">Formation</a><a href="#projets">Projets</a><a href="#plateformes">Plateformes</a><a href="#experience">Expérience</a><a href="#expertise">Compétences</a><a className="nav-contact" href="mailto:info@irphan.eu">Contact <Arrow /></a><ThemeToggle /></div>
     </nav>
 
     <section className="hero" id="accueil">
@@ -52,8 +79,20 @@ export default function App() {
       <p className="confidential-note reveal">Mission réalisée dans le respect de la confidentialité client. Les méthodes et livrables sont présentés sans données sensibles.</p>
     </section>
 
+    <section className="lab-profiles" id="plateformes">
+      <div className="section-heading reveal"><p className="section-index">04 — Pratique technique</p><h2>Progresser.<br />Le prouver.</h2></div>
+      <div className="lab-profile-grid">
+        {labProfiles.map((profile) => <a className="lab-profile-card reveal" href={profile.url} target="_blank" rel="noreferrer" key={profile.platform} aria-label={`Consulter mon profil ${profile.platform}`}>
+          <div className="lab-profile-top"><span className="lab-monogram" aria-hidden="true">{profile.initials}</span><span>{profile.platform}</span><Arrow /></div>
+          <div className="lab-profile-copy"><h3>{profile.title}</h3><p>{profile.text}</p></div>
+          <div className="lab-profile-stats">{profile.stats.map((stat) => <span key={stat}>{stat}</span>)}</div>
+        </a>)}
+      </div>
+      <p className="lab-note reveal">Des profils publics, consultables sans identifiant. Ils documentent une progression continue — les projets présentés plus haut montrent comment ces acquis sont appliqués.</p>
+    </section>
+
     <section className="journey" id="experience" aria-label="Parcours professionnel">
-      <div className="section-heading reveal"><p className="section-index">04 — Expérience</p><h2>Parcours<br />professionnel</h2></div>
+      <div className="section-heading reveal"><p className="section-index">05 — Expérience</p><h2>Parcours<br />professionnel</h2></div>
       <div className="timeline">
         <article className="timeline-item reveal"><p>2025 — 2026</p><div><h3>Consultant cybersécurité · Mission d’audit</h3><span>CyberLion — CECCA</span><p>Audit de maturité, OSINT, cartographie, tests de sécurité, stratégie GRC et rédaction de livrables décisionnels.</p></div></article>
         <article className="timeline-item reveal"><p>2017 — 2026</p><div><h3>Solutions Consultant</h3><span>Apple</span><p>Diagnostic, accompagnement technique, gestion d’incidents, mentorat, QA fonctionnelle et communication dans un environnement à forte exigence.</p></div></article>
@@ -62,7 +101,7 @@ export default function App() {
     </section>
 
     <section className="expertise" id="expertise">
-      <div className="section-heading reveal"><p className="section-index">05 — Boîte à outils</p><h2>Compétences<br />en mouvement</h2></div>
+      <div className="section-heading reveal"><p className="section-index">06 — Boîte à outils</p><h2>Compétences<br />en mouvement</h2></div>
       <div className="skill-cloud reveal">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
       <p className="learning-note reveal">Je préfère une compétence démontrée à une longue liste de logos. Mon travail progresse par la pratique, la documentation et la confrontation aux cas réels.</p>
     </section>
