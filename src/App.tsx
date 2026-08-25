@@ -5,10 +5,43 @@ const Arrow = () => <span aria-hidden="true">↗</span>;
 const skills = ["Audit de sécurité", "OSINT", "Cartographie réseau", "Analyse de surface d’attaque", "Linux & Windows", "Wazuh", "Nmap", "Wireshark", "ISO 27001 / NIST", "OWASP Top 10", "MITRE ATT&CK", "Pentest exploratoire"];
 
 const projects = [
-  { number: "01", eyebrow: "Audit & exposition", title: "Comprendre avant de protéger", text: "Étude de l’exposition publique d’une PME, analyse OSINT et identification des risques humains, techniques et organisationnels.", tags: ["OSINT", "Surface d’attaque", "Risques"] },
-  { number: "02", eyebrow: "Architecture", title: "Rendre le système lisible", text: "Construction d’une cartographie réseau et applicative pour relier actifs, flux, dépendances et priorités de sécurisation.", tags: ["Réseau", "Cartographie", "Analyse"] },
-  { number: "03", eyebrow: "Remédiation", title: "Transformer les constats en décisions", text: "Tests de sécurité exploratoires, restitution des vulnérabilités et plan d’actions priorisé à court, moyen et long terme.", tags: ["Pentest", "ISO 27001", "Recommandations"] },
-  { number: "04", eyebrow: "Web & sécurité", title: "Construire un portfolio souverain", text: "Développement et déploiement continu d’un portfolio React avec Cloudflare Workers, en-têtes de sécurité, suivi Git et audit des dépendances.", tags: ["React", "Cloudflare", "CI/CD", "Sécurité web"], url: "https://github.com/maneekbaasha/irphan-tech" },
+  {
+    number: "01",
+    eyebrow: "Blue Team & détection",
+    title: "Détecter, corréler, remédier",
+    text: "Lab SOC conteneurisé comparant un serveur Nginx vulnérable et durci, avec journaux JSON, règles Wazuh, corrélation par IP et tests automatisés de non-régression.",
+    tags: ["Wazuh", "Nginx", "Docker", "Détection"],
+    url: "https://github.com/maneekbaasha/nginx-soc-detection-lab",
+  },
+  {
+    number: "02",
+    eyebrow: "Audit & exposition",
+    title: "Comprendre avant de protéger",
+    text: "Étude de l’exposition publique d’une PME, analyse OSINT et identification des risques humains, techniques et organisationnels.",
+    tags: ["OSINT", "Surface d’attaque", "Risques"],
+  },
+  {
+    number: "03",
+    eyebrow: "Architecture",
+    title: "Rendre le système lisible",
+    text: "Construction d’une cartographie réseau et applicative pour relier actifs, flux, dépendances et priorités de sécurisation.",
+    tags: ["Réseau", "Cartographie", "Analyse"],
+  },
+  {
+    number: "04",
+    eyebrow: "Remédiation",
+    title: "Transformer les constats en décisions",
+    text: "Tests de sécurité exploratoires, restitution des vulnérabilités et plan d’actions priorisé à court, moyen et long terme.",
+    tags: ["Pentest", "ISO 27001", "Recommandations"],
+  },
+  {
+    number: "05",
+    eyebrow: "Web & sécurité",
+    title: "Construire un portfolio souverain",
+    text: "Développement et déploiement continu d’un portfolio React avec Cloudflare Workers, en-têtes de sécurité, suivi Git et audit des dépendances.",
+    tags: ["React", "Cloudflare", "CI/CD", "Sécurité web"],
+    url: "https://github.com/maneekbaasha/irphan-tech",
+  },
 ];
 
 const labProfiles = [
@@ -75,7 +108,7 @@ export default function App() {
 
     <section className="work-section" id="projets">
       <div className="section-heading reveal"><p className="section-index">03 — Projets</p><h2>Du terrain.<br />Des preuves.</h2></div>
-      <div className="project-grid">{projects.map((project) => <article className="project-card reveal" key={project.number}><div className="card-top"><span>{project.number}</span><span>{project.eyebrow}</span></div><h3>{project.title}</h3><p>{project.text}</p><div className="project-bottom">{project.url && <a className="project-link" href={project.url} target="_blank" rel="noreferrer">Voir le code source <Arrow /></a>}<div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
+      <div className="project-grid">{projects.map((project) => <article className="project-card reveal" key={project.number}><div className="card-top"><span>{project.number}</span><span>{project.eyebrow}</span></div><h3>{project.title}</h3><p>{project.text}</p><div className="project-bottom">{project.url && <a className="project-link" href={project.url} target="_blank" rel="noreferrer">Voir le projet sur GitHub <Arrow /></a>}<div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
       <p className="confidential-note reveal">Mission réalisée dans le respect de la confidentialité client. Les méthodes et livrables sont présentés sans données sensibles.</p>
     </section>
 
