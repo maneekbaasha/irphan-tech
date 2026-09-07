@@ -19,7 +19,7 @@ const projects = [
     description:
       "Un environnement de support moderne reproduisant le cycle de vie d’un poste : tickets, utilisateurs, Entra ID, Intune, déploiement et incidents Windows.",
     tags: ["Entra ID", "Intune", "Jira", "Microsoft 365"],
-    url: "https://github.com/maneekbaasha/modern-it-helpdesk-lab",
+    url: "/projets/modern-it-helpdesk-lab",
   },
   {
     index: "03",
@@ -182,7 +182,11 @@ export default function App() {
               <div className="project-copy"><p>{project.category}</p><h3>{project.title}</h3><span>{project.description}</span></div>
               <div className="project-meta">
                 <div>{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                {project.url ? <a href={project.url} target="_blank" rel="noreferrer" aria-label={`Voir ${project.title}`}>Voir le projet <Arrow /></a> : <span className="private-label">Données confidentielles</span>}
+                {project.url ? (
+                  project.url.startsWith("http")
+                    ? <a href={project.url} target="_blank" rel="noreferrer" aria-label={`Voir ${project.title}`}>Voir le projet <Arrow /></a>
+                    : <a href={project.url} aria-label={`Voir l’étude de cas ${project.title}`}>Voir l’étude de cas <Arrow /></a>
+                ) : <span className="private-label">Données confidentielles</span>}
               </div>
             </article>
           ))}
