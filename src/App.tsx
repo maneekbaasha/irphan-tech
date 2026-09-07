@@ -96,9 +96,20 @@ const labProfiles = [
 
 export default function App() {
   return <main>
+    <a className="skip-link" href="#profil">Aller au contenu</a>
     <nav className="nav" aria-label="Navigation principale">
       <a className="monogram" href="#accueil" aria-label="Retour à l’accueil">IRPHAN<span>IT · SUPPORT · SECURITY</span></a>
-      <div className="nav-links"><a href="#formation">Formation</a><a href="#projets">Projets</a><a href="#plateformes">Plateformes</a><a href="#experience">Expérience</a><a href="#expertise">Compétences</a><a className="nav-contact" href="mailto:info@irphan.eu">Contact <Arrow /></a><ThemeToggle /></div>
+      <div className="desktop-tools">
+        <div className="nav-links">
+          <a href="#profil">Profil</a><a href="#experience">Expérience</a><a href="#projets">Projets</a><a href="#expertise">Compétences</a><a href="#formation">Formation</a>
+          <a className="nav-contact" href="mailto:info@irphan.eu">Contact <Arrow /></a>
+        </div>
+        <ThemeToggle />
+      </div>
+      <details className="mobile-nav">
+        <summary>Menu</summary>
+        <div><a href="#profil">Profil</a><a href="#experience">Expérience</a><a href="#projets">Projets</a><a href="#expertise">Compétences</a><a href="#formation">Formation</a><a href="#plateformes">Labs</a><a href="mailto:info@irphan.eu">Contact</a></div>
+      </details>
     </nav>
 
     <section className="hero" id="accueil">
@@ -106,16 +117,47 @@ export default function App() {
         <p className="kicker enter delay-1"><span className="status-dot" /> Support IT · Systèmes & réseaux · Cybersécurité</p>
         <h1 className="enter delay-2"><small>Bonjour, je suis</small>Irphan<br /><em>Mohamed</em></h1>
         <p className="hero-lead enter delay-3">J’accompagne les utilisateurs, résous les incidents et contribue à des environnements informatiques fiables, documentés et sécurisés.</p>
-        <div className="hero-actions enter delay-4"><a className="button primary" href="#projets">Découvrir mes projets <span>↓</span></a><a className="text-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a></div>
+        <div className="hero-actions enter delay-4"><a className="button primary" href="#projets">Voir mon travail <span>↓</span></a><a className="text-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a></div>
       </div>
       <div className="portrait-wrap gaming-wrap enter delay-3" aria-label="Personnage gaming inspiré d’Irphan Mohamed">
         <div className="portrait-media gaming-media"><img src="/irphan-gaming-character.webp" alt="Personnage gaming d’Irphan Mohamed avec un ordinateur" width="900" height="1350" decoding="async" fetchPriority="high" /></div>
-        <div className="portrait-caption"><span>Basé en Île-de-France</span><span>Support · Systèmes · Sécurité</span></div>
+        <div className="portrait-caption"><span>Île-de-France</span><span>Support · Systèmes · Sécurité</span></div>
+      </div>
+      <div className="proof-strip enter delay-4" aria-label="Repères professionnels">
+        <div><strong>8 ans</strong><span>d’expérience chez Apple</span></div>
+        <div><strong>350 h</strong><span>de mission d’audit</span></div>
+        <div><strong>3 axes</strong><span>service, technique, sécurité</span></div>
       </div>
     </section>
 
+    <section className="statement" id="profil" aria-label="Présentation">
+      <p className="section-index reveal">01 — Profil</p>
+      <div><p className="big-statement reveal">Un profil IT à la croisée du <strong>service</strong>, de la <strong>technique</strong> et de la <strong>sécurité</strong>.</p><p className="body-copy reveal">Pendant huit ans chez Apple, j’ai appris à écouter un besoin, diagnostiquer un incident et rendre la technologie compréhensible dans un environnement exigeant. Ma formation en systèmes, réseaux et cybersécurité prolonge aujourd’hui cette expérience : je veux contribuer à un support IT fiable, résoudre concrètement les problèmes et renforcer progressivement la sécurité des environnements.</p></div>
+    </section>
+
+    <section className="journey" id="experience" aria-label="Parcours professionnel">
+      <div className="section-heading reveal"><p className="section-index">02 — Expérience</p><h2>Une expérience<br />qui se complète.</h2></div>
+      <div className="timeline">
+        <article className="timeline-item reveal"><p>2017 — 2026</p><div><h3>Solutions Consultant · Support technique</h3><span>Apple</span><p>Analyse des besoins, diagnostic et résolution d’incidents, accompagnement des utilisateurs, sensibilisation à la confidentialité, mentorat et suivi qualité dans un environnement à forte exigence.</p></div></article>
+        <article className="timeline-item reveal"><p>2025 — 2026</p><div><h3>Consultant cybersécurité · Mission d’audit</h3><span>CyberLion — CECCA</span><p>Audit de maturité, OSINT, cartographie réseau et applicative, analyse de vulnérabilités, priorisation des risques et rédaction de livrables décisionnels.</p></div></article>
+        <article className="timeline-item reveal"><p>2024 — 2026</p><div><h3>Cybersécurité FullStack & infrastructures sécurisées</h3><span>Jedha Bootcamp · Parcours RNCP</span><p>Blue Team, Red Team, GRC, réseaux, systèmes et projets appliqués. Préparation CompTIA Security+.</p></div></article>
+      </div>
+    </section>
+
+    <section className="work-section" id="projets">
+      <div className="section-heading reveal"><p className="section-index">03 — Portfolio</p><h2>Du terrain.<br />Des preuves.</h2></div>
+      <div className="project-grid">{projects.map((project) => <article className="project-card reveal" key={project.number}><div className="card-top"><span>{project.number}</span><span>{project.eyebrow}</span></div><h3>{project.title}</h3><p>{project.text}</p><div className="project-bottom">{project.url && <a className="project-link" href={project.url} target="_blank" rel="noreferrer">Voir le projet sur GitHub <Arrow /></a>}<div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
+      <p className="confidential-note reveal">Mission réalisée dans le respect de la confidentialité client. Les méthodes et livrables sont présentés sans données sensibles.</p>
+    </section>
+
+    <section className="expertise" id="expertise">
+      <div className="section-heading reveal"><p className="section-index">04 — Compétences</p><h2>Savoir faire.<br />Savoir expliquer.</h2></div>
+      <div className="skill-cloud reveal">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+      <p className="learning-note reveal">Je développe ces compétences par des laboratoires documentés, des cas pratiques et une méthode constante : comprendre le besoin, diagnostiquer, agir, vérifier puis transmettre.</p>
+    </section>
+
     <section className="education" id="formation">
-      <div className="section-heading reveal"><p className="section-index">02 — Formation</p><h2>Comprendre.<br />Résoudre. Sécuriser.</h2></div>
+      <div className="section-heading reveal"><p className="section-index">05 — Formation</p><h2>Comprendre.<br />Résoudre. Sécuriser.</h2></div>
       <div className="education-grid">
         <article className="education-card reveal"><p>2026</p><h3>Administrateur d’infrastructures sécurisées</h3><span>Titre professionnel RNCP niveau 6 · en cours de validation</span></article>
         <article className="education-card reveal"><p>2024 — 2025</p><h3>Cybersécurité FullStack</h3><span>Jedha Bootcamp · Blue Team, Red Team, GRC, réseaux et systèmes</span></article>
@@ -124,19 +166,8 @@ export default function App() {
       </div>
     </section>
 
-    <section className="statement reveal" aria-label="Présentation">
-      <p className="section-index">01 — Profil</p>
-      <div><p className="big-statement">Un profil IT à la croisée du <strong>service</strong>, de la <strong>technique</strong> et de la <strong>sécurité</strong>.</p><p className="body-copy">Pendant huit ans chez Apple, j’ai appris à écouter un besoin, diagnostiquer un incident et rendre la technologie compréhensible dans un environnement exigeant. Ma formation en systèmes, réseaux et cybersécurité prolonge aujourd’hui cette expérience : je veux contribuer à un support IT fiable, résoudre concrètement les problèmes et renforcer progressivement la sécurité des environnements.</p></div>
-    </section>
-
-    <section className="work-section" id="projets">
-      <div className="section-heading reveal"><p className="section-index">03 — Projets</p><h2>Du terrain.<br />Des preuves.</h2></div>
-      <div className="project-grid">{projects.map((project) => <article className="project-card reveal" key={project.number}><div className="card-top"><span>{project.number}</span><span>{project.eyebrow}</span></div><h3>{project.title}</h3><p>{project.text}</p><div className="project-bottom">{project.url && <a className="project-link" href={project.url} target="_blank" rel="noreferrer">Voir le projet sur GitHub <Arrow /></a>}<div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
-      <p className="confidential-note reveal">Mission réalisée dans le respect de la confidentialité client. Les méthodes et livrables sont présentés sans données sensibles.</p>
-    </section>
-
     <section className="lab-profiles" id="plateformes">
-      <div className="section-heading reveal"><p className="section-index">04 — Laboratoires cybersécurité</p><h2>Approfondir.<br />Le prouver.</h2></div>
+      <div className="section-heading reveal"><p className="section-index">06 — Labs cybersécurité</p><h2>Approfondir.<br />Le prouver.</h2></div>
       <div className="lab-profile-grid">
         {labProfiles.map((profile) => <a className="lab-profile-card reveal" href={profile.url} target="_blank" rel="noreferrer" key={profile.platform} aria-label={`Consulter mon profil ${profile.platform}`}>
           <div className="lab-profile-top"><span className="lab-monogram" aria-hidden="true">{profile.initials}</span><span>{profile.platform}</span><Arrow /></div>
@@ -145,21 +176,6 @@ export default function App() {
         </a>)}
       </div>
       <p className="lab-note reveal">Des profils publics, consultables sans identifiant. Ils documentent une progression continue — les projets présentés plus haut montrent comment ces acquis sont appliqués.</p>
-    </section>
-
-    <section className="journey" id="experience" aria-label="Parcours professionnel">
-      <div className="section-heading reveal"><p className="section-index">05 — Expérience</p><h2>Parcours<br />professionnel</h2></div>
-      <div className="timeline">
-        <article className="timeline-item reveal"><p>2017 — 2026</p><div><h3>Solutions Consultant · Support technique</h3><span>Apple</span><p>Analyse des besoins, diagnostic et résolution d’incidents, accompagnement des utilisateurs, sensibilisation à la confidentialité, mentorat et suivi qualité dans un environnement à forte exigence.</p></div></article>
-        <article className="timeline-item reveal"><p>2025 — 2026</p><div><h3>Consultant cybersécurité · Mission d’audit</h3><span>CyberLion — CECCA</span><p>Audit de maturité, OSINT, cartographie réseau et applicative, analyse de vulnérabilités, priorisation des risques et rédaction de livrables décisionnels.</p></div></article>
-        <article className="timeline-item reveal"><p>2024 — 2026</p><div><h3>Cybersécurité FullStack & infrastructures sécurisées</h3><span>Jedha Bootcamp · Parcours RNCP</span><p>Blue Team, Red Team, GRC, réseaux, systèmes et projets appliqués. Préparation CompTIA Security+.</p></div></article>
-      </div>
-    </section>
-
-    <section className="expertise" id="expertise">
-      <div className="section-heading reveal"><p className="section-index">06 — Boîte à outils</p><h2>Compétences<br />en mouvement</h2></div>
-      <div className="skill-cloud reveal">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
-      <p className="learning-note reveal">Je développe ces compétences par des laboratoires documentés, des cas pratiques et une méthode constante : comprendre le besoin, diagnostiquer, agir, vérifier puis transmettre.</p>
     </section>
 
     <section className="contact" id="contact">
