@@ -1,188 +1,244 @@
-import ThemeToggle from "./ThemeToggle";
-
 const Arrow = () => <span aria-hidden="true">↗</span>;
-
-const skills = [
-  "Support utilisateurs",
-  "Diagnostic & résolution d’incidents",
-  "Windows, macOS & Linux",
-  "Microsoft Entra ID & Intune",
-  "Jira & gestion de tickets",
-  "Déploiement & conformité des postes",
-  "Réseaux TCP/IP",
-  "Documentation technique",
-  "Accompagnement & pédagogie",
-  "Audit de sécurité",
-  "OSINT & surface d’attaque",
-  "Nmap & Wireshark",
-  "Wazuh & détection",
-  "ISO 27001 / NIST / OWASP",
-];
 
 const projects = [
   {
-    number: "01",
-    eyebrow: "Support IT & administration",
-    title: "Gérer le cycle de vie d’un poste",
-    text: "Laboratoire Helpdesk reproduisant des situations réelles : gestion de tickets, intégration d’utilisateurs, Microsoft Entra ID, conformité Intune, déploiement logiciel et résolution d’incidents Windows.",
-    tags: ["Intune", "Entra ID", "Jira", "Windows", "MDM"],
-    url: "https://github.com/maneekbaasha/modern-it-helpdesk-lab",
-  },
-  {
-    number: "02",
-    eyebrow: "Blue Team & détection",
-    title: "Détecter, corréler, remédier",
-    text: "Lab SOC conteneurisé comparant un serveur Nginx vulnérable et durci, avec journaux JSON, règles Wazuh, corrélation par IP et tests automatisés de non-régression.",
-    tags: ["Wazuh", "Nginx", "Docker", "Détection"],
+    index: "01",
+    category: "Blue Team · Projet GitHub",
+    title: "Nginx SOC Detection Lab",
+    description:
+      "Un laboratoire SOC conteneurisé pour observer, détecter et corréler des attaques web : journaux JSON, règles Wazuh, remédiation et tests de non-régression.",
+    tags: ["Wazuh", "Nginx", "Docker", "Detection"],
     url: "https://github.com/maneekbaasha/nginx-soc-detection-lab",
   },
   {
-    number: "03",
-    eyebrow: "Audit & exposition",
-    title: "Comprendre avant de protéger",
-    text: "Étude de l’exposition publique d’une PME, analyse OSINT et identification des risques humains, techniques et organisationnels.",
-    tags: ["OSINT", "Surface d’attaque", "Risques"],
+    index: "02",
+    category: "Support IT · Projet GitHub",
+    title: "Modern IT Helpdesk Lab",
+    description:
+      "Un environnement de support moderne reproduisant le cycle de vie d’un poste : tickets, utilisateurs, Entra ID, Intune, déploiement et incidents Windows.",
+    tags: ["Entra ID", "Intune", "Jira", "Microsoft 365"],
+    url: "https://github.com/maneekbaasha/modern-it-helpdesk-lab",
   },
   {
-    number: "04",
-    eyebrow: "Architecture",
-    title: "Rendre le système lisible",
-    text: "Construction d’une cartographie réseau et applicative pour relier actifs, flux, dépendances et priorités de sécurisation.",
-    tags: ["Réseau", "Cartographie", "Analyse"],
+    index: "03",
+    category: "Conseil · Mission confidentielle",
+    title: "Audit de maturité cybersécurité",
+    description:
+      "Analyse de l’exposition d’une PME, cartographie, identification des risques et recommandations priorisées, avec une restitution pensée pour aider à décider.",
+    tags: ["OSINT", "Audit", "Risques", "Remediation"],
   },
   {
-    number: "05",
-    eyebrow: "Remédiation",
-    title: "Transformer les constats en décisions",
-    text: "Tests de sécurité exploratoires, restitution des vulnérabilités et plan d’actions priorisé à court, moyen et long terme.",
-    tags: ["Pentest", "ISO 27001", "Recommandations"],
-  },
-  {
-    number: "06",
-    eyebrow: "Web & infrastructure",
-    title: "Construire et exploiter ce portfolio",
-    text: "Conception d’un portfolio React, gestion du code avec GitHub, déploiement continu sur Cloudflare et mise en place des fondamentaux de sécurité et de référencement.",
-    tags: ["React", "GitHub", "Cloudflare", "CI/CD"],
+    index: "04",
+    category: "Identité numérique · Projet GitHub",
+    title: "irphan.eu",
+    description:
+      "Ce portfolio est aussi un projet : raconter un parcours au-delà du CV, documenter des réalisations et réduire la distance entre candidat et recruteur.",
+    tags: ["React", "TypeScript", "GitHub", "Cloudflare"],
     url: "https://github.com/maneekbaasha/irphan-tech",
   },
 ];
 
-const labProfiles = [
+const experience = [
   {
-    initials: "THM",
-    platform: "TryHackMe",
-    title: "Apprendre par la pratique",
-    text: "Parcours guidés et laboratoires consacrés aux fondamentaux de la cybersécurité, au réseau et au pentest junior.",
-    stats: ["Niveau 8", "5 522 points", "53 rooms", "9 badges", "Top 9 %"],
-    url: "https://tryhackme.com/p/maneekbaasha",
+    date: "2017 — 2026",
+    role: "Solutions Specialist",
+    organisation: "Apple",
+    copy: "Près de huit ans à écouter, diagnostiquer et rendre la technologie accessible. Une expérience exigeante du service, de la pédagogie, de la confidentialité et de la qualité.",
   },
   {
-    initials: "RM",
-    platform: "Root-Me",
-    title: "Résoudre et compromettre",
-    text: "Challenges techniques et environnements réalistes pour développer une démarche structurée d’énumération et d’exploitation.",
-    stats: ["36 challenges", "2 compromissions", "490 points"],
-    url: "https://www.root-me.org/maneekbaasha?lang=fr",
+    date: "2025 — 2026",
+    role: "Consultant cybersécurité",
+    organisation: "CyberLion — CECCA",
+    copy: "Une mission d’audit menée de l’exposition publique jusqu’au plan de remédiation : OSINT, cartographie, vulnérabilités, risques et livrables décisionnels.",
   },
   {
-    initials: "HTB",
-    platform: "Hack The Box",
-    title: "Approfondir les méthodes",
-    text: "Modules Academy et exercices pratiques pour consolider les compétences offensives, Linux et sécurité des systèmes.",
-    stats: ["HTB Academy", "Badges publics"],
-    url: "https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a",
+    date: "2024 — aujourd’hui",
+    role: "Formation & laboratoires",
+    organisation: "Infrastructures · Réseaux · Cybersécurité",
+    copy: "Une pratique continue pour consolider les fondamentaux, construire des environnements réalistes et transformer les apprentissages en preuves visibles.",
   },
 ];
 
+const capabilities = [
+  {
+    number: "01",
+    title: "Support & expérience utilisateur",
+    copy: "Écouter, reformuler, diagnostiquer et accompagner sans perdre de vue la personne derrière le problème.",
+    skills: ["Support utilisateurs", "Incidents", "Jira", "Documentation", "Pédagogie"],
+  },
+  {
+    number: "02",
+    title: "Systèmes, identités & réseau",
+    copy: "Comprendre l’environnement de travail dans son ensemble pour intervenir avec méthode et fiabilité.",
+    skills: ["Windows", "macOS", "Linux", "Entra ID", "Intune", "TCP/IP"],
+  },
+  {
+    number: "03",
+    title: "Cybersécurité & audit",
+    copy: "Observer l’exposition, qualifier le risque et proposer des actions compréhensibles, réalistes et vérifiables.",
+    skills: ["OSINT", "Nmap", "Wireshark", "Wazuh", "ISO 27001", "OWASP"],
+  },
+];
+
+const learning = [
+  ["2026", "Administrateur d’infrastructures sécurisées", "Titre professionnel RNCP niveau 6 · validation en cours"],
+  ["2026", "Cisco Networking Basics", "Réseaux et connectivité · Cisco Networking Academy"],
+  ["2025", "Cybersecurity Foundations", "INFOSEC · fondamentaux de la cybersécurité"],
+  ["2024 — 2025", "Cybersécurité FullStack", "Jedha Bootcamp · Blue Team, Red Team et GRC"],
+];
+
+const platforms = [
+  ["THM", "TryHackMe", "53 rooms · 9 badges · Top 9 %", "https://tryhackme.com/p/maneekbaasha"],
+  ["RM", "Root-Me", "36 challenges · 2 compromissions", "https://www.root-me.org/maneekbaasha?lang=fr"],
+  ["HTB", "Hack The Box", "Academy · badges publics", "https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a"],
+];
+
 export default function App() {
-  return <main>
-    <a className="skip-link" href="#profil">Aller au contenu</a>
-    <nav className="nav" aria-label="Navigation principale">
-      <a className="monogram" href="#accueil" aria-label="Retour à l’accueil">IRPHAN<span>IT · SUPPORT · SECURITY</span></a>
-      <div className="desktop-tools">
-        <div className="nav-links">
-          <a href="#profil">Profil</a><a href="#experience">Expérience</a><a href="#projets">Projets</a><a href="#expertise">Compétences</a><a href="#formation">Formation</a>
-          <a className="nav-contact" href="mailto:info@irphan.eu">Contact <Arrow /></a>
+  return (
+    <main>
+      <a className="skip-link" href="#profil">Aller au contenu</a>
+
+      <header className="topbar">
+        <span>Évry · France</span>
+        <a href="#accueil">Irphanoullah Mohamed Mustapha</a>
+        <span><i />Disponible pour de nouvelles opportunités</span>
+      </header>
+
+      <section className="hero" id="accueil">
+        <div className="hero-visual" aria-hidden="true">
+          <img src="/irphan-hero.png" alt="" width="1672" height="941" fetchPriority="high" />
+          <div className="digital-veil" />
         </div>
-        <ThemeToggle />
-      </div>
-      <details className="mobile-nav">
-        <summary>Menu</summary>
-        <div><a href="#profil">Profil</a><a href="#experience">Expérience</a><a href="#projets">Projets</a><a href="#expertise">Compétences</a><a href="#formation">Formation</a><a href="#plateformes">Labs</a><a href="mailto:info@irphan.eu">Contact</a></div>
-      </details>
-    </nav>
+        <div className="hero-content">
+          <p className="eyebrow enter">Support IT · Systèmes · Cybersécurité · IA</p>
+          <h1 className="enter delay-1">Irphanoullah<br /><span>Mohamed Mustapha</span></h1>
+          <div className="hero-bottom enter delay-2">
+            <p>Comprendre les personnes.<br />Maîtriser les outils.<br />Sécuriser les usages.</p>
+            <a className="pill-button" href="/CV-Irphanoullah-Mohamed-Mustapha.pdf" download>
+              Télécharger mon CV <span>↓</span>
+            </a>
+          </div>
+        </div>
+        <a className="scroll-cue" href="#profil" aria-label="Découvrir mon profil">Défiler <span>↓</span></a>
+      </section>
 
-    <section className="hero" id="accueil">
-      <div className="hero-copy">
-        <p className="kicker enter delay-1"><span className="status-dot" /> Support IT · Systèmes & réseaux · Cybersécurité</p>
-        <h1 className="enter delay-2"><small>Bonjour, je suis</small>Irphan<br /><em>Mohamed</em></h1>
-        <p className="hero-lead enter delay-3">J’accompagne les utilisateurs, résous les incidents et contribue à des environnements informatiques fiables, documentés et sécurisés.</p>
-        <div className="hero-actions enter delay-4"><a className="button primary" href="#projets">Voir mon travail <span>↓</span></a><a className="text-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a></div>
-      </div>
-      <div className="portrait-wrap gaming-wrap enter delay-3" aria-label="Personnage gaming inspiré d’Irphan Mohamed">
-        <div className="portrait-media gaming-media"><img src="/irphan-gaming-character.webp" alt="Personnage gaming d’Irphan Mohamed avec un ordinateur" width="900" height="1350" decoding="async" fetchPriority="high" /></div>
-        <div className="portrait-caption"><span>Île-de-France</span><span>Support · Systèmes · Sécurité</span></div>
-      </div>
-      <div className="proof-strip enter delay-4" aria-label="Repères professionnels">
-        <div><strong>8 ans</strong><span>d’expérience chez Apple</span></div>
-        <div><strong>350 h</strong><span>de mission d’audit</span></div>
-        <div><strong>3 axes</strong><span>service, technique, sécurité</span></div>
-      </div>
-    </section>
+      <nav className="dock" aria-label="Navigation principale">
+        <a href="#accueil" aria-label="Accueil" className="dock-mark">IM</a>
+        <a href="#profil">Profil</a>
+        <a href="#parcours">Parcours</a>
+        <a href="#projets">Projets</a>
+        <a href="#competences">Compétences</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-    <section className="statement" id="profil" aria-label="Présentation">
-      <p className="section-index reveal">01 — Profil</p>
-      <div><p className="big-statement reveal">Un profil IT à la croisée du <strong>service</strong>, de la <strong>technique</strong> et de la <strong>sécurité</strong>.</p><p className="body-copy reveal">Pendant huit ans chez Apple, j’ai appris à écouter un besoin, diagnostiquer un incident et rendre la technologie compréhensible dans un environnement exigeant. Ma formation en systèmes, réseaux et cybersécurité prolonge aujourd’hui cette expérience : je veux contribuer à un support IT fiable, résoudre concrètement les problèmes et renforcer progressivement la sécurité des environnements.</p></div>
-    </section>
+      <section className="profile section" id="profil">
+        <div className="section-label reveal"><span>01</span> Qui je suis</div>
+        <div className="profile-grid">
+          <h2 className="display-title reveal">Au-delà<br />du <em>CV.</em></h2>
+          <div className="story reveal">
+            <p className="story-lead">Je m’appelle Irphanoullah Mohamed Mustapha. Pendant près de huit ans chez Apple, j’ai appris que la technologie ne se résume jamais aux machines : elle commence par l’écoute.</p>
+            <p>Un incident, une inquiétude ou un besoin cache toujours une personne qui cherche à avancer. Mon rôle a longtemps été de comprendre, d’expliquer et de résoudre. Puis j’ai voulu aller plus loin : comprendre ce qui relie les systèmes, les réseaux et la sécurité.</p>
+            <p>J’ai créé ce site parce qu’un CV dit où l’on est passé, mais rarement comment on réfléchit. Les employeurs disposent de peu de temps pour découvrir leurs candidats ; les candidats, eux, manquent souvent d’espace pour montrer ce qu’ils savent réellement faire.</p>
+            <p className="accent-copy">Ce portfolio est ce point de rencontre : une manière plus humaine de me connaître, des réalisations vérifiables et le début d’une conversation.</p>
+          </div>
+        </div>
+        <div className="profile-metrics reveal">
+          <div><strong>8</strong><span>années chez Apple</span></div>
+          <div><strong>350 h</strong><span>de mission d’audit</span></div>
+          <div><strong>3</strong><span>axes : service, systèmes, sécurité</span></div>
+        </div>
+      </section>
 
-    <section className="journey" id="experience" aria-label="Parcours professionnel">
-      <div className="section-heading reveal"><p className="section-index">02 — Expérience</p><h2>Une expérience<br />qui se complète.</h2></div>
-      <div className="timeline">
-        <article className="timeline-item reveal"><p>2017 — 2026</p><div><h3>Solutions Consultant · Support technique</h3><span>Apple</span><p>Analyse des besoins, diagnostic et résolution d’incidents, accompagnement des utilisateurs, sensibilisation à la confidentialité, mentorat et suivi qualité dans un environnement à forte exigence.</p></div></article>
-        <article className="timeline-item reveal"><p>2025 — 2026</p><div><h3>Consultant cybersécurité · Mission d’audit</h3><span>CyberLion — CECCA</span><p>Audit de maturité, OSINT, cartographie réseau et applicative, analyse de vulnérabilités, priorisation des risques et rédaction de livrables décisionnels.</p></div></article>
-        <article className="timeline-item reveal"><p>2024 — 2026</p><div><h3>Cybersécurité FullStack & infrastructures sécurisées</h3><span>Jedha Bootcamp · Parcours RNCP</span><p>Blue Team, Red Team, GRC, réseaux, systèmes et projets appliqués. Préparation CompTIA Security+.</p></div></article>
-      </div>
-    </section>
+      <section className="journey section" id="parcours">
+        <div className="section-label reveal"><span>02</span> Mon parcours</div>
+        <div className="section-intro reveal">
+          <h2>Une trajectoire construite<br /><em>par la curiosité.</em></h2>
+          <p>Chaque étape complète la précédente : l’expérience humaine du terrain, la rigueur technique et une attention croissante portée à la sécurité.</p>
+        </div>
+        <div className="timeline">
+          {experience.map((item) => (
+            <article className="timeline-row reveal" key={item.date}>
+              <time>{item.date}</time>
+              <div><h3>{item.role}</h3><p className="organisation">{item.organisation}</p></div>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-    <section className="work-section" id="projets">
-      <div className="section-heading reveal"><p className="section-index">03 — Portfolio</p><h2>Du terrain.<br />Des preuves.</h2></div>
-      <div className="project-grid">{projects.map((project) => <article className="project-card reveal" key={project.number}><div className="card-top"><span>{project.number}</span><span>{project.eyebrow}</span></div><h3>{project.title}</h3><p>{project.text}</p><div className="project-bottom">{project.url && <a className="project-link" href={project.url} target="_blank" rel="noreferrer">Voir le projet sur GitHub <Arrow /></a>}<div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
-      <p className="confidential-note reveal">Mission réalisée dans le respect de la confidentialité client. Les méthodes et livrables sont présentés sans données sensibles.</p>
-    </section>
+      <section className="projects section" id="projets">
+        <div className="section-label reveal"><span>03</span> Réalisations</div>
+        <div className="section-intro reveal">
+          <h2>Des projets qui montrent<br /><em>comment je travaille.</em></h2>
+          <p>Des laboratoires documentés, du code accessible et une mission menée dans le respect de la confidentialité.</p>
+        </div>
+        <div className="project-list">
+          {projects.map((project) => (
+            <article className="project-row reveal" key={project.index}>
+              <div className="project-index">{project.index}</div>
+              <div className="project-copy"><p>{project.category}</p><h3>{project.title}</h3><span>{project.description}</span></div>
+              <div className="project-meta">
+                <div>{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+                {project.url ? <a href={project.url} target="_blank" rel="noreferrer" aria-label={`Voir ${project.title}`}>Voir le projet <Arrow /></a> : <span className="private-label">Données confidentielles</span>}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-    <section className="expertise" id="expertise">
-      <div className="section-heading reveal"><p className="section-index">04 — Compétences</p><h2>Savoir faire.<br />Savoir expliquer.</h2></div>
-      <div className="skill-cloud reveal">{skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
-      <p className="learning-note reveal">Je développe ces compétences par des laboratoires documentés, des cas pratiques et une méthode constante : comprendre le besoin, diagnostiquer, agir, vérifier puis transmettre.</p>
-    </section>
+      <section className="ai-section section" id="ia">
+        <div className="ai-orbit" aria-hidden="true"><span>IA</span></div>
+        <div className="section-label reveal"><span>04</span> Intelligence artificielle</div>
+        <div className="ai-grid">
+          <h2 className="reveal">Explorer l’IA.<br /><em>Garder l’humain.</em></h2>
+          <div className="ai-copy reveal">
+            <p>Je m’intéresse particulièrement aux outils d’IA générative, aux agents et à l’automatisation appliqués au support IT et à la cybersécurité.</p>
+            <p>Mon approche reste pragmatique : utiliser l’IA pour mieux rechercher, documenter et accélérer — avec validation humaine, protection des données et esprit critique.</p>
+            <div className="next-project"><span>Prochaine réalisation</span><strong>Assistant IA pour le support IT</strong><p>Qualifier une demande, suggérer une procédure et préparer une réponse, sans retirer la décision au technicien.</p></div>
+          </div>
+        </div>
+      </section>
 
-    <section className="education" id="formation">
-      <div className="section-heading reveal"><p className="section-index">05 — Formation</p><h2>Comprendre.<br />Résoudre. Sécuriser.</h2></div>
-      <div className="education-grid">
-        <article className="education-card reveal"><p>2026</p><h3>Administrateur d’infrastructures sécurisées</h3><span>Titre professionnel RNCP niveau 6 · en cours de validation</span></article>
-        <article className="education-card reveal"><p>2024 — 2025</p><h3>Cybersécurité FullStack</h3><span>Jedha Bootcamp · Blue Team, Red Team, GRC, réseaux et systèmes</span></article>
-        <article className="education-card reveal"><p>2025 — 2026</p><h3>Certifications & fondamentaux</h3><span>INFOSEC Cybersecurity Foundations · préparation CompTIA Security+</span></article>
-        <article className="education-card reveal"><p>2026</p><h3>Cisco Networking Basics</h3><span>Certification Cisco Networking Academy · fondamentaux des réseaux et de la connectivité</span></article>
-      </div>
-    </section>
+      <section className="capabilities section" id="competences">
+        <div className="section-label reveal"><span>05</span> Ce que j’apporte</div>
+        <div className="capability-list">
+          {capabilities.map((capability) => (
+            <article className="capability reveal" key={capability.number}>
+              <span>{capability.number}</span>
+              <div><h3>{capability.title}</h3><p>{capability.copy}</p><div className="chips">{capability.skills.map((skill) => <span key={skill}>{skill}</span>)}</div></div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-    <section className="lab-profiles" id="plateformes">
-      <div className="section-heading reveal"><p className="section-index">06 — Labs cybersécurité</p><h2>Approfondir.<br />Le prouver.</h2></div>
-      <div className="lab-profile-grid">
-        {labProfiles.map((profile) => <a className="lab-profile-card reveal" href={profile.url} target="_blank" rel="noreferrer" key={profile.platform} aria-label={`Consulter mon profil ${profile.platform}`}>
-          <div className="lab-profile-top"><span className="lab-monogram" aria-hidden="true">{profile.initials}</span><span>{profile.platform}</span><Arrow /></div>
-          <div className="lab-profile-copy"><h3>{profile.title}</h3><p>{profile.text}</p></div>
-          <div className="lab-profile-stats">{profile.stats.map((stat) => <span key={stat}>{stat}</span>)}</div>
-        </a>)}
-      </div>
-      <p className="lab-note reveal">Des profils publics, consultables sans identifiant. Ils documentent une progression continue — les projets présentés plus haut montrent comment ces acquis sont appliqués.</p>
-    </section>
+      <section className="learning section" id="formation">
+        <div className="section-label reveal"><span>06</span> Apprentissage continu</div>
+        <div className="learning-grid">
+          <div>
+            <h2 className="reveal">Apprendre.<br />Pratiquer.<br /><em>Partager.</em></h2>
+            <p className="learning-note reveal">La progression ne se revendique pas : elle se documente.</p>
+          </div>
+          <div className="education-list">
+            {learning.map(([year, title, copy]) => <article className="education-row reveal" key={title}><time>{year}</time><div><h3>{title}</h3><p>{copy}</p></div></article>)}
+          </div>
+        </div>
+        <div className="platforms reveal">
+          {platforms.map(([initials, name, stats, url]) => <a href={url} target="_blank" rel="noreferrer" key={name}><span>{initials}</span><div><strong>{name}</strong><small>{stats}</small></div><Arrow /></a>)}
+        </div>
+      </section>
 
-    <section className="contact" id="contact">
-      <p className="kicker reveal"><span className="status-dot" /> Ouvert aux opportunités en support IT, systèmes, réseau et cybersécurité junior</p>
-      <h2 className="reveal">Parlons de ce que je peux<br /><em>apporter à votre équipe.</em></h2>
-      <div className="contact-actions reveal"><a className="button light" href="mailto:info@irphan.eu">Écrire un e-mail <Arrow /></a><a className="text-link light-link" href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a><a className="text-link light-link" href="https://github.com/maneekbaasha" target="_blank" rel="noreferrer">GitHub <Arrow /></a></div>
-      <footer><span>© 2026 Irphan</span><a href="#accueil">Retour en haut ↑</a></footer>
-    </section>
-  </main>;
+      <section className="contact section" id="contact">
+        <div className="contact-glow" aria-hidden="true" />
+        <p className="availability reveal"><i /> Disponible pour une nouvelle opportunité</p>
+        <h2 className="reveal">Et si nous faisions<br />connaissance <em>autrement&nbsp;?</em></h2>
+        <p className="contact-copy reveal">Support IT, systèmes, réseau ou cybersécurité junior : parlons de vos besoins et de ce que je peux apporter à votre équipe.</p>
+        <div className="contact-links reveal">
+          <a className="pill-button light" href="mailto:info@irphan.eu">Écrivez-moi <Arrow /></a>
+          <a href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a>
+          <a href="https://github.com/maneekbaasha" target="_blank" rel="noreferrer">GitHub <Arrow /></a>
+        </div>
+        <footer><span>© 2026 Irphanoullah Mohamed Mustapha</span><span>Conçu avec curiosité · Évry, France</span><a href="#accueil">Retour en haut ↑</a></footer>
+      </section>
+    </main>
+  );
 }

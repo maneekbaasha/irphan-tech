@@ -1,6 +1,6 @@
 # irphan.eu
 
-Portfolio professionnel d’Irphan Mohamed Mustapha, présentant son expérience, ses compétences et ses projets en support IT, systèmes, réseaux et cybersécurité.
+Portfolio professionnel d’Irphanoullah Mohamed Mustapha, présentant son histoire, son expérience et ses réalisations en support IT, systèmes, cybersécurité et intelligence artificielle.
 
 ## Développement local
 
