@@ -19,7 +19,7 @@ const projects = [
     description:
       "Un environnement de support moderne reproduisant le cycle de vie d’un poste : tickets, utilisateurs, Entra ID, Intune, déploiement et incidents Windows.",
     tags: ["Entra ID", "Intune", "Jira", "Microsoft 365"],
-    url: "/projets/modern-it-helpdesk-lab",
+    url: "/projets/modern-it-helpdesk-lab/",
   },
   {
     index: "03",

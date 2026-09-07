@@ -56,7 +56,7 @@ const method = [
 export default function HelpdeskCaseStudy() {
   useEffect(() => {
     const previousTitle = document.title;
-    document.title = "Modern IT Helpdesk Lab — Irphanoullah Mohamed Mustapha";
+    document.title = "Modern IT Helpdesk Lab — Étude de cas | Irphanoullah";
     return () => { document.title = previousTitle; };
   }, []);
 
