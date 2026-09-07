@@ -109,6 +109,25 @@ em { color: var(--champagne-pale); font-family: Georgia, "Times New Roman", seri
 .project-meta > a { padding-bottom: 4px; border-bottom: 1px solid currentColor; font-size: 12px; font-weight: 650; }
 .private-label { color: #777269; font-size: 10px; text-transform: uppercase; letter-spacing: .1em; }
 
+.cyber-profiles { background: var(--ivory); color: var(--black); }
+.cyber-profiles .section-label { color: #816d48; }
+.cyber-profiles .section-intro h2 em { color: #8f713c; }
+.cyber-profiles .section-intro p { color: #625f57; }
+.cyber-profile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: clamp(72px, 9vw, 128px); }
+.cyber-profile-card { min-height: 430px; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(25px, 3vw, 42px); border: 1px solid rgba(0,0,0,.18); background: rgba(255,255,255,.18); transition: transform .3s, background .3s, color .3s; }
+.cyber-profile-card:hover { transform: translateY(-6px); background: var(--black); color: var(--ivory); }
+.cyber-profile-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.cyber-profile-mark { display: grid; place-items: center; width: 66px; height: 66px; border: 1px solid currentColor; border-radius: 50%; font: 750 13px/1 ui-monospace, monospace; }
+.cyber-profile-arrow { font-size: 22px; }
+.cyber-profile-card p { margin: 0 0 10px; color: #8f713c; font-size: 12px; font-weight: 650; letter-spacing: .08em; }
+.cyber-profile-card h3 { margin: 0 0 19px; font-size: clamp(36px, 4.2vw, 66px); font-weight: 360; letter-spacing: -.05em; }
+.cyber-profile-description { display: block; max-width: 520px; color: #625f57; font-size: 15px; line-height: 1.75; }
+.cyber-profile-card:hover .cyber-profile-description { color: #aaa69d; }
+.cyber-profile-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(0,0,0,.16); }
+.cyber-profile-stats span { padding: 7px 11px; border: 1px solid rgba(0,0,0,.2); border-radius: 999px; font-size: 11px; text-transform: uppercase; letter-spacing: .07em; }
+.cyber-profile-card:hover .cyber-profile-stats { border-color: var(--line); }
+.cyber-profile-card:hover .cyber-profile-stats span { border-color: var(--line); }
+
 .ai-section { min-height: 90svh; overflow: hidden; isolation: isolate; background: radial-gradient(circle at 79% 45%, #29251d 0%, #11100e 24%, #070707 61%); }
 .ai-orbit { position: absolute; z-index: -1; right: -12vw; top: 50%; width: min(61vw, 850px); aspect-ratio: 1; border: 1px solid rgba(199,170,114,.19); border-radius: 50%; transform: translateY(-50%); display: grid; place-items: center; }
 .ai-orbit::before, .ai-orbit::after { content: ""; position: absolute; border: 1px solid rgba(199,170,114,.15); border-radius: 50%; }
@@ -162,7 +181,7 @@ em { color: var(--champagne-pale); font-family: Georgia, "Times New Roman", seri
 .pill-button.light:hover { background: var(--champagne-pale); border-color: var(--champagne-pale); }
 footer { position: absolute; inset: auto max(5.5vw, 24px) 30px; display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--line); color: #686660; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; }
 
-body, .profile, .journey, .projects, .ai-section, .capabilities, .learning, .contact { transition: background-color .35s ease, color .35s ease; }
+body, .profile, .journey, .projects, .cyber-profiles, .ai-section, .capabilities, .learning, .contact { transition: background-color .35s ease, color .35s ease; }
 
 html[data-theme="light"] body { background: var(--ivory); color: #11110f; }
 html[data-theme="light"] .hero .eyebrow,
@@ -182,19 +201,31 @@ html[data-theme="light"] .next-project { border-color: rgba(111,82,34,.3); backg
 html[data-theme="light"] .chips span { color: #555149; }
 
 html[data-theme="dark"] .profile { background: #0d0d0c; color: var(--ivory); }
+html[data-theme="dark"] .cyber-profiles { background: #0d0d0c; color: var(--ivory); }
 html[data-theme="dark"] .projects { background: #10100e; color: var(--ivory); }
 html[data-theme="dark"] .learning { background: #0d0d0c; color: var(--ivory); }
 html[data-theme="dark"] .profile .section-label,
 html[data-theme="dark"] .projects .section-label,
 html[data-theme="dark"] .learning .section-label { color: var(--champagne-pale); }
+html[data-theme="dark"] .cyber-profiles .section-label { color: var(--champagne-pale); }
 html[data-theme="dark"] .profile .display-title em,
 html[data-theme="dark"] .projects .section-intro h2 em,
 html[data-theme="dark"] .learning h2 em { color: var(--champagne-pale); }
+html[data-theme="dark"] .cyber-profiles .section-intro h2 em { color: var(--champagne-pale); }
 html[data-theme="dark"] .story p,
 html[data-theme="dark"] .projects .section-intro p,
 html[data-theme="dark"] .project-copy > span,
 html[data-theme="dark"] .education-row p,
 html[data-theme="dark"] .learning-note { color: #aaa69d; }
+html[data-theme="dark"] .cyber-profiles .section-intro p,
+html[data-theme="dark"] .cyber-profile-description { color: #aaa69d; }
+html[data-theme="dark"] .cyber-profile-card { border-color: var(--line); background: rgba(255,255,255,.018); }
+html[data-theme="dark"] .cyber-profile-stats { border-color: var(--line); }
+html[data-theme="dark"] .cyber-profile-stats span { border-color: var(--line); }
+html[data-theme="dark"] .cyber-profile-card:hover { background: var(--ivory); color: var(--black); }
+html[data-theme="dark"] .cyber-profile-card:hover .cyber-profile-description { color: #5f5b53; }
+html[data-theme="dark"] .cyber-profile-card:hover .cyber-profile-stats,
+html[data-theme="dark"] .cyber-profile-card:hover .cyber-profile-stats span { border-color: rgba(0,0,0,.2); }
 html[data-theme="dark"] .story .story-lead { color: var(--ivory); }
 html[data-theme="dark"] .story .accent-copy { border-color: var(--champagne); color: var(--champagne-pale); }
 html[data-theme="dark"] .profile-metrics,
@@ -238,6 +269,8 @@ html[data-theme="dark"] .platforms a:hover small { color: #5f5b53; }
   .project-row { grid-template-columns: 55px 1fr; }
   .project-meta { grid-column: 2; flex-direction: row; align-items: flex-end; }
   .capability-list { margin-left: 0; }
+  .cyber-profile-grid { grid-template-columns: 1fr; }
+  .cyber-profile-card { min-height: 380px; }
 }
 
 @media (max-width: 700px) {
@@ -273,6 +306,7 @@ html[data-theme="dark"] .platforms a:hover small { color: #5f5b53; }
   .capability { grid-template-columns: 38px 1fr; gap: 8px; }
   .education-row { grid-template-columns: 1fr; gap: 8px; }
   .platforms { grid-template-columns: 1fr; }
+  .cyber-profile-card { min-height: 360px; padding: 24px; }
   .contact { min-height: 92svh; padding-bottom: 140px; }
   .contact-links { flex-direction: column; }
   footer { align-items: center; flex-direction: column; gap: 8px; }

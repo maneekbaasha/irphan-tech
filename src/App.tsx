@@ -89,10 +89,31 @@ const learning = [
   ["2024 — 2025", "Cybersécurité FullStack", "Jedha Bootcamp · Blue Team, Red Team et GRC"],
 ];
 
-const platforms = [
-  ["THM", "TryHackMe", "53 rooms · 9 badges · Top 9 %", "https://tryhackme.com/p/maneekbaasha"],
-  ["RM", "Root-Me", "36 challenges · 2 compromissions", "https://www.root-me.org/maneekbaasha?lang=fr"],
-  ["HTB", "Hack The Box", "Academy · badges publics", "https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a"],
+const cyberProfiles = [
+  {
+    initials: "THM",
+    name: "TryHackMe",
+    handle: "@maneekbaasha",
+    description: "Parcours guidés, laboratoires pratiques et fondamentaux offensifs comme défensifs.",
+    stats: ["53 rooms", "9 badges", "Top 9 %"],
+    url: "https://tryhackme.com/p/maneekbaasha",
+  },
+  {
+    initials: "RM",
+    name: "Root-Me",
+    handle: "@maneekbaasha",
+    description: "Challenges techniques et compromissions pour travailler l’analyse, la logique et l’exploitation.",
+    stats: ["36 challenges", "2 compromissions", "490 points"],
+    url: "https://www.root-me.org/maneekbaasha?lang=fr",
+  },
+  {
+    initials: "HTB",
+    name: "Hack The Box",
+    handle: "Profil public",
+    description: "Modules Academy et exercices pratiques pour approfondir les techniques d’attaque et de défense.",
+    stats: ["HTB Academy", "Badges publics"],
+    url: "https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a",
+  },
 ];
 
 export default function App() {
@@ -193,9 +214,35 @@ export default function App() {
         </div>
       </section>
 
+      <section className="cyber-profiles section" id="profils-cyber">
+        <div className="section-label reveal"><span>04</span> Profils cybersécurité</div>
+        <div className="section-intro reveal">
+          <h2>La progression,<br /><em>preuves à l’appui.</em></h2>
+          <p>Ces profils publics permettent de consulter directement ma pratique régulière, mes challenges et mes résultats sur les plateformes d’entraînement.</p>
+        </div>
+        <div className="cyber-profile-grid">
+          {cyberProfiles.map((profile) => (
+            <a className="cyber-profile-card reveal" href={profile.url} target="_blank" rel="noreferrer" key={profile.name}>
+              <div className="cyber-profile-head">
+                <span className="cyber-profile-mark">{profile.initials}</span>
+                <span className="cyber-profile-arrow" aria-hidden="true">↗</span>
+              </div>
+              <div>
+                <p>{profile.handle}</p>
+                <h3>{profile.name}</h3>
+                <span className="cyber-profile-description">{profile.description}</span>
+              </div>
+              <div className="cyber-profile-stats">
+                {profile.stats.map((stat) => <span key={stat}>{stat}</span>)}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section className="ai-section section" id="ia">
         <div className="ai-orbit" aria-hidden="true"><span>IA</span></div>
-        <div className="section-label reveal"><span>04</span> Intelligence artificielle</div>
+        <div className="section-label reveal"><span>05</span> Intelligence artificielle</div>
         <div className="ai-grid">
           <h2 className="reveal">Explorer l’IA.<br /><em>Garder l’humain.</em></h2>
           <div className="ai-copy reveal">
@@ -207,7 +254,7 @@ export default function App() {
       </section>
 
       <section className="capabilities section" id="competences">
-        <div className="section-label reveal"><span>05</span> Ce que j’apporte</div>
+        <div className="section-label reveal"><span>06</span> Ce que j’apporte</div>
         <div className="capability-list">
           {capabilities.map((capability) => (
             <article className="capability reveal" key={capability.number}>
@@ -219,7 +266,7 @@ export default function App() {
       </section>
 
       <section className="learning section" id="formation">
-        <div className="section-label reveal"><span>06</span> Apprentissage continu</div>
+        <div className="section-label reveal"><span>07</span> Apprentissage continu</div>
         <div className="learning-grid">
           <div>
             <h2 className="reveal">Apprendre.<br />Pratiquer.<br /><em>Partager.</em></h2>
@@ -228,9 +275,6 @@ export default function App() {
           <div className="education-list">
             {learning.map(([year, title, copy]) => <article className="education-row reveal" key={title}><time>{year}</time><div><h3>{title}</h3><p>{copy}</p></div></article>)}
           </div>
-        </div>
-        <div className="platforms reveal">
-          {platforms.map(([initials, name, stats, url]) => <a href={url} target="_blank" rel="noreferrer" key={name}><span>{initials}</span><div><strong>{name}</strong><small>{stats}</small></div><Arrow /></a>)}
         </div>
       </section>
 
