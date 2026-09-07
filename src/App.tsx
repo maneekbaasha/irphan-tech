@@ -114,8 +114,8 @@ export default function App() {
           <h1 className="enter delay-1">Irphanoullah<br /><span>Mohamed Mustapha</span></h1>
           <div className="hero-bottom enter delay-2">
             <p>Comprendre les personnes.<br />Maîtriser les outils.<br />Sécuriser les usages.</p>
-            <a className="pill-button" href="/CV-Irphanoullah-Mohamed-Mustapha.pdf" download>
-              Télécharger mon CV <span>↓</span>
+            <a className="pill-button" href="#projets">
+              Découvrir mes projets <span>↓</span>
             </a>
           </div>
         </div>
