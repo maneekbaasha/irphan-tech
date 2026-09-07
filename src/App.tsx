@@ -1,3 +1,5 @@
+import ThemeToggle from "./ThemeToggle";
+
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
 const projects = [
@@ -129,6 +131,7 @@ export default function App() {
         <a href="#projets">Projets</a>
         <a href="#competences">Compétences</a>
         <a href="#contact">Contact</a>
+        <ThemeToggle />
       </nav>
 
       <section className="profile section" id="profil">
