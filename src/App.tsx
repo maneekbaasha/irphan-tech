@@ -106,7 +106,7 @@ export default function App() {
 
       <section className="hero" id="accueil">
         <div className="hero-visual" aria-hidden="true">
-          <img src="/irphan-hero.png" alt="" width="1672" height="941" fetchPriority="high" />
+          <img src="/irphan-hero.webp" alt="" width="1672" height="941" fetchPriority="high" />
           <div className="digital-veil" />
         </div>
         <div className="hero-content">
