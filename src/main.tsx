@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import HelpdeskCaseStudy from "./HelpdeskCaseStudy";
 import "./styles.css";
+import "./premium.css";
 
 const isHelpdeskCase = window.location.pathname.replace(/\/$/, "") === "/projets/modern-it-helpdesk-lab";
 
