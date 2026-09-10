@@ -5,6 +5,7 @@ import HelpdeskCaseStudy from "./HelpdeskCaseStudy";
 import "./styles.css";
 import "./premium.css";
 import "./architecture.css";
+import "./product-home.css";
 
 const isHelpdeskCase = window.location.pathname.replace(/\/$/, "") === "/projets/modern-it-helpdesk-lab";
 
