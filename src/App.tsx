@@ -1,295 +1,288 @@
+import { useEffect, useMemo, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
-const Arrow = () => <span aria-hidden="true">↗</span>;
+type View = "home" | "about" | "experience" | "projects" | "skills" | "contact";
+
+const navItems: { id: View; label: string }[] = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "skills", label: "Skills" },
+  { id: "contact", label: "Contact" },
+];
 
 const projects = [
   {
     index: "01",
-    category: "Blue Team · Projet GitHub",
-    title: "Nginx SOC Detection Lab",
-    description:
-      "Un laboratoire SOC conteneurisé pour observer, détecter et corréler des attaques web : journaux JSON, règles Wazuh, remédiation et tests de non-régression.",
-    tags: ["Wazuh", "Nginx", "Docker", "Detection"],
-    url: "https://github.com/maneekbaasha/nginx-soc-detection-lab",
+    eyebrow: "Support IT · Microsoft Cloud",
+    title: "Modern IT Helpdesk Lab",
+    description: "Un environnement de support moderne qui reproduit le cycle de vie réel d’un poste : onboarding, Entra ID, Intune, conformité, déploiement et incidents Windows.",
+    stack: ["Entra ID", "Intune", "Microsoft 365", "Jira"],
+    link: "/projets/modern-it-helpdesk-lab/",
   },
   {
     index: "02",
-    category: "Support IT · Projet GitHub",
-    title: "Modern IT Helpdesk Lab",
-    description:
-      "Un environnement de support moderne reproduisant le cycle de vie d’un poste : tickets, utilisateurs, Entra ID, Intune, déploiement et incidents Windows.",
-    tags: ["Entra ID", "Intune", "Jira", "Microsoft 365"],
-    url: "/projets/modern-it-helpdesk-lab/",
+    eyebrow: "Blue Team · Detection Engineering",
+    title: "Nginx SOC Detection Lab",
+    description: "Un laboratoire conteneurisé pour observer, détecter et corréler des attaques web, avec journaux, règles Wazuh, remédiation et tests de non-régression.",
+    stack: ["Wazuh", "Nginx", "Docker", "Sigma"],
+    link: "https://github.com/maneekbaasha/nginx-soc-detection-lab",
   },
   {
     index: "03",
-    category: "Conseil · Mission confidentielle",
-    title: "Audit de maturité cybersécurité",
-    description:
-      "Analyse de l’exposition d’une PME, cartographie, identification des risques et recommandations priorisées, avec une restitution pensée pour aider à décider.",
-    tags: ["OSINT", "Audit", "Risques", "Remediation"],
+    eyebrow: "AI · Support IT",
+    title: "AI IT Support Lab",
+    description: "Un assistant local qui qualifie une demande, s’appuie sur une base documentaire et prépare une réponse sans retirer la décision au technicien.",
+    stack: ["Python", "LLM", "RAG", "Tests"],
+    link: "https://github.com/maneekbaasha",
   },
   {
     index: "04",
-    category: "Identité numérique · Projet GitHub",
+    eyebrow: "Portfolio · Product thinking",
     title: "irphan.eu",
-    description:
-      "Ce portfolio est aussi un projet : raconter un parcours au-delà du CV, documenter des réalisations et réduire la distance entre candidat et recruteur.",
-    tags: ["React", "TypeScript", "GitHub", "Cloudflare"],
-    url: "https://github.com/maneekbaasha/irphan-tech",
+    description: "Un portfolio pensé comme un produit : raconter un parcours au-delà du CV, rendre les réalisations vérifiables et réduire la distance entre candidat et recruteur.",
+    stack: ["React", "TypeScript", "Vite", "Cloudflare"],
+    link: "https://github.com/maneekbaasha/irphan-tech",
   },
 ];
 
 const experience = [
   {
-    date: "2017 — 2026",
+    period: "2017 — 2026",
     role: "Solutions Specialist",
-    organisation: "Apple",
-    copy: "Près de huit ans à écouter, diagnostiquer et rendre la technologie accessible. Une expérience exigeante du service, de la pédagogie, de la confidentialité et de la qualité.",
+    company: "Apple",
+    copy: "Près de huit ans au contact des utilisateurs, à écouter, diagnostiquer, expliquer et résoudre. Une école exigeante du service, du feedback, de la pédagogie et de la qualité d’expérience.",
   },
   {
-    date: "2025 — 2026",
+    period: "2025 — 2026",
     role: "Consultant cybersécurité",
-    organisation: "CyberLion — CECCA",
-    copy: "Une mission d’audit menée de l’exposition publique jusqu’au plan de remédiation : OSINT, cartographie, vulnérabilités, risques et livrables décisionnels.",
+    company: "CyberLion · CECCA",
+    copy: "Audit de maturité et analyse d’exposition : OSINT, cartographie, vulnérabilités, risques, remédiation et restitution exploitable par les décideurs.",
   },
   {
-    date: "2024 — aujourd’hui",
-    role: "Formation & laboratoires",
-    organisation: "Infrastructures · Réseaux · Cybersécurité",
-    copy: "Une pratique continue pour consolider les fondamentaux, construire des environnements réalistes et transformer les apprentissages en preuves visibles.",
+    period: "2024 — aujourd’hui",
+    role: "Labs & apprentissage continu",
+    company: "IT · Réseau · Cyber · IA",
+    copy: "Je transforme mes apprentissages en environnements testables, documentés et publics. L’objectif : montrer ce que je sais faire au lieu de simplement l’énumérer.",
   },
 ];
 
-const capabilities = [
-  {
-    number: "01",
-    title: "Support & expérience utilisateur",
-    copy: "Écouter, reformuler, diagnostiquer et accompagner sans perdre de vue la personne derrière le problème.",
-    skills: ["Support utilisateurs", "Incidents", "Jira", "Documentation", "Pédagogie"],
-  },
-  {
-    number: "02",
-    title: "Systèmes, identités & réseau",
-    copy: "Comprendre l’environnement de travail dans son ensemble pour intervenir avec méthode et fiabilité.",
-    skills: ["Windows", "macOS", "Linux", "Entra ID", "Intune", "TCP/IP"],
-  },
-  {
-    number: "03",
-    title: "Cybersécurité & audit",
-    copy: "Observer l’exposition, qualifier le risque et proposer des actions compréhensibles, réalistes et vérifiables.",
-    skills: ["OSINT", "Nmap", "Wireshark", "Wazuh", "ISO 27001", "OWASP"],
-  },
+const skills = [
+  ["Support & workplace", "Windows · macOS · Microsoft 365 · Jira · Troubleshooting · Documentation"],
+  ["Cloud & identité", "Microsoft Entra ID · Intune · IAM · RBAC · Device management"],
+  ["Réseau", "TCP/IP · DNS · DHCP · Wireshark · Nmap · Cartographie"],
+  ["Cybersécurité", "OSINT · Wazuh · Sigma · OWASP · ISO 27001 · NIST"],
+  ["IA & automatisation", "LLM · agents · RAG · Python · workflows · validation humaine"],
 ];
 
-const learning = [
-  ["2026", "Administrateur d’infrastructures sécurisées", "Titre professionnel RNCP niveau 6 · validation en cours"],
-  ["2026", "Cisco Networking Basics", "Réseaux et connectivité · Cisco Networking Academy"],
-  ["2025", "Cybersecurity Foundations", "INFOSEC · fondamentaux de la cybersécurité"],
-  ["2024 — 2025", "Cybersécurité FullStack", "Jedha Bootcamp · Blue Team, Red Team et GRC"],
-];
-
-const cyberProfiles = [
-  {
-    initials: "THM",
-    name: "TryHackMe",
-    handle: "@maneekbaasha",
-    description: "Parcours guidés, laboratoires pratiques et fondamentaux offensifs comme défensifs.",
-    stats: ["53 rooms", "9 badges", "Top 9 %"],
-    url: "https://tryhackme.com/p/maneekbaasha",
-  },
-  {
-    initials: "RM",
-    name: "Root-Me",
-    handle: "@maneekbaasha",
-    description: "Challenges techniques et compromissions pour travailler l’analyse, la logique et l’exploitation.",
-    stats: ["36 challenges", "2 compromissions", "490 points"],
-    url: "https://www.root-me.org/maneekbaasha?lang=fr",
-  },
-  {
-    initials: "HTB",
-    name: "Hack The Box",
-    handle: "Profil public",
-    description: "Modules Academy et exercices pratiques pour approfondir les techniques d’attaque et de défense.",
-    stats: ["HTB Academy", "Badges publics"],
-    url: "https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a",
-  },
-];
+function getInitialView(): View {
+  const hash = window.location.hash.replace("#", "") as View;
+  return navItems.some((item) => item.id === hash) ? hash : "home";
+}
 
 export default function App() {
-  return (
-    <main>
-      <a className="skip-link" href="#profil">Aller au contenu</a>
+  const [view, setView] = useState<View>(getInitialView);
+  const currentIndex = useMemo(() => navItems.findIndex((item) => item.id === view), [view]);
 
-      <header className="topbar">
-        <span>Évry · France</span>
-        <a href="#accueil">Irphanoullah Mohamed Mustapha</a>
-        <span><i />Disponible pour de nouvelles opportunités</span>
+  useEffect(() => {
+    const onHashChange = () => setView(getInitialView());
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  function go(next: View) {
+    if (next === view) return;
+    window.location.hash = next;
+    setView(next);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function step(direction: 1 | -1) {
+    const next = navItems[(currentIndex + direction + navItems.length) % navItems.length];
+    go(next.id);
+  }
+
+  return (
+    <main className="site-shell">
+      <div className="ambient ambient-a" aria-hidden="true" />
+      <div className="ambient ambient-b" aria-hidden="true" />
+      <div className="noise" aria-hidden="true" />
+
+      <header className="site-header">
+        <button className="brand" onClick={() => go("home")} aria-label="Retour à l'accueil">
+          <span className="brand-dot" />
+          <span>IRPHAN.</span>
+        </button>
+
+        <nav className="top-nav" aria-label="Navigation principale">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              className={view === item.id ? "active" : ""}
+              onClick={() => go(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+
+        <div className="header-actions">
+          <span className="availability"><i /> Open to work</span>
+          <ThemeToggle />
+        </div>
       </header>
 
-      <section className="hero" id="accueil">
-        <div className="hero-visual" aria-hidden="true">
-          <img src="/irphan-hero.webp" alt="" width="1672" height="941" fetchPriority="high" />
-          <div className="digital-veil" />
-        </div>
-        <div className="hero-content">
-          <p className="eyebrow enter">Support IT · Systèmes · Cybersécurité · IA</p>
-          <h1 className="enter delay-1">Irphanoullah<br /><span>Mohamed Mustapha</span></h1>
-          <div className="hero-bottom enter delay-2">
-            <p>Comprendre les personnes.<br />Maîtriser les outils.<br />Sécuriser les usages.</p>
-            <a className="pill-button" href="#projets">
-              Découvrir mes projets <span>↓</span>
-            </a>
-          </div>
-        </div>
-        <a className="scroll-cue" href="#profil" aria-label="Découvrir mon profil">Défiler <span>↓</span></a>
-      </section>
-
-      <nav className="dock" aria-label="Navigation principale">
-        <a href="#accueil" aria-label="Accueil" className="dock-mark">IM</a>
-        <a href="#profil">Profil</a>
-        <a href="#parcours">Parcours</a>
-        <a href="#projets">Projets</a>
-        <a href="#competences">Compétences</a>
-        <a href="#contact">Contact</a>
-        <ThemeToggle />
-      </nav>
-
-      <section className="profile section" id="profil">
-        <div className="section-label reveal"><span>01</span> Qui je suis</div>
-        <div className="profile-grid">
-          <h2 className="display-title reveal">Au-delà<br />du <em>CV.</em></h2>
-          <div className="story reveal">
-            <p className="story-lead">Je m’appelle Irphanoullah Mohamed Mustapha. Pendant près de huit ans chez Apple, j’ai appris que la technologie ne se résume jamais aux machines : elle commence par l’écoute.</p>
-            <p>Un incident, une inquiétude ou un besoin cache toujours une personne qui cherche à avancer. Mon rôle a longtemps été de comprendre, d’expliquer et de résoudre. Puis j’ai voulu aller plus loin : comprendre ce qui relie les systèmes, les réseaux et la sécurité.</p>
-            <p>J’ai créé ce site parce qu’un CV dit où l’on est passé, mais rarement comment on réfléchit. Les employeurs disposent de peu de temps pour découvrir leurs candidats ; les candidats, eux, manquent souvent d’espace pour montrer ce qu’ils savent réellement faire.</p>
-            <p className="accent-copy">Ce portfolio est ce point de rencontre : une manière plus humaine de me connaître, des réalisations vérifiables et le début d’une conversation.</p>
-          </div>
-        </div>
-        <div className="profile-metrics reveal">
-          <div><strong>8</strong><span>années chez Apple</span></div>
-          <div><strong>350 h</strong><span>de mission d’audit</span></div>
-          <div><strong>3</strong><span>axes : service, systèmes, sécurité</span></div>
-        </div>
-      </section>
-
-      <section className="journey section" id="parcours">
-        <div className="section-label reveal"><span>02</span> Mon parcours</div>
-        <div className="section-intro reveal">
-          <h2>Une trajectoire construite<br /><em>par la curiosité.</em></h2>
-          <p>Chaque étape complète la précédente : l’expérience humaine du terrain, la rigueur technique et une attention croissante portée à la sécurité.</p>
-        </div>
-        <div className="timeline">
-          {experience.map((item) => (
-            <article className="timeline-row reveal" key={item.date}>
-              <time>{item.date}</time>
-              <div><h3>{item.role}</h3><p className="organisation">{item.organisation}</p></div>
-              <p>{item.copy}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="projects section" id="projets">
-        <div className="section-label reveal"><span>03</span> Réalisations</div>
-        <div className="section-intro reveal">
-          <h2>Des projets qui montrent<br /><em>comment je travaille.</em></h2>
-          <p>Des laboratoires documentés, du code accessible et une mission menée dans le respect de la confidentialité.</p>
-        </div>
-        <div className="project-list">
-          {projects.map((project) => (
-            <article className="project-row reveal" key={project.index}>
-              <div className="project-index">{project.index}</div>
-              <div className="project-copy"><p>{project.category}</p><h3>{project.title}</h3><span>{project.description}</span></div>
-              <div className="project-meta">
-                <div>{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                {project.url ? (
-                  project.url.startsWith("http")
-                    ? <a href={project.url} target="_blank" rel="noreferrer" aria-label={`Voir ${project.title}`}>Voir le projet <Arrow /></a>
-                    : <a href={project.url} aria-label={`Voir l’étude de cas ${project.title}`}>Voir l’étude de cas <Arrow /></a>
-                ) : <span className="private-label">Données confidentielles</span>}
+      <div className="panel-stage" key={view}>
+        {view === "home" && (
+          <section className="panel home-panel">
+            <div className="home-kicker panel-enter">Technology · Support · Security · AI</div>
+            <div className="home-grid">
+              <div className="hero-copy panel-enter delay-1">
+                <p className="micro">IRPHANOULLAH MOHAMED MUSTAPHA</p>
+                <h1>
+                  I make technology<br />
+                  <span>clearer, safer, useful.</span>
+                </h1>
+                <p className="hero-intro">
+                  Un profil hybride construit entre expérience utilisateur, support IT, systèmes, cybersécurité et exploration de l’IA.
+                </p>
+                <div className="hero-actions">
+                  <button className="primary-cta" onClick={() => go("projects")}>Explore projects <span>↗</span></button>
+                  <button className="text-cta" onClick={() => go("about")}>Discover my story <span>→</span></button>
+                </div>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
 
-      <section className="cyber-profiles section" id="profils-cyber">
-        <div className="section-label reveal"><span>04</span> Profils cybersécurité</div>
-        <div className="section-intro reveal">
-          <h2>La progression,<br /><em>preuves à l’appui.</em></h2>
-          <p>Ces profils publics permettent de consulter directement ma pratique régulière, mes challenges et mes résultats sur les plateformes d’entraînement.</p>
-        </div>
-        <div className="cyber-profile-grid">
-          {cyberProfiles.map((profile) => (
-            <a className="cyber-profile-card reveal" href={profile.url} target="_blank" rel="noreferrer" key={profile.name}>
-              <div className="cyber-profile-head">
-                <span className="cyber-profile-mark">{profile.initials}</span>
-                <span className="cyber-profile-arrow" aria-hidden="true">↗</span>
+              <div className="hero-orbital panel-enter delay-2" aria-hidden="true">
+                <div className="orbital-ring ring-one" />
+                <div className="orbital-ring ring-two" />
+                <div className="orbital-core">
+                  <span>IT</span>
+                  <small>human × systems</small>
+                </div>
+                <div className="orbital-chip chip-a">SECURITY</div>
+                <div className="orbital-chip chip-b">AI</div>
+                <div className="orbital-chip chip-c">SUPPORT</div>
               </div>
-              <div>
-                <p>{profile.handle}</p>
-                <h3>{profile.name}</h3>
-                <span className="cyber-profile-description">{profile.description}</span>
-              </div>
-              <div className="cyber-profile-stats">
-                {profile.stats.map((stat) => <span key={stat}>{stat}</span>)}
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
+            </div>
 
-      <section className="ai-section section" id="ia">
-        <div className="ai-orbit" aria-hidden="true"><span>IA</span></div>
-        <div className="section-label reveal"><span>05</span> Intelligence artificielle</div>
-        <div className="ai-grid">
-          <h2 className="reveal">Explorer l’IA.<br /><em>Garder l’humain.</em></h2>
-          <div className="ai-copy reveal">
-            <p>Je m’intéresse particulièrement aux outils d’IA générative, aux agents et à l’automatisation appliqués au support IT et à la cybersécurité.</p>
-            <p>Mon approche reste pragmatique : utiliser l’IA pour mieux rechercher, documenter et accélérer — avec validation humaine, protection des données et esprit critique.</p>
-            <div className="next-project"><span>Prochaine réalisation</span><strong>Assistant IA pour le support IT</strong><p>Qualifier une demande, suggérer une procédure et préparer une réponse, sans retirer la décision au technicien.</p></div>
-          </div>
-        </div>
-      </section>
+            <div className="home-footer panel-enter delay-3">
+              <div><span>01</span><strong>8 years</strong><small>Apple experience</small></div>
+              <div><span>02</span><strong>350 h</strong><small>Cybersecurity audit</small></div>
+              <div><span>03</span><strong>Hands-on</strong><small>Labs & projects</small></div>
+              <div><span>04</span><strong>Paris area</strong><small>Open to opportunities</small></div>
+            </div>
+          </section>
+        )}
 
-      <section className="capabilities section" id="competences">
-        <div className="section-label reveal"><span>06</span> Ce que j’apporte</div>
-        <div className="capability-list">
-          {capabilities.map((capability) => (
-            <article className="capability reveal" key={capability.number}>
-              <span>{capability.number}</span>
-              <div><h3>{capability.title}</h3><p>{capability.copy}</p><div className="chips">{capability.skills.map((skill) => <span key={skill}>{skill}</span>)}</div></div>
-            </article>
-          ))}
-        </div>
-      </section>
+        {view === "about" && (
+          <section className="panel content-panel about-panel">
+            <div className="section-heading panel-enter">
+              <span>01 / ABOUT</span>
+              <h2>Beyond<br /><em>the CV.</em></h2>
+            </div>
+            <div className="about-copy panel-enter delay-1">
+              <p className="lead">Pendant près de huit ans chez Apple, j’ai appris que la technologie commence rarement par une machine. Elle commence par une personne qui essaie d’avancer.</p>
+              <p>Écouter, reformuler, diagnostiquer, expliquer. Ce socle m’a naturellement conduit vers le support IT, puis vers les systèmes, les réseaux et la cybersécurité.</p>
+              <p>Je construis aujourd’hui un profil volontairement transversal. Pas pour collectionner les buzzwords, mais parce que dans la vraie vie, un incident utilisateur peut être un problème de poste, d’identité, de réseau, de sécurité… parfois les quatre.</p>
+              <blockquote>Ce site existe pour montrer ma façon de réfléchir, mes réalisations et la progression derrière les intitulés.</blockquote>
+            </div>
+            <div className="about-side panel-enter delay-2">
+              <div className="signal-card"><span>NOW</span><strong>Support IT · Cybersecurity · AI</strong><small>Building useful things, learning in public.</small></div>
+              <div className="signal-card"><span>LOCATION</span><strong>Île-de-France</strong><small>Paris · 91 · 92 · 77</small></div>
+            </div>
+          </section>
+        )}
 
-      <section className="learning section" id="formation">
-        <div className="section-label reveal"><span>07</span> Apprentissage continu</div>
-        <div className="learning-grid">
-          <div>
-            <h2 className="reveal">Apprendre.<br />Pratiquer.<br /><em>Partager.</em></h2>
-            <p className="learning-note reveal">La progression ne se revendique pas : elle se documente.</p>
-          </div>
-          <div className="education-list">
-            {learning.map(([year, title, copy]) => <article className="education-row reveal" key={title}><time>{year}</time><div><h3>{title}</h3><p>{copy}</p></div></article>)}
-          </div>
-        </div>
-      </section>
+        {view === "experience" && (
+          <section className="panel content-panel experience-panel">
+            <div className="section-heading panel-enter">
+              <span>02 / EXPERIENCE</span>
+              <h2>Human first.<br /><em>Technical next.</em></h2>
+            </div>
+            <div className="experience-list panel-enter delay-1">
+              {experience.map((item, index) => (
+                <article className="experience-row" key={item.period}>
+                  <span className="row-index">0{index + 1}</span>
+                  <time>{item.period}</time>
+                  <div><h3>{item.role}</h3><p>{item.company}</p></div>
+                  <p className="row-copy">{item.copy}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
 
-      <section className="contact section" id="contact">
-        <div className="contact-glow" aria-hidden="true" />
-        <p className="availability reveal"><i /> Disponible pour une nouvelle opportunité</p>
-        <h2 className="reveal">Et si nous faisions<br />connaissance <em>autrement&nbsp;?</em></h2>
-        <p className="contact-copy reveal">Support IT, systèmes, réseau ou cybersécurité junior : parlons de vos besoins et de ce que je peux apporter à votre équipe.</p>
-        <div className="contact-links reveal">
-          <a className="pill-button light" href="mailto:info@irphan.eu">Écrivez-moi <Arrow /></a>
-          <a href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a>
-          <a href="https://github.com/maneekbaasha" target="_blank" rel="noreferrer">GitHub <Arrow /></a>
+        {view === "projects" && (
+          <section className="panel projects-panel">
+            <div className="projects-head panel-enter">
+              <div className="section-heading compact"><span>03 / PROJECTS</span><h2>Selected<br /><em>work.</em></h2></div>
+              <p>Des projets conçus comme des preuves : contexte, environnement, décisions, résultat.</p>
+            </div>
+            <div className="project-grid panel-enter delay-1">
+              {projects.map((project) => (
+                <a className="project-card" key={project.index} href={project.link} target={project.link.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+                  <div className="project-top"><span>{project.index}</span><span>↗</span></div>
+                  <div>
+                    <p className="project-eyebrow">{project.eyebrow}</p>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                  </div>
+                  <div className="project-stack">{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {view === "skills" && (
+          <section className="panel content-panel skills-panel">
+            <div className="section-heading panel-enter">
+              <span>04 / SKILLS</span>
+              <h2>Useful over<br /><em>decorative.</em></h2>
+            </div>
+            <div className="skill-list panel-enter delay-1">
+              {skills.map(([title, detail], index) => (
+                <article className="skill-row" key={title}>
+                  <span>0{index + 1}</span>
+                  <h3>{title}</h3>
+                  <p>{detail}</p>
+                </article>
+              ))}
+            </div>
+            <div className="profiles-strip panel-enter delay-2">
+              <a href="https://tryhackme.com/p/maneekbaasha" target="_blank" rel="noreferrer">TryHackMe <span>↗</span></a>
+              <a href="https://www.root-me.org/maneekbaasha?lang=fr" target="_blank" rel="noreferrer">Root-Me <span>↗</span></a>
+              <a href="https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a" target="_blank" rel="noreferrer">Hack The Box <span>↗</span></a>
+            </div>
+          </section>
+        )}
+
+        {view === "contact" && (
+          <section className="panel contact-panel">
+            <div className="contact-copy panel-enter">
+              <span>05 / CONTACT</span>
+              <h2>Let’s build<br /><em>something useful.</em></h2>
+              <p>Support IT, environnement Microsoft, cybersécurité ou projet mêlant technologie et IA : je suis ouvert aux conversations qui débouchent sur du concret.</p>
+            </div>
+            <div className="contact-links panel-enter delay-1">
+              <a href="mailto:mohamed.irphan09@gmail.com"><span>Email</span><strong>mohamed.irphan09@gmail.com</strong><b>↗</b></a>
+              <a href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer"><span>LinkedIn</span><strong>Irphan Mohamed Mustapha</strong><b>↗</b></a>
+              <a href="https://github.com/maneekbaasha" target="_blank" rel="noreferrer"><span>GitHub</span><strong>@maneekbaasha</strong><b>↗</b></a>
+            </div>
+          </section>
+        )}
+      </div>
+
+      <footer className="site-footer">
+        <span>© 2026 Irphanoullah Mohamed Mustapha</span>
+        <div className="footer-pager">
+          <button onClick={() => step(-1)} aria-label="Section précédente">←</button>
+          <span>{String(currentIndex + 1).padStart(2, "0")} / {String(navItems.length).padStart(2, "0")}</span>
+          <button onClick={() => step(1)} aria-label="Section suivante">→</button>
         </div>
-        <footer><span>© 2026 Irphanoullah Mohamed Mustapha</span><span>Conçu avec curiosité · Évry, France</span><a href="#accueil">Retour en haut ↑</a></footer>
-      </section>
+        <span>Designed to be explored, not scrolled.</span>
+      </footer>
     </main>
   );
 }
