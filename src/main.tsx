@@ -14,6 +14,7 @@ import "./motion-system.css";
 import "./apple-viture-refinement.css";
 import "./projects-product-v2.css";
 import "./sections-editorial-v2.css";
+import "./case-studies-cinematic.css";
 
 const path = window.location.pathname.replace(/\/$/, "");
 
