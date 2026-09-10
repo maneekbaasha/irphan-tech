@@ -10,6 +10,8 @@ import "./hero-portrait.css";
 import "./figma-screens.css";
 import "./motion-system.css";
 import "./apple-viture-refinement.css";
+import "./projects-product-v2.css";
+import "./sections-editorial-v2.css";
 
 const isHelpdeskCase = window.location.pathname.replace(/\/$/, "") === "/projets/modern-it-helpdesk-lab";
 
