@@ -1,0 +1,229 @@
+/* Premium motion system — restrained, product-like, reduced-motion safe */
+
+:root {
+  --motion-ease: cubic-bezier(.16, 1, .3, 1);
+  --motion-fast: 180ms;
+  --motion-base: 420ms;
+  --motion-slow: 720ms;
+}
+
+.panel-stage {
+  perspective: 1400px;
+}
+
+.panel {
+  transform-origin: 50% 44%;
+}
+
+.panel-enter {
+  opacity: 0;
+  transform: translateY(18px) scale(.992);
+  filter: blur(5px);
+  animation: irphanReveal var(--motion-slow) var(--motion-ease) forwards;
+}
+
+.delay-1 { animation-delay: 70ms; }
+.delay-2 { animation-delay: 140ms; }
+.delay-3 { animation-delay: 210ms; }
+
+@keyframes irphanReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(.992);
+    filter: blur(5px);
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.site-header,
+.site-footer {
+  transition:
+    border-color var(--motion-base) ease,
+    background-color var(--motion-base) ease,
+    backdrop-filter var(--motion-base) ease;
+}
+
+.top-nav button,
+.lang-switch button,
+.brand,
+.footer-pager button,
+.primary-cta,
+.text-cta,
+.project-card,
+.experience-row,
+.skill-row,
+.signal-card,
+.contact-links a,
+.profiles-strip a {
+  transition-timing-function: var(--motion-ease) !important;
+}
+
+.top-nav button {
+  position: relative;
+}
+
+.top-nav button::after {
+  transform-origin: center;
+  transition:
+    transform var(--motion-base) var(--motion-ease),
+    opacity var(--motion-fast) ease;
+}
+
+.top-nav button:not(.active):hover {
+  transform: translateY(-1px);
+}
+
+.brand-dot {
+  animation: brandPulse 3.4s ease-in-out infinite;
+}
+
+@keyframes brandPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(91,124,255,0); }
+  50% { box-shadow: 0 0 0 6px rgba(91,124,255,.09); }
+}
+
+.system-visual {
+  transition:
+    transform var(--motion-slow) var(--motion-ease),
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease;
+}
+
+.system-visual:hover {
+  transform: translateY(-4px) rotateX(.8deg) rotateY(-.8deg);
+}
+
+.system-orbit {
+  animation-timing-function: linear !important;
+}
+
+.orbit-inner {
+  animation-direction: reverse !important;
+}
+
+.system-core {
+  animation: coreBreath 4.8s ease-in-out infinite;
+}
+
+@keyframes coreBreath {
+  0%,100% { transform: translate(-50%,-50%) scale(1); }
+  50% { transform: translate(-50%,-50%) scale(1.025); }
+}
+
+.system-node {
+  transition:
+    transform var(--motion-base) var(--motion-ease),
+    border-color var(--motion-base) ease,
+    background-color var(--motion-base) ease,
+    color var(--motion-base) ease;
+}
+
+.system-visual:hover .node-top { transform: translateY(-4px); }
+.system-visual:hover .node-bottom { transform: translateY(4px); }
+.system-visual:hover .node-left { transform: translateX(-4px); }
+.system-visual:hover .node-right { transform: translateX(4px); }
+
+.project-card {
+  transform-style: preserve-3d;
+}
+
+.project-card:hover {
+  transform: translateY(-7px) scale(1.008) !important;
+}
+
+.project-card .project-top span:last-child,
+.contact-links a b,
+.profiles-strip a span {
+  display: inline-block;
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.project-card:hover .project-top span:last-child,
+.contact-links a:hover b,
+.profiles-strip a:hover span {
+  transform: translate(3px,-3px);
+}
+
+.experience-row,
+.skill-row {
+  will-change: transform;
+}
+
+.experience-row:hover,
+.skill-row:hover {
+  transform: translateX(5px);
+}
+
+.signal-card:hover {
+  transform: translateY(-3px);
+}
+
+.contact-links a:hover strong {
+  letter-spacing: -.01em;
+}
+
+.footer-pager button:hover {
+  transform: scale(1.08);
+}
+
+/* Native View Transitions — progressive enhancement */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 360ms;
+  animation-timing-function: var(--motion-ease);
+}
+
+::view-transition-old(root) {
+  animation-name: viewFadeOut;
+}
+
+::view-transition-new(root) {
+  animation-name: viewFadeIn;
+}
+
+@keyframes viewFadeOut {
+  to { opacity: 0; transform: scale(.995); filter: blur(3px); }
+}
+
+@keyframes viewFadeIn {
+  from { opacity: 0; transform: scale(1.006); filter: blur(4px); }
+}
+
+@media (hover: none) {
+  .system-visual:hover,
+  .project-card:hover,
+  .experience-row:hover,
+  .skill-row:hover,
+  .signal-card:hover,
+  .top-nav button:not(.active):hover,
+  .footer-pager button:hover {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+
+  .panel-enter {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
