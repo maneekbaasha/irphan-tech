@@ -182,7 +182,16 @@ export default function App() {
             </div>
             <figure className="studio-portrait-card">
               <div className="studio-portrait-meta"><span>{t.home.portraitTop}</span><span>IRPHAN / EU</span></div>
-              <div className="studio-portrait-wrap"><img src="/irphan-hero.webp" alt="Irphanoullah Mohamed Mustapha" /></div>
+              <div className="studio-portrait-wrap">
+                <img
+                  src="/irphan-hero-cool.webp"
+                  alt="Irphanoullah Mohamed Mustapha"
+                  width="1672"
+                  height="941"
+                  loading="eager"
+                  fetchPriority="high"
+                />
+              </div>
               <figcaption><span>{t.home.portraitBottom}</span><small>Support · Systems · Security · AI</small></figcaption>
             </figure>
           </section>
