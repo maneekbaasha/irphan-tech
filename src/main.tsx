@@ -26,6 +26,7 @@ import "./motion-polish-v2.css";
 import "./studio-redesign-v3.css";
 import "./studio-review-fixes-v1.css";
 import "./project-visual-cards-v1.css";
+import "./studio-coherence-v1.css";
 
 const path = window.location.pathname.replace(/\/$/, "");
 
