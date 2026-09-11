@@ -24,6 +24,7 @@ import "./design-v2.css";
 import "./design-v2-mobile-fix.css";
 import "./motion-polish-v2.css";
 import "./studio-redesign-v3.css";
+import "./studio-review-fixes-v1.css";
 
 const path = window.location.pathname.replace(/\/$/, "");
 
