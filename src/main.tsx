@@ -14,6 +14,7 @@ import "./studio-review-fixes-v1.css";
 import "./project-visual-cards-v1.css";
 import "./studio-coherence-v1.css";
 import "./not-found.css";
+import "./typography-system.css";
 
 const path = window.location.pathname.replace(/\/$/, "");
 
