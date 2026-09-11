@@ -11,6 +11,13 @@
   margin-top: 0;
 }
 
+/* Project rows: the decorative number column was removed, so the desktop grid
+   must collapse to content + action. Keeping the old 3-column template caused
+   the project content to fall into the former 54px number column. */
+.studio-project {
+  grid-template-columns: minmax(0, 1fr) 110px;
+}
+
 /* Keep the portrait as an authored image, not a dashboard-style card. */
 .studio-portrait-card {
   padding: 14px;
