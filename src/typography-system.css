@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400..600&display=swap");
+
+:root {
+  --font-sans: "Geist", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+html,
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-sans);
+}
+
+body {
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.studio-home h1,
+.studio-page-title h2,
+.studio-project-main h3,
+.studio-role h3,
+.studio-about-story .studio-lead,
+.case-hero h1,
+.case-section h2,
+.case-cta h2,
+.incident-card h3,
+.case-limit h3 {
+  font-family: var(--font-sans);
+  text-rendering: geometricPrecision;
+}
+
+.studio-home h1,
+.studio-page-title h2,
+.case-hero h1,
+.case-section h2,
+.case-cta h2 {
+  font-weight: 650;
+}
+
+.studio-brand {
+  font-weight: 750;
+  letter-spacing: -.035em;
+}
+
+.studio-positioning,
+.studio-intro,
+.studio-page-title > p,
+.studio-about-story p,
+.studio-timeline article > p,
+.studio-project-main > p,
+.studio-skill-list p,
+.case-lead,
+.case-copy p,
+.case-heading-row > p,
+.case-limit p {
+  letter-spacing: -.008em;
+}
+
+.studio-nav button,
+.studio-availability,
+.studio-lang button,
+.studio-focus > span,
+.studio-portrait-meta,
+.studio-portrait-card figcaption span,
+.studio-page-title > span,
+.studio-timeline time,
+.studio-project-number,
+.studio-project-main > span,
+.studio-project-main small,
+.studio-project-arrow small,
+.case-topbar > span,
+.case-kicker,
+.case-number,
+.case-facts span,
+.case-architecture > div span,
+.incident-card header span,
+.incident-card small,
+.method-list span,
+.case-limit > span,
+.case-cta > span {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .075em;
+}
+
+.studio-nav button,
+.studio-lang button,
+.studio-focus > span,
+.studio-page-title > span,
+.studio-project-main > span,
+.studio-project-arrow small,
+.case-kicker,
+.case-number,
+.case-topbar > span,
+.case-facts span,
+.incident-card header span,
+.case-limit > span,
+.case-cta > span {
+  text-transform: uppercase;
+}
+
+.studio-primary,
+.studio-secondary,
+.pill-button.light {
+  font-weight: 650;
+  letter-spacing: -.01em;
+}
+
+@media (max-width: 640px) {
+  .studio-home h1,
+  .studio-page-title h2,
+  .case-hero h1,
+  .case-section h2,
+  .case-cta h2 {
+    letter-spacing: -.05em;
+  }
+}
