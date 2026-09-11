@@ -4,6 +4,7 @@ import App from "./App";
 import HelpdeskCaseStudy from "./HelpdeskCaseStudy";
 import NginxCaseStudy from "./NginxCaseStudy";
 import AiSupportCaseStudy from "./AiSupportCaseStudy";
+import NotFound from "./NotFound";
 import "./styles.css";
 import "./motion-accessibility.css";
 import "./case-studies-cinematic.css";
@@ -12,14 +13,16 @@ import "./studio-redesign-v3.css";
 import "./studio-review-fixes-v1.css";
 import "./project-visual-cards-v1.css";
 import "./studio-coherence-v1.css";
+import "./not-found.css";
 
 const path = window.location.pathname.replace(/\/$/, "");
 
 function Root() {
+  if (path === "") return <App />;
   if (path === "/projets/modern-it-helpdesk-lab") return <HelpdeskCaseStudy />;
   if (path === "/projets/nginx-soc-detection-lab") return <NginxCaseStudy />;
   if (path === "/projets/ai-it-support-lab") return <AiSupportCaseStudy />;
-  return <App />;
+  return <NotFound />;
 }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
