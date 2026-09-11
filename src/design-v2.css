@@ -1,0 +1,177 @@
+/* Visual system v2 — Apple hierarchy × VITURE atmosphere. Loaded last. */
+:root {
+  --v2-bg:#030305;
+  --v2-surface:#08090d;
+  --v2-surface-2:#0b0d13;
+  --v2-text:#f7f8fb;
+  --v2-muted:rgba(240,243,252,.56);
+  --v2-line:rgba(255,255,255,.075);
+  --v2-blue:#6d86ff;
+  --v2-violet:#9772ff;
+  --v2-ease:cubic-bezier(.16,1,.3,1);
+}
+
+.site-shell{
+  background:
+    radial-gradient(70rem 44rem at 78% -12%,rgba(77,105,255,.10),transparent 58%),
+    radial-gradient(54rem 44rem at 100% 62%,rgba(132,78,255,.07),transparent 62%),
+    var(--v2-bg)!important;
+}
+
+.noise{opacity:.028!important;mix-blend-mode:soft-light}
+.ambient{opacity:.22!important;filter:blur(110px)!important}
+
+/* Header — closer to a product navigation bar than a glass pill. */
+.site-header{
+  border-bottom:1px solid rgba(255,255,255,.045)!important;
+  background:rgba(3,3,5,.72)!important;
+  backdrop-filter:blur(26px) saturate(145%)!important;
+}
+.brand{font-weight:760!important;letter-spacing:-.035em!important;font-size:.95rem}
+.brand-dot{width:7px!important;height:7px!important;box-shadow:0 0 18px rgba(109,134,255,.46)!important}
+.top-nav{border:0!important;background:transparent!important;box-shadow:none!important;padding:0!important;gap:1.35rem!important}
+.top-nav button{font-size:.78rem!important;color:rgba(247,248,251,.46)!important;padding:.5rem 0!important;min-width:0!important}
+.top-nav button.active{color:#fff!important}
+.top-nav button::after{left:0!important;right:0!important;bottom:.14rem!important;background:linear-gradient(90deg,var(--v2-blue),var(--v2-violet))!important}
+.lang-switch{border-color:rgba(255,255,255,.055)!important;background:rgba(255,255,255,.018)!important}
+.theme-toggle{border-color:rgba(255,255,255,.055)!important;background:rgba(255,255,255,.018)!important}
+
+/* Home — one large editorial idea and one product-like visual. */
+.home-panel{position:relative;isolation:isolate}
+.home-panel::before{
+  content:"";position:absolute;inset:6% 3% auto auto;width:min(56vw,880px);aspect-ratio:1.2;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle at 48% 42%,rgba(101,126,255,.11),transparent 28%),radial-gradient(circle at 68% 56%,rgba(151,114,255,.07),transparent 35%);filter:blur(30px)
+}
+.home-kicker{border:0!important;background:transparent!important;padding:0!important;color:rgba(224,230,255,.44)!important;letter-spacing:.18em!important;font-size:.66rem!important}
+.hero-title-v2{font-size:clamp(4.7rem,7.6vw,9.6rem)!important;line-height:.82!important;letter-spacing:-.078em!important;max-width:9.4ch!important;margin:.85rem 0 1.75rem!important}
+.hero-title-v2 span{background:linear-gradient(108deg,#fff 5%,#d5dcff 32%,#9baeff 57%,#a67dff 82%,#7f9fff 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+.hero-intro-v2{max-width:40ch!important;color:rgba(241,244,251,.57)!important;font-size:clamp(1.02rem,1.22vw,1.22rem)!important;line-height:1.62!important}
+.hero-actions{margin-top:2.1rem!important}
+.primary-cta{background:#f7f8fb!important;color:#090a0e!important;border-color:#f7f8fb!important;box-shadow:0 12px 42px rgba(0,0,0,.34)!important}
+.primary-cta:hover{transform:translateY(-1px)!important}
+.text-cta{color:rgba(245,247,251,.62)!important;background:transparent!important;border-color:rgba(255,255,255,.075)!important}
+
+.system-visual{
+  border-radius:42px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.024),rgba(255,255,255,.004)),#08090d!important;
+  border:1px solid rgba(255,255,255,.075)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 44px 130px rgba(0,0,0,.38)!important;
+}
+.system-visual::after{inset:3.3%!important;border-radius:35px!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.055),inset 0 -100px 130px rgba(2,3,7,.34)!important}
+.system-visual::before{background:linear-gradient(120deg,transparent 30%,rgba(120,143,255,.06) 50%,transparent 70%),radial-gradient(circle at 84% 14%,rgba(151,114,255,.11),transparent 20%)!important}
+.system-node{font-size:.62rem!important;letter-spacing:.14em!important;background:rgba(5,6,10,.58)!important;border-color:rgba(255,255,255,.075)!important;color:rgba(247,248,251,.64)!important}
+.system-orbit{opacity:.65}
+.system-gridlines{opacity:.05!important}
+.system-axis{opacity:.3}
+
+.home-footer-v2{border:0!important;gap:.65rem!important}
+.home-footer-v2>div{border:1px solid rgba(255,255,255,.052)!important;background:rgba(255,255,255,.007)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.014)!important}
+.home-footer-v2>div::before{opacity:.22!important}
+.home-footer-v2>div:hover{transform:translateY(-2px)!important;background:rgba(255,255,255,.012)!important}
+
+/* Section headings — quieter label, stronger headline. */
+.section-heading>span,.contact-copy>span,.projects-head .section-heading span{
+  border:0!important;background:none!important;padding:0!important;color:rgba(218,225,255,.36)!important;font-size:.62rem!important;letter-spacing:.18em!important
+}
+.section-heading h2,.contact-copy h2{font-weight:620!important;letter-spacing:-.072em!important;line-height:.88!important}
+.section-heading h2 em,.contact-copy h2 em{background:linear-gradient(108deg,#fff,#c6d0ff 43%,#9b7fff 76%,#7aa3ff)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+
+/* Editorial content — fewer boxes, more whitespace. */
+.about-copy,.contact-links{background:rgba(255,255,255,.008)!important;border-color:rgba(255,255,255,.06)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.018),0 30px 100px rgba(0,0,0,.16)!important}
+.about-copy{border-radius:34px!important}
+.signal-card{background:rgba(255,255,255,.006)!important;border-color:rgba(255,255,255,.055)!important;border-radius:22px!important;box-shadow:none!important}
+.experience-row,.skill-row{border-bottom-color:rgba(255,255,255,.052)!important}
+.experience-row:hover,.skill-row:hover{background:linear-gradient(90deg,rgba(108,134,255,.028),transparent 66%)!important}
+.profiles-strip a{background:transparent!important;border-color:rgba(255,255,255,.06)!important}
+
+/* Projects — real visual art, not generic decorative gradients. */
+.projects-head{margin-bottom:clamp(2.1rem,4vw,4.2rem)!important}
+.projects-head>p{color:rgba(242,245,252,.48)!important;max-width:44ch!important}
+.project-grid{gap:1.05rem!important}
+.project-card{border-color:rgba(255,255,255,.065)!important;background:#07080b!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.018)!important}
+.project-card:hover{border-color:rgba(132,150,255,.18)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.03),0 32px 100px rgba(0,0,0,.30)!important}
+.project-card .project-top{color:rgba(245,247,251,.32)!important}
+.project-card .project-top span:last-child{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(255,255,255,.06);border-radius:50%;color:rgba(245,247,251,.58)!important;transition:transform .35s var(--v2-ease),background .35s ease}
+.project-card:hover .project-top span:last-child{transform:translate(2px,-2px);background:rgba(255,255,255,.025)}
+.project-eyebrow{color:rgba(154,170,255,.76)!important;font-size:.67rem!important;letter-spacing:.11em!important}
+.project-card h3{font-weight:610!important;color:#f5f7fb!important}
+.project-card>div>p:last-child{color:rgba(239,243,252,.50)!important}
+.project-stack span{background:transparent!important;border-color:rgba(255,255,255,.06)!important;color:rgba(239,243,252,.40)!important}
+
+.project-card:nth-child(1)::before{
+  background-image:linear-gradient(180deg,rgba(5,6,10,.02),rgba(5,6,10,.10)),url('/labs/helpdesk-visual.svg')!important;
+  background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important
+}
+.project-card:nth-child(1)::after{display:none!important}
+.project-card:nth-child(2)::before{
+  background-image:linear-gradient(180deg,rgba(5,6,10,.01),rgba(5,6,10,.08)),url('/labs/nginx-visual.svg')!important;
+  background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important
+}
+.project-card:nth-child(3)::before{
+  background-image:linear-gradient(180deg,rgba(5,6,10,.01),rgba(5,6,10,.08)),url('/labs/ai-support-visual.svg')!important;
+  background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important
+}
+.project-card:nth-child(2)::after,.project-card:nth-child(3)::after{display:none!important}
+
+/* Portfolio card should deliberately recede. */
+.project-card:nth-child(4){background:linear-gradient(160deg,rgba(255,255,255,.012),rgba(255,255,255,.002))!important;border-style:dashed!important}
+.project-card:nth-child(4)::before{opacity:.38!important;filter:saturate(.7)}
+
+/* Case studies — same family, less “dashboard”. */
+.case-page{background:radial-gradient(70rem 42rem at 88% 2%,rgba(92,117,255,.09),transparent 55%),#030305!important}
+.case-topbar{background:rgba(3,3,5,.78)!important;border-bottom-color:rgba(255,255,255,.05)!important;backdrop-filter:blur(28px) saturate(140%)!important}
+.case-hero{border-bottom-color:rgba(255,255,255,.05)!important}
+.case-hero::before{background:radial-gradient(circle,rgba(105,131,255,.12),rgba(145,95,255,.05) 38%,transparent 68%)!important}
+.case-hero::after{border-color:rgba(255,255,255,.055)!important;box-shadow:0 0 0 52px rgba(255,255,255,.008),0 0 0 104px rgba(106,128,255,.016)!important}
+.case-hero-grid{opacity:.08!important}
+.case-hero h1{font-weight:610!important;letter-spacing:-.078em!important}
+.case-lead{color:rgba(243,246,252,.54)!important}
+.case-facts{border-top-color:rgba(255,255,255,.06)!important}
+.case-facts>div{border-right-color:rgba(255,255,255,.05)!important}
+.case-section{border-bottom-color:rgba(255,255,255,.05)!important}
+.case-architecture>div,.incident-card,.method-list li,.case-limit{background:rgba(255,255,255,.007)!important;border-color:rgba(255,255,255,.06)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.015)!important}
+.incident-card:hover{border-color:rgba(135,151,255,.16)!important;transform:translateY(-3px)!important}
+.case-cta{background:radial-gradient(circle at 72% 32%,rgba(100,126,255,.08),transparent 29%),#030305!important}
+
+/* Motion: communicate focus, never perform for its own sake. */
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .system-visual{transition:transform .8s var(--v2-ease),box-shadow .8s var(--v2-ease)!important}
+  .system-visual:hover{transform:translateY(-4px) scale(1.004);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 54px 150px rgba(0,0,0,.42)!important}
+  .project-card::before{transition:transform .8s var(--v2-ease),filter .8s var(--v2-ease)!important}
+  .project-card:hover::before{transform:scale(1.012)!important;filter:saturate(1.04) brightness(1.025)}
+}
+
+/* Mobile keeps the phone-first structure from mobile-first-v1; only restyle it. */
+@media (max-width:820px){
+  .site-shell{background:radial-gradient(32rem 24rem at 80% -4%,rgba(90,117,255,.09),transparent 58%),var(--v2-bg)!important}
+  .site-header{background:rgba(3,3,5,.86)!important}
+  .top-nav{background:rgba(8,9,13,.88)!important;border:1px solid rgba(255,255,255,.07)!important;box-shadow:0 12px 40px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.025)!important}
+  .top-nav button{font-size:.68rem!important;color:rgba(245,247,251,.43)!important}
+  .top-nav button.active{color:#fff!important;background:rgba(255,255,255,.045)!important}
+  .home-kicker{margin-bottom:1.15rem!important}
+  .hero-title-v2{font-size:clamp(3.35rem,15.5vw,5.25rem)!important;line-height:.86!important;max-width:9.6ch!important}
+  .hero-intro-v2{font-size:1rem!important;max-width:32ch!important}
+  .system-visual{border-radius:28px!important;box-shadow:0 26px 80px rgba(0,0,0,.32)!important}
+  .system-visual::after{border-radius:23px!important}
+  .home-footer-v2>div{border-radius:16px!important}
+  .section-heading h2,.contact-copy h2{letter-spacing:-.062em!important}
+  .about-copy{border-radius:24px!important}
+  .project-card{border-radius:24px!important}
+  .project-card:nth-child(1)::before,.project-card:nth-child(2)::before,.project-card:nth-child(3)::before{background-position:center!important}
+  .project-card .project-top span:last-child{width:32px;height:32px}
+  .case-hero h1{letter-spacing:-.065em!important}
+}
+
+/* Light theme remains deliberate, not inverted-dark. */
+html[data-theme="light"]{--v2-bg:#f5f6f8;--v2-text:#11131a}
+html[data-theme="light"] .site-shell{background:radial-gradient(64rem 40rem at 80% -10%,rgba(83,105,255,.09),transparent 58%),#f5f6f8!important}
+html[data-theme="light"] .site-header{background:rgba(248,249,251,.80)!important;border-bottom-color:rgba(18,25,45,.07)!important}
+html[data-theme="light"] .top-nav button{color:rgba(20,25,38,.54)!important}html[data-theme="light"] .top-nav button.active{color:#10131a!important}
+html[data-theme="light"] .project-card{background:#fff!important;border-color:rgba(18,25,45,.08)!important;box-shadow:0 20px 70px rgba(30,38,70,.06)!important}
+html[data-theme="light"] .project-card h3{color:#11131a!important}
+html[data-theme="light"] .project-card>div>p:last-child{color:rgba(18,25,40,.58)!important}
+html[data-theme="light"] .project-stack span{color:rgba(18,25,40,.47)!important;border-color:rgba(18,25,45,.08)!important}
+html[data-theme="light"] .about-copy,html[data-theme="light"] .contact-links,html[data-theme="light"] .signal-card{background:rgba(255,255,255,.78)!important;border-color:rgba(18,25,45,.08)!important}
+html[data-theme="light"] .case-page{background:#f5f6f8!important}
+
+@media (prefers-reduced-motion:reduce){.system-visual,.project-card::before,.project-top span:last-child{transition:none!important}.system-visual:hover,.project-card:hover::before{transform:none!important}}
