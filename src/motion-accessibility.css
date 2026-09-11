@@ -1,0 +1,41 @@
+/* Global motion accessibility and native view-transition layer. */
+
+:root {
+  --motion-ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 360ms;
+  animation-timing-function: var(--motion-ease);
+}
+
+::view-transition-old(root) {
+  animation-name: viewFadeOut;
+}
+
+::view-transition-new(root) {
+  animation-name: viewFadeIn;
+}
+
+@keyframes viewFadeOut {
+  to { opacity: 0; transform: scale(.995); filter: blur(3px); }
+}
+
+@keyframes viewFadeIn {
+  from { opacity: 0; transform: scale(1.006); filter: blur(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
