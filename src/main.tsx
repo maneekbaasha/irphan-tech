@@ -22,6 +22,7 @@ import "./site-audit-fixes-v1.css";
 import "./mobile-first-v1.css";
 import "./design-v2.css";
 import "./design-v2-mobile-fix.css";
+import "./motion-polish-v2.css";
 
 const path = window.location.pathname.replace(/\/$/, "");
 
