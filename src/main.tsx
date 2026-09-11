@@ -20,6 +20,7 @@ import "./case-studies-cinematic.css";
 import "./site-polish-v1.css";
 import "./site-audit-fixes-v1.css";
 import "./mobile-first-v1.css";
+import "./design-v2.css";
 
 const path = window.location.pathname.replace(/\/$/, "");
 
