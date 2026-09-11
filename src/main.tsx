@@ -23,6 +23,7 @@ import "./mobile-first-v1.css";
 import "./design-v2.css";
 import "./design-v2-mobile-fix.css";
 import "./motion-polish-v2.css";
+import "./studio-redesign-v3.css";
 
 const path = window.location.pathname.replace(/\/$/, "");
 
