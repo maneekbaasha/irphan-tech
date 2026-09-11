@@ -5,8 +5,6 @@ import HelpdeskCaseStudy from "./HelpdeskCaseStudy";
 import NginxCaseStudy from "./NginxCaseStudy";
 import AiSupportCaseStudy from "./AiSupportCaseStudy";
 import "./styles.css";
-import "./premium.css";
-import "./architecture.css";
 import "./motion-system.css";
 import "./case-studies-cinematic.css";
 import "./motion-polish-v2.css";
