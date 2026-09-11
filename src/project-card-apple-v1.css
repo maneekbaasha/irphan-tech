@@ -1,3 +1,5 @@
+@import "./project-cards-secondary-v1.css";
+
 /* Modern IT Helpdesk card — Apple-inspired visual hierarchy, restrained interaction. */
 
 .project-card:nth-child(1) {
