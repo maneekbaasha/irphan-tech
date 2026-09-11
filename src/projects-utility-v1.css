@@ -1,0 +1,213 @@
+/* Projects utility pass v1 — hierarchy before decoration. */
+
+/* Make the three technical labs the primary portfolio proof. */
+.project-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  grid-auto-rows: auto !important;
+  align-items: stretch;
+}
+
+.project-card:nth-child(1) {
+  grid-column: 1 / -1 !important;
+  min-height: clamp(300px, 37vh, 430px) !important;
+}
+
+.project-card:nth-child(2),
+.project-card:nth-child(3) {
+  grid-column: span 6 !important;
+  min-height: clamp(280px, 32vh, 380px) !important;
+}
+
+/* The portfolio itself is useful context, but not equal proof to the labs. */
+.project-card:nth-child(4) {
+  grid-column: 1 / -1 !important;
+  min-height: 148px !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  padding: 1.15rem 1.3rem !important;
+  background: rgba(255,255,255,.012) !important;
+  border-color: rgba(255,255,255,.045) !important;
+}
+
+.project-card:nth-child(4) > .project-top {
+  grid-column: 1 / -1;
+}
+
+.project-card:nth-child(4) > div:nth-child(2) {
+  align-self: center;
+  max-width: 62ch;
+  padding-top: .8rem !important;
+}
+
+.project-card:nth-child(4) .project-stack {
+  align-self: end;
+  justify-self: end;
+  margin-top: 0;
+}
+
+/* Stronger scanning: category -> title -> outcome -> tools. */
+.project-card > div:nth-child(2) {
+  max-width: min(72ch, 88%) !important;
+}
+
+.project-card:nth-child(-n+3) .project-eyebrow::after {
+  content: "  ·  CASE STUDY";
+  opacity: .58;
+}
+
+html[lang="fr"] .project-card:nth-child(-n+3) .project-eyebrow::after {
+  content: "  ·  ÉTUDE DE CAS";
+}
+
+.project-card:nth-child(-n+3) .project-top span:last-child {
+  width: auto !important;
+  min-width: 30px;
+  padding: 0 .7rem;
+  border-radius: 999px;
+  gap: .35rem;
+}
+
+.project-card:nth-child(-n+3) .project-top span:last-child::before {
+  content: "View";
+  font-size: .62rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+html[lang="fr"] .project-card:nth-child(-n+3) .project-top span:last-child::before {
+  content: "Voir";
+}
+
+/* 3-second scan: keep the body copy useful, short and visually secondary. */
+.project-card:nth-child(-n+3) > div:nth-child(2) > p:not(.project-eyebrow) {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 56ch;
+}
+
+.project-card:nth-child(1) > div:nth-child(2) > p:not(.project-eyebrow) {
+  max-width: 62ch;
+}
+
+/* Turn the top-right affordance into a real action cue. */
+.project-card:nth-child(-n+3) .project-top span:last-child::after {
+  content: "→";
+  font-size: .72rem;
+  transform: translateX(0);
+  transition: transform .25s ease;
+}
+
+.project-card:nth-child(-n+3):hover .project-top span:last-child::after,
+.project-card:nth-child(-n+3):focus-visible .project-top span:last-child::after {
+  transform: translateX(3px);
+}
+
+/* Give the stack a clear supporting role instead of competing with the story. */
+.project-stack {
+  gap: .35rem !important;
+  padding-top: .85rem;
+  border-top: 1px solid rgba(255,255,255,.045);
+}
+
+.project-stack span {
+  white-space: nowrap;
+}
+
+.project-card:nth-child(4) .project-stack {
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* Make the secondary portfolio card clearly contextual. */
+.project-card:nth-child(4) h3 {
+  max-width: none !important;
+  font-size: clamp(1.25rem,1.6vw,1.6rem) !important;
+}
+
+.project-card:nth-child(4) > div:nth-child(2) > p:not(.project-eyebrow) {
+  max-width: 58ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Keyboard/touch clarity. */
+.project-card:focus-visible {
+  outline: 2px solid currentColor !important;
+  outline-offset: 4px !important;
+}
+
+@media (max-width: 1099px) {
+  .project-card:nth-child(1),
+  .project-card:nth-child(2),
+  .project-card:nth-child(3),
+  .project-card:nth-child(4) {
+    grid-column: span 1 !important;
+  }
+
+  .project-card:nth-child(4) {
+    min-height: 220px !important;
+    display: grid !important;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .project-card:nth-child(4) .project-stack {
+    justify-self: start;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .project-card:nth-child(1),
+  .project-card:nth-child(2),
+  .project-card:nth-child(3) {
+    min-height: 300px !important;
+  }
+
+  .project-card:nth-child(4) {
+    min-height: 205px !important;
+  }
+
+  .project-card > div:nth-child(2) {
+    max-width: 100% !important;
+  }
+
+  .project-card:nth-child(-n+3) .project-top span:last-child::before {
+    display: none;
+  }
+
+  .project-card:nth-child(-n+3) > div:nth-child(2) > p:not(.project-eyebrow) {
+    -webkit-line-clamp: 3;
+  }
+
+  .project-stack {
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-wrap: nowrap !important;
+    padding-bottom: .1rem;
+  }
+
+  .project-stack::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+html[data-theme="light"] .project-card:nth-child(4) {
+  background: rgba(20,25,38,.025) !important;
+  border-color: rgba(18,25,45,.075) !important;
+}
+
+html[data-theme="light"] .project-stack {
+  border-top-color: rgba(18,25,45,.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card:nth-child(-n+3) .project-top span:last-child::after {
+    transition: none;
+  }
+}

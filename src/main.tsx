@@ -13,6 +13,8 @@ import "./figma-screens.css";
 import "./motion-system.css";
 import "./apple-viture-refinement.css";
 import "./projects-product-v2.css";
+import "./projects-utility-v1.css";
+import "./project-card-apple-v1.css";
 import "./sections-editorial-v2.css";
 import "./case-studies-cinematic.css";
 
