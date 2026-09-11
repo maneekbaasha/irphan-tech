@@ -1,0 +1,95 @@
+/* Light-mode contrast and localization polish */
+
+/* Keep the homepage positioning line localized without duplicating markup. */
+.studio-positioning {
+  font-size: 0;
+}
+
+html[lang="fr"] .studio-positioning::after {
+  content: "Technologie. Support. Sécurité. IA.";
+}
+
+html[lang="en"] .studio-positioning::after {
+  content: "Technology. Support. Security. AI.";
+}
+
+.studio-positioning::after {
+  font-family: var(--font-sans);
+  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
+  letter-spacing: -.02em;
+  color: var(--studio-muted);
+}
+
+/* Case studies use translucent white text in dark mode; explicitly remap those
+   tones in light mode so labels and metadata never disappear into the page. */
+html[data-theme="light"] .case-topbar > span,
+html[data-theme="light"] .case-back,
+html[data-theme="light"] .case-kicker,
+html[data-theme="light"] .case-number,
+html[data-theme="light"] .case-actions a,
+html[data-theme="light"] .case-facts span,
+html[data-theme="light"] .case-architecture > div span,
+html[data-theme="light"] .case-architecture > div small,
+html[data-theme="light"] .incident-card header span,
+html[data-theme="light"] .incident-card small,
+html[data-theme="light"] .incident-grid p,
+html[data-theme="light"] .method-list span,
+html[data-theme="light"] .case-chips span,
+html[data-theme="light"] .case-limit > span,
+html[data-theme="light"] .case-cta > span,
+html[data-theme="light"] .case-cta footer,
+html[data-theme="light"] .case-cta footer a {
+  color: rgba(17, 19, 26, .58);
+}
+
+html[data-theme="light"] .case-back,
+html[data-theme="light"] .case-actions a,
+html[data-theme="light"] .incident-card > a {
+  color: rgba(39, 62, 145, .82);
+}
+
+html[data-theme="light"] .case-facts strong,
+html[data-theme="light"] .case-architecture > div strong,
+html[data-theme="light"] .method-list strong,
+html[data-theme="light"] .incident-card h3,
+html[data-theme="light"] .case-limit h3,
+html[data-theme="light"] .case-cta h2 {
+  color: #11131a;
+}
+
+html[data-theme="light"] .case-hero h1 em,
+html[data-theme="light"] .case-section h2 em {
+  background: linear-gradient(110deg, #11131a 0%, #3d4f9d 42%, #6e50c9 72%, #245a9f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html[data-theme="light"] .case-architecture > div,
+html[data-theme="light"] .incident-card,
+html[data-theme="light"] .method-list li,
+html[data-theme="light"] .case-limit {
+  border-color: rgba(20, 25, 40, .10);
+  background: rgba(255, 255, 255, .56);
+}
+
+html[data-theme="light"] .case-architecture > i {
+  color: rgba(17, 19, 26, .30);
+}
+
+html[data-theme="light"] .case-chips span {
+  border-color: rgba(20, 25, 40, .12);
+}
+
+html[data-theme="light"] .case-cta {
+  background: radial-gradient(circle at 70% 35%, rgba(100,124,255,.10), transparent 28%), #f6f7fa;
+}
+
+html[data-theme="light"] .case-cta footer {
+  border-top-color: rgba(20, 25, 40, .10);
+}
+
+/* Slightly strengthen the outlined 404 numerals on a bright background. */
+html[data-theme="light"] .not-found-code {
+  -webkit-text-stroke-color: rgba(17, 19, 26, .22);
+}
