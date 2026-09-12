@@ -1,6 +1,8 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
+import { renderPage } from "../.prerender/prerender.js";
+
 const dist = "dist";
 const sourcePath = join(dist, "index.html");
 const source = await readFile(sourcePath, "utf8");
@@ -41,7 +43,9 @@ function replaceMeta(html, route) {
 for (const route of routes) {
   const directory = join(dist, route.path);
   await mkdir(directory, { recursive: true });
-  await writeFile(join(directory, "index.html"), replaceMeta(source, route));
+  await writeFile(join(directory, "index.html"), replaceMeta(source, route).replace('<div id="root"></div>', `<div id="root">${renderPage(route.path)}</div>`));
 }
 
 console.log(`Generated ${routes.length} route-specific HTML pages with SEO metadata.`);
+
+await writeFile(sourcePath, source.replace('<div id="root"></div>', `<div id="root">${renderPage("")}</div>`));

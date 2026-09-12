@@ -1,25 +1,3 @@
-/* Light-mode contrast and localization polish */
-
-/* Keep the homepage positioning line localized without duplicating markup. */
-.studio-positioning {
-  font-size: 0;
-}
-
-html[lang="fr"] .studio-positioning::after {
-  content: "Technologie. Support. Sécurité. IA.";
-}
-
-html[lang="en"] .studio-positioning::after {
-  content: "Technology. Support. Security. AI.";
-}
-
-.studio-positioning::after {
-  font-family: var(--font-sans);
-  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
-  letter-spacing: -.02em;
-  color: var(--studio-muted);
-}
-
 /* Case studies use translucent white text in dark mode; explicitly remap those
    tones in light mode so labels and metadata never disappear into the page. */
 html[data-theme="light"] .case-topbar > span,

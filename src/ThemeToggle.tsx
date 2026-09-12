@@ -3,19 +3,19 @@ import { useEffect, useState } from "react";
 type Lang = "fr" | "en";
 
 function readLang(): Lang {
-  return document.documentElement.lang.toLowerCase().startsWith("fr") ? "fr" : "en";
+  return (typeof document === "undefined" ? "fr" : document.documentElement.lang).toLowerCase().startsWith("fr") ? "fr" : "en";
 }
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(
-    () => document.documentElement.dataset.theme !== "light",
+    () => typeof document === "undefined" || document.documentElement.dataset.theme !== "light",
   );
   const [lang, setLang] = useState<Lang>(readLang);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const followSystem = (event: MediaQueryListEvent) => {
-      if (localStorage.getItem("theme")) return;
+      try { if (localStorage.getItem("theme")) return; } catch { /* System preference remains available. */ }
       setDark(event.matches);
       document.documentElement.dataset.theme = event.matches ? "dark" : "light";
     };
@@ -33,7 +33,7 @@ export default function ThemeToggle() {
     const next = !dark;
     setDark(next);
     document.documentElement.dataset.theme = next ? "dark" : "light";
-    localStorage.setItem("theme", next ? "dark" : "light");
+    try { localStorage.setItem("theme", next ? "dark" : "light"); } catch { /* Theme still works without persistence. */ }
   }
 
   const label = lang === "fr"
@@ -52,7 +52,7 @@ export default function ThemeToggle() {
       aria-pressed={dark}
       title={title}
     >
-      <span aria-hidden="true">{dark ? "☼" : "☾"}</span>
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">{dark ? <><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" /></> : <path d="M20 15.4A8.5 8.5 0 0 1 8.6 4a8.5 8.5 0 1 0 11.4 11.4Z" />}</svg>
     </button>
   );
 }

@@ -65,7 +65,7 @@ export default function HelpdeskCaseStudy() {
       <a className="skip-link" href="#case-content">Aller au contenu</a>
 
       <header className="case-topbar">
-        <a href="/" className="case-back">← Portfolio</a>
+        <a href="/#projects" className="case-back">← Tous les projets</a>
         <span>Étude de cas · Support IT</span>
         <ThemeToggle />
       </header>
