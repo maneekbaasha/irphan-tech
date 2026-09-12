@@ -168,7 +168,7 @@ export default function App() {
         delay: stagger(65), ease: "outExpo",
       }),
       animate(stageRef.current.querySelectorAll(".studio-portrait-wrap"), {
-        clipPath: { from: "inset(5% 5% 5% 5%)", to: "inset(0% 0% 0% 0%)" },
+        opacity: { from: 0 }, scale: { from: 1.025 },
         duration: 950, ease: "outExpo",
       }),
     ];
@@ -223,7 +223,6 @@ export default function App() {
                   fetchPriority="high"
                 />
               </div>
-              <figcaption><span>{t.home.portraitBottom}</span><a href="#about">{t.home.about}<Arrow /></a></figcaption>
             </figure>
           </section>
 
