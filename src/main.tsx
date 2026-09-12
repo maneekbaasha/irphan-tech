@@ -16,6 +16,7 @@ import "./studio-coherence-v1.css";
 import "./not-found.css";
 import "./typography-system.css";
 import "./light-mode-fixes.css";
+import "./anime-motion.css";
 
 const path = window.location.pathname.replace(/\/$/, "");
 

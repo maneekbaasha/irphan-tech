@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { animate, stagger } from "animejs";
 import ThemeToggle from "./ThemeToggle";
 
 type View = "home" | "about" | "experience" | "projects" | "skills" | "contact";
@@ -125,6 +126,7 @@ const lines = (value: string) => value.split("\n").map((line, index) => <span ke
 export default function App() {
   const [view, setView] = useState<View>(getInitialView);
   const [lang, setLang] = useState<Lang>(getInitialLang);
+  const stageRef = useRef<HTMLDivElement>(null);
   const t = copy[lang];
   const currentIndex = useMemo(() => views.indexOf(view), [view]);
 
@@ -139,11 +141,92 @@ export default function App() {
     document.documentElement.lang = lang;
   }, [lang]);
 
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const running: ReturnType<typeof animate>[] = [];
+    const run = (selector: string, parameters: Parameters<typeof animate>[1]) => {
+      const targets = stage.querySelectorAll(selector);
+      if (targets.length) running.push(animate(targets, parameters));
+    };
+
+    if (view === "home") {
+      run(".studio-home h1 > span", {
+        opacity: { from: 0 },
+        y: { from: "1.1em" },
+        rotate: { from: 1.2 },
+        duration: 760,
+        delay: stagger(85),
+        ease: "outExpo",
+      });
+      run(".studio-positioning, .studio-intro, .studio-actions, .studio-focus", {
+        opacity: { from: 0 },
+        y: { from: 18 },
+        duration: 620,
+        delay: stagger(70, { start: 180 }),
+        ease: "outExpo",
+      });
+      run(".studio-portrait-card", {
+        opacity: { from: 0 },
+        scale: { from: 0.94 },
+        rotateY: { from: -7 },
+        clipPath: { from: "inset(9% 7% 9% 7% round 18px)" },
+        duration: 850,
+        delay: 120,
+        ease: "outExpo",
+      });
+      run(".studio-portrait-wrap img", {
+        scale: { from: 1.09 },
+        x: { from: 18 },
+        duration: 1050,
+        delay: 150,
+        ease: "outExpo",
+      });
+    } else {
+      run(".studio-page-title h2 > span", {
+        opacity: { from: 0 },
+        y: { from: "0.8em" },
+        duration: 650,
+        delay: stagger(65),
+        ease: "outExpo",
+      });
+
+      const viewTargets: Record<Exclude<View, "home">, string> = {
+        about: ".studio-about-story > *, .studio-pillars article",
+        experience: ".studio-timeline article",
+        projects: ".studio-project-title > p, .studio-project",
+        skills: ".studio-skill-list article, .studio-profiles a",
+        contact: ".studio-contact .studio-page-title > p, .studio-contact-links a",
+      };
+
+      run(viewTargets[view], {
+        opacity: { from: 0 },
+        y: { from: 16 },
+        duration: 560,
+        delay: stagger(58, { start: 120 }),
+        ease: "outExpo",
+      });
+    }
+
+    return () => running.forEach((animation) => animation.revert());
+  }, [view, lang]);
+
   function go(next: View) {
     if (next === view) return;
-    window.location.hash = next;
-    setView(next);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const updateView = () => {
+      window.location.hash = next;
+      setView(next);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    const transitionDocument = document as Document & {
+      startViewTransition?: (callback: () => void) => void;
+    };
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && transitionDocument.startViewTransition) {
+      transitionDocument.startViewTransition(updateView);
+    } else {
+      updateView();
+    }
   }
 
   function step(direction: 1 | -1) {
@@ -164,9 +247,9 @@ export default function App() {
         </div>
       </header>
 
-      <div className="studio-stage" key={`${view}-${lang}`}>
+      <div className="studio-stage" key={`${view}-${lang}`} ref={stageRef} data-motion-view={view}>
         {view === "home" && (
-          <section className="studio-home studio-enter">
+          <section className="studio-home">
             <div className="studio-home-copy">
               <h1>{lines(t.home.title)}</h1>
               <p className="studio-positioning">{t.home.line}</p>
@@ -198,7 +281,7 @@ export default function App() {
         )}
 
         {view === "about" && (
-          <section className="studio-page studio-about studio-enter">
+          <section className="studio-page studio-about">
             <div className="studio-page-title"><span>ABOUT</span><h2>{lines(t.about.title)}</h2></div>
             <div className="studio-about-story"><p className="studio-lead">{t.about.lead}</p><p>{t.about.p1}</p><p>{t.about.p2}</p><blockquote>{t.about.statement}</blockquote></div>
             <div className="studio-pillars">{t.about.pillars.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
@@ -206,14 +289,14 @@ export default function App() {
         )}
 
         {view === "experience" && (
-          <section className="studio-page studio-experience studio-enter">
+          <section className="studio-page studio-experience">
             <div className="studio-page-title"><span>EXPERIENCE</span><h2>{lines(t.experience.title)}</h2></div>
             <div className="studio-timeline">{t.experience.items.map(([date, company, role, text]) => <article key={`${date}-${company}`}><time>{date}</time><div className="studio-role"><h3>{company}</h3><span>{role}</span></div><p>{text}</p></article>)}</div>
           </section>
         )}
 
         {view === "projects" && (
-          <section className="studio-page studio-projects studio-enter">
+          <section className="studio-page studio-projects">
             <div className="studio-page-title studio-project-title"><span>PROJECTS</span><h2>{lines(t.projects.title)}</h2><p>{t.projects.intro}</p></div>
             <div className="studio-project-list">{projectMeta.map((meta, index) => {
               const [title, category, description] = t.projects.items[index];
@@ -223,7 +306,7 @@ export default function App() {
         )}
 
         {view === "skills" && (
-          <section className="studio-page studio-skills studio-enter">
+          <section className="studio-page studio-skills">
             <div className="studio-page-title"><span>STACK</span><h2>{lines(t.skills.title)}</h2></div>
             <div className="studio-skill-list">{t.skills.rows.map(([title, detail]) => <article key={title}><h3>{title}</h3><p>{detail}</p></article>)}</div>
             <div className="studio-profiles"><a href="https://tryhackme.com/p/maneekbaasha" target="_blank" rel="noreferrer">TryHackMe ↗</a><a href="https://www.root-me.org/maneekbaasha?lang=fr" target="_blank" rel="noreferrer">Root-Me ↗</a><a href="https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a" target="_blank" rel="noreferrer">Hack The Box ↗</a></div>
@@ -231,7 +314,7 @@ export default function App() {
         )}
 
         {view === "contact" && (
-          <section className="studio-page studio-contact studio-enter">
+          <section className="studio-page studio-contact">
             <div className="studio-page-title"><span>CONTACT</span><h2>{lines(t.contact.title)}</h2><p>{t.contact.intro}</p></div>
             <div className="studio-contact-links"><a href="mailto:mohamed.irphan09@gmail.com"><span>Email</span><strong>mohamed.irphan09@gmail.com</strong><b>↗</b></a><a href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer"><span>LinkedIn</span><strong>Irphan Mohamed Mustapha</strong><b>↗</b></a><a href="https://github.com/maneekbaasha" target="_blank" rel="noreferrer"><span>GitHub</span><strong>@maneekbaasha</strong><b>↗</b></a></div>
           </section>

@@ -1,0 +1,33 @@
+/* Anime.js motion layer. Content remains visible before JavaScript runs. */
+
+.studio-stage {
+  perspective: 1200px;
+}
+
+.studio-home h1 > span,
+.studio-page-title h2 > span {
+  display: inline-block;
+  transform-origin: 0 100%;
+}
+
+.studio-portrait-card {
+  transform-origin: 68% 42%;
+}
+
+.studio-portrait-wrap img {
+  transform-origin: 55% 36%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-stage {
+    perspective: none;
+  }
+
+  .studio-home h1 > span,
+  .studio-page-title h2 > span,
+  .studio-portrait-card,
+  .studio-portrait-wrap img {
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
