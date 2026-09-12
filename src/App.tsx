@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { animate, stagger } from "animejs";
 import ThemeToggle from "./ThemeToggle";
 
 type View = "home" | "about" | "experience" | "projects" | "skills" | "contact";
 type Lang = "fr" | "en";
 
-const views: View[] = ["home", "about", "experience", "projects", "skills", "contact"];
+const views: View[] = ["home", "projects", "about", "experience", "skills", "contact"];
 
 const copy = {
   fr: {
@@ -13,7 +13,7 @@ const copy = {
     availability: "Ouvert aux opportunités",
     home: {
       title: "IRPHANOULLAH\nMOHAMED MUSTAPHA",
-      line: "Technology. Support. Security. AI.",
+      line: "Technologie. Support. Sécurité. IA.",
       intro: "Je construis, dépanne et explore des systèmes sur lesquels les gens comptent — du support IT à la cybersécurité et à l’IA.",
       projects: "Voir les projets",
       about: "À propos de moi",
@@ -41,7 +41,7 @@ const copy = {
     projects: {
       title: "Travaux\nsélectionnés.",
       intro: "Des projets conçus comme des preuves : contexte, environnement, décisions, résultat.",
-      open: "Voir le case study",
+      open: "Explorer le projet",
       items: [
         ["Modern IT Helpdesk Lab", "Support IT · Microsoft Cloud", "Un environnement de support moderne reproduisant le cycle de vie réel d’un poste : onboarding, Entra ID, Intune, conformité, déploiement et incidents Windows."],
         ["Nginx SOC Detection Lab", "Blue Team · Detection", "Un laboratoire conteneurisé pour observer et détecter des attaques web, avec logs, Wazuh, Sigma, remédiation et tests de non-régression."],
@@ -110,161 +110,109 @@ const projectMeta = [
   { stack: ["React", "TypeScript", "Vite", "Cloudflare"], link: "https://github.com/maneekbaasha/irphan-tech" },
 ];
 
-function getInitialView(): View {
-  const hash = window.location.hash.replace("#", "") as View;
-  return views.includes(hash) ? hash : "home";
+function getInitialLang(): Lang {
+  if (typeof window === "undefined") return "fr";
+  try {
+    const saved = localStorage.getItem("irphan-lang");
+    if (saved === "fr" || saved === "en") return saved;
+  } catch { /* Storage can be unavailable in private browsing. */ }
+  return navigator.language.toLowerCase().startsWith("fr") ? "fr" : "en";
 }
 
-function getInitialLang(): Lang {
-  const saved = localStorage.getItem("irphan-lang");
-  if (saved === "fr" || saved === "en") return saved;
-  return navigator.language.toLowerCase().startsWith("fr") ? "fr" : "en";
+function Arrow({ external = false }: { external?: boolean }) {
+  return <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5"><path d={external ? "M6 18 18 6M6 6h12v12" : "M4 12h16m-6-6 6 6-6 6"} /></svg>;
 }
 
 const lines = (value: string) => value.split("\n").map((line, index) => <span key={`${line}-${index}`}>{line}{index === 0 && <br />}</span>);
 
 export default function App() {
-  const [view, setView] = useState<View>(getInitialView);
+  const [view, setView] = useState<View>("home");
   const [lang, setLang] = useState<Lang>(getInitialLang);
+  const [menuOpen, setMenuOpen] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const t = copy[lang];
-  const currentIndex = useMemo(() => views.indexOf(view), [view]);
 
   useEffect(() => {
-    const onHashChange = () => setView(getInitialView());
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("irphan-lang", lang);
+    try { localStorage.setItem("irphan-lang", lang); } catch { /* Optional preference. */ }
     document.documentElement.lang = lang;
   }, [lang]);
 
   useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const sections = Array.from(stageRef.current?.querySelectorAll<HTMLElement>("section[id]") ?? []);
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) setView(entry.target.id as View);
+    }, { rootMargin: "-18% 0px -65% 0px" });
+    sections.forEach(section => observer.observe(section));
+    const hash = window.location.hash.slice(1);
+    if (views.includes(hash as View)) document.getElementById(hash)?.scrollIntoView({ behavior: "instant" });
+    return () => observer.disconnect();
+  }, []);
 
-    const running: ReturnType<typeof animate>[] = [];
-    const run = (selector: string, parameters: Parameters<typeof animate>[1]) => {
-      const targets = stage.querySelectorAll(selector);
-      if (targets.length) running.push(animate(targets, parameters));
+  useEffect(() => {
+    if (!menuOpen) return;
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { setMenuOpen(false); menuButtonRef.current?.focus(); }
     };
+    document.addEventListener("keydown", escape);
+    return () => document.removeEventListener("keydown", escape);
+  }, [menuOpen]);
 
-    if (view === "home") {
-      run(".studio-home h1 > span", {
-        opacity: { from: 0 },
-        y: { from: "1.1em" },
-        rotate: { from: 1.2 },
-        duration: 760,
-        delay: stagger(85),
-        ease: "outExpo",
-      });
-      run(".studio-positioning, .studio-intro, .studio-actions, .studio-focus", {
-        opacity: { from: 0 },
-        y: { from: 18 },
-        duration: 620,
-        delay: stagger(70, { start: 180 }),
-        ease: "outExpo",
-      });
-      run(".studio-portrait-card", {
-        opacity: { from: 0 },
-        scale: { from: 0.94 },
-        rotateY: { from: -7 },
-        clipPath: { from: "inset(9% 7% 9% 7% round 18px)" },
-        duration: 850,
-        delay: 120,
-        ease: "outExpo",
-      });
-      run(".studio-portrait-wrap img", {
-        scale: { from: 1.09 },
-        x: { from: 18 },
-        duration: 1050,
-        delay: 150,
-        ease: "outExpo",
-      });
-    } else {
-      run(".studio-page-title h2 > span", {
-        opacity: { from: 0 },
-        y: { from: "0.8em" },
-        duration: 650,
-        delay: stagger(65),
-        ease: "outExpo",
-      });
+  useEffect(() => {
+    if (window.location.hash && window.location.hash !== "#home") return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (media.matches || !stageRef.current) return;
+    const animations = [
+      animate(stageRef.current.querySelectorAll(".studio-home-copy > *"), {
+        opacity: { from: 0 }, y: { from: 16 }, duration: 700,
+        delay: stagger(65), ease: "outExpo",
+      }),
+      animate(stageRef.current.querySelectorAll(".studio-portrait-wrap"), {
+        clipPath: { from: "inset(5% 5% 5% 5%)", to: "inset(0% 0% 0% 0%)" },
+        duration: 950, ease: "outExpo",
+      }),
+    ];
+    const finish = () => { if (media.matches) animations.forEach(animation => animation.revert()); };
+    media.addEventListener("change", finish);
+    return () => { animations.forEach(animation => animation.revert()); media.removeEventListener("change", finish); };
+  }, []);
 
-      const viewTargets: Record<Exclude<View, "home">, string> = {
-        about: ".studio-about-story > *, .studio-pillars article",
-        experience: ".studio-timeline article",
-        projects: ".studio-project-title > p, .studio-project",
-        skills: ".studio-skill-list article, .studio-profiles a",
-        contact: ".studio-contact .studio-page-title > p, .studio-contact-links a",
-      };
-
-      run(viewTargets[view], {
-        opacity: { from: 0 },
-        y: { from: 16 },
-        duration: 560,
-        delay: stagger(58, { start: 120 }),
-        ease: "outExpo",
-      });
-    }
-
-    return () => running.forEach((animation) => animation.revert());
-  }, [view, lang]);
-
-  function go(next: View) {
-    if (next === view) return;
-    const updateView = () => {
-      window.location.hash = next;
-      setView(next);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-    const transitionDocument = document as Document & {
-      startViewTransition?: (callback: () => void) => void;
-    };
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && transitionDocument.startViewTransition) {
-      transitionDocument.startViewTransition(updateView);
-    } else {
-      updateView();
-    }
-  }
-
-  function step(direction: 1 | -1) {
-    go(views[(currentIndex + direction + views.length) % views.length]);
-  }
+  function navigate() { setMenuOpen(false); }
 
   return (
-    <main className="studio-site">
+    <div className="studio-site">
+      <a className="skip-link" href="#home">{lang === "fr" ? "Aller au contenu" : "Skip to content"}</a>
       <header className="studio-header">
-        <button className="studio-brand" onClick={() => go("home")}>IRPHAN.</button>
-        <nav className="studio-nav" aria-label={lang === "fr" ? "Navigation principale" : "Main navigation"}>
-          {views.slice(1).map((item) => <button key={item} className={view === item ? "active" : ""} onClick={() => go(item)}>{t.nav[item]}</button>)}
+        <a className="studio-brand" href="#home" onClick={navigate} aria-label={lang === "fr" ? "Irphan — accueil" : "Irphan — home"}>irphan<span>.</span></a>
+        <nav id="main-navigation" className={`studio-nav${menuOpen ? " is-open" : ""}`} aria-label={lang === "fr" ? "Navigation principale" : "Main navigation"}>
+          {views.slice(1).map(item => <a key={item} href={`#${item}`} aria-current={view === item ? "location" : undefined} onClick={navigate}>{t.nav[item]}</a>)}
         </nav>
         <div className="studio-tools">
-          <span className="studio-availability"><i />{t.availability}</span>
-          <div className="studio-lang"><button className={lang === "fr" ? "active" : ""} onClick={() => setLang("fr")}>FR</button><button className={lang === "en" ? "active" : ""} onClick={() => setLang("en")}>EN</button></div>
+          <div className="studio-lang" role="group" aria-label={lang === "fr" ? "Langue" : "Language"}>
+            <button aria-label="Français" aria-pressed={lang === "fr"} onClick={() => setLang("fr")}>FR</button>
+            <button aria-label="English" aria-pressed={lang === "en"} onClick={() => setLang("en")}>EN</button>
+          </div>
           <ThemeToggle />
+          <button className="studio-menu" ref={menuButtonRef} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? (lang === "fr" ? "Fermer" : "Close") : "Menu"}<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5"><path d={menuOpen ? "m6 6 12 12M6 18 18 6" : "M4 8h16M4 16h16"} /></svg></button>
         </div>
       </header>
 
-      <div className="studio-stage" key={`${view}-${lang}`} ref={stageRef} data-motion-view={view}>
-        {view === "home" && (
-          <section className="studio-home">
+      <main className="studio-stage" ref={stageRef}>
+
+          <section className="studio-home" id="home" tabIndex={-1}>
             <div className="studio-home-copy">
-              <h1>{lines(t.home.title)}</h1>
+              <h1><span>IRPHANOULLAH</span><span>MOHAMED MUSTAPHA</span></h1>
               <p className="studio-positioning">{t.home.line}</p>
               <p className="studio-intro">{t.home.intro}</p>
               <div className="studio-actions">
-                <button className="studio-primary" onClick={() => go("projects")}>{t.home.projects}</button>
-                <button className="studio-secondary" onClick={() => go("about")}>{t.home.about} <span>↗</span></button>
+                <a className="studio-primary" href="#projects">{t.home.projects}<Arrow /></a>
+                <a className="studio-secondary" href="mailto:mohamed.irphan09@gmail.com">{lang === "fr" ? "Échangeons" : "Let’s talk"}<Arrow external /></a>
               </div>
-              <div className="studio-focus">
-                <span>{t.home.focus}</span>
-                <p>{t.home.focusItems.map((item, i) => <span key={item}>{item}{i < t.home.focusItems.length - 1 && <b>·</b>}</span>)}</p>
-              </div>
+              <p className="studio-availability"><i aria-hidden="true" />{t.availability}<span> · Île-de-France</span></p>
+
             </div>
             <figure className="studio-portrait-card">
-              <div className="studio-portrait-meta"><span>{t.home.portraitTop}</span><span>IRPHAN / EU</span></div>
+
               <div className="studio-portrait-wrap">
                 <img
                   src="/irphan-hero-cool.webp"
@@ -275,53 +223,43 @@ export default function App() {
                   fetchPriority="high"
                 />
               </div>
-              <figcaption><span>{t.home.portraitBottom}</span><small>Support · Systems · Security · AI</small></figcaption>
+              <figcaption><span>{t.home.portraitBottom}</span><a href="#about">{t.home.about}<Arrow /></a></figcaption>
             </figure>
           </section>
-        )}
 
-        {view === "about" && (
-          <section className="studio-page studio-about">
-            <div className="studio-page-title"><span>ABOUT</span><h2>{lines(t.about.title)}</h2></div>
+          <section className="studio-page studio-projects" id="projects" aria-labelledby="projects-title">
+            <div className="studio-page-title studio-project-title"><h2 id="projects-title">{lines(t.projects.title)}</h2><p>{t.projects.intro}</p></div>
+            <div className="studio-project-list">{projectMeta.map((meta, index) => {
+              const [title, category, description] = t.projects.items[index];
+              return <a className="studio-project" href={meta.link} key={title} target={meta.link.startsWith("http") ? "_blank" : undefined} rel={meta.link.startsWith("http") ? "noreferrer" : undefined}><div className="studio-project-main"><span>{category}</span><h3>{title}</h3><p>{description}</p><div>{meta.stack.map((item) => <small key={item}>{item}</small>)}</div></div>{index === 0 && <div className="project-evidence">{(lang === "fr" ? [["IT-1", "Authentification Outlook"], ["IT-2", "Onboarding Entra ID & Intune"], ["IT-3", "Conformité du pare-feu"], ["IT-6", "Terminal professionnel perdu"]] : [["IT-1", "Outlook authentication"], ["IT-2", "Entra ID & Intune onboarding"], ["IT-3", "Firewall compliance"], ["IT-6", "Lost corporate device"]]).map(([id, label]) => <div key={id}><span>{id}</span><strong>{label}</strong></div>)}</div>}<div className="studio-project-arrow"><span>{index === 3 ? (lang === "fr" ? "Voir le code source" : "View source code") : t.projects.open}</span><Arrow external={index === 3} /></div></a>;
+            })}</div>
+          </section>
+
+          <section className="studio-page studio-about" id="about" aria-labelledby="about-title">
+            <div className="studio-page-title"><h2 id="about-title">{lines(t.about.title)}</h2></div>
             <div className="studio-about-story"><p className="studio-lead">{t.about.lead}</p><p>{t.about.p1}</p><p>{t.about.p2}</p><blockquote>{t.about.statement}</blockquote></div>
             <div className="studio-pillars">{t.about.pillars.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
           </section>
-        )}
 
-        {view === "experience" && (
-          <section className="studio-page studio-experience">
-            <div className="studio-page-title"><span>EXPERIENCE</span><h2>{lines(t.experience.title)}</h2></div>
+          <section className="studio-page studio-experience" id="experience" aria-labelledby="experience-title">
+            <div className="studio-page-title"><h2 id="experience-title">{lines(t.experience.title)}</h2></div>
             <div className="studio-timeline">{t.experience.items.map(([date, company, role, text]) => <article key={`${date}-${company}`}><time>{date}</time><div className="studio-role"><h3>{company}</h3><span>{role}</span></div><p>{text}</p></article>)}</div>
           </section>
-        )}
 
-        {view === "projects" && (
-          <section className="studio-page studio-projects">
-            <div className="studio-page-title studio-project-title"><span>PROJECTS</span><h2>{lines(t.projects.title)}</h2><p>{t.projects.intro}</p></div>
-            <div className="studio-project-list">{projectMeta.map((meta, index) => {
-              const [title, category, description] = t.projects.items[index];
-              return <a className="studio-project" href={meta.link} key={title} target={meta.link.startsWith("http") ? "_blank" : undefined} rel="noreferrer"><div className="studio-project-number">{String(index + 1).padStart(2, "0")}</div><div className="studio-project-main"><span>{category}</span><h3>{title}</h3><p>{description}</p><div>{meta.stack.map((item) => <small key={item}>{item}</small>)}</div></div><div className="studio-project-arrow"><span>↗</span><small>{t.projects.open}</small></div></a>;
-            })}</div>
-          </section>
-        )}
 
-        {view === "skills" && (
-          <section className="studio-page studio-skills">
-            <div className="studio-page-title"><span>STACK</span><h2>{lines(t.skills.title)}</h2></div>
+          <section className="studio-page studio-skills" id="skills" aria-labelledby="skills-title">
+            <div className="studio-page-title"><h2 id="skills-title">{lines(t.skills.title)}</h2></div>
             <div className="studio-skill-list">{t.skills.rows.map(([title, detail]) => <article key={title}><h3>{title}</h3><p>{detail}</p></article>)}</div>
-            <div className="studio-profiles"><a href="https://tryhackme.com/p/maneekbaasha" target="_blank" rel="noreferrer">TryHackMe ↗</a><a href="https://www.root-me.org/maneekbaasha?lang=fr" target="_blank" rel="noreferrer">Root-Me ↗</a><a href="https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a" target="_blank" rel="noreferrer">Hack The Box ↗</a></div>
+            <div className="studio-profiles"><a href="https://tryhackme.com/p/maneekbaasha" target="_blank" rel="noreferrer">TryHackMe <Arrow external /></a><a href="https://www.root-me.org/maneekbaasha?lang=fr" target="_blank" rel="noreferrer">Root-Me <Arrow external /></a><a href="https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a" target="_blank" rel="noreferrer">Hack The Box <Arrow external /></a></div>
           </section>
-        )}
 
-        {view === "contact" && (
-          <section className="studio-page studio-contact">
-            <div className="studio-page-title"><span>CONTACT</span><h2>{lines(t.contact.title)}</h2><p>{t.contact.intro}</p></div>
-            <div className="studio-contact-links"><a href="mailto:mohamed.irphan09@gmail.com"><span>Email</span><strong>mohamed.irphan09@gmail.com</strong><b>↗</b></a><a href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer"><span>LinkedIn</span><strong>Irphan Mohamed Mustapha</strong><b>↗</b></a><a href="https://github.com/maneekbaasha" target="_blank" rel="noreferrer"><span>GitHub</span><strong>@maneekbaasha</strong><b>↗</b></a></div>
+          <section className="studio-page studio-contact" id="contact" aria-labelledby="contact-title">
+            <div className="studio-page-title"><h2 id="contact-title">{lines(t.contact.title)}</h2><p>{t.contact.intro}</p></div>
+            <div className="studio-contact-links"><a href="mailto:mohamed.irphan09@gmail.com"><span>Email</span><strong>mohamed.irphan09@gmail.com</strong><Arrow external /></a><a href="https://www.linkedin.com/in/irphan-mohamed-mustapha/" target="_blank" rel="noreferrer"><span>LinkedIn</span><strong>Irphan Mohamed Mustapha</strong><Arrow external /></a><a href="https://github.com/maneekbaasha" target="_blank" rel="noreferrer"><span>GitHub</span><strong>@maneekbaasha</strong><Arrow external /></a></div>
           </section>
-        )}
-      </div>
 
-      <footer className="studio-footer"><span>© 2026 IRPHAN.</span><div><button onClick={() => step(-1)} aria-label={t.prev}>←</button><span>{String(currentIndex + 1).padStart(2, "0")} / {String(views.length).padStart(2, "0")}</span><button onClick={() => step(1)} aria-label={t.next}>→</button></div><span>irphan.eu</span></footer>
-    </main>
+      </main>
+      <footer className="studio-footer"><span>© {new Date().getFullYear()} Irphanoullah Mohamed Mustapha</span><a href="#home">{lang === "fr" ? "Retour en haut" : "Back to top"}<Arrow /></a></footer>
+    </div>
   );
 }
