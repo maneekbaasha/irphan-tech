@@ -13,7 +13,7 @@ html[data-theme="dark"] {
 }
 * { box-sizing: border-box; }
 html { background: var(--paper); scroll-behavior: smooth; scrollbar-color: var(--muted) var(--paper); }
-body { margin: 0; min-width: 320px; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+body { margin: 0; min-width: 320px; overflow-x: clip; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-underline-offset: .25em; }
 button, input, textarea { font: inherit; color: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -81,7 +81,7 @@ a.bento-card:hover { background: var(--card-hover); transform: translateY(-3px);
 .experience-list h2 { margin: 0; font-size: 17px; line-height: 1.25; }
 .experience-list h2 small { display: block; font-size: inherit; font-weight: 400; }
 .experience-list p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
-.expertise-ticker { margin: 90px calc(50% - 50vw) 0; padding: 26px 0; overflow: hidden; white-space: nowrap; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; font-size: 16px; word-spacing: 12px; }
+.expertise-ticker { margin: 90px 0 0; padding: 26px 0; overflow: hidden; white-space: nowrap; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; font-size: 16px; word-spacing: 12px; }
 
 .portfolio-layout > h1 { margin: 15px 0 52px; max-width: 850px; font-size: clamp(18px, 2vw, 27px); line-height: 1.35; letter-spacing: -.02em; font-weight: 500; }
 .project-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
