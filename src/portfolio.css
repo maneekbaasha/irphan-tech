@@ -37,22 +37,34 @@ main { min-height: calc(100vh - 76px); }
 .home-hero h1::after { content: ""; position: absolute; inset: 56% -2% -25%; backdrop-filter: blur(10px); mask-image: linear-gradient(#000, transparent); pointer-events: none; }
 .bento-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: minmax(300px, 42vh) minmax(300px, 38vh); gap: 20px; }
 .bento-card, .portrait-card { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--card); }
-.bento-card { padding: 30px 32px; text-decoration: none; display: flex; align-items: end; justify-content: space-between; transition: background-color .25s ease, transform .25s cubic-bezier(.2,.8,.2,1); }
+.bento-card { position: relative; padding: 30px 32px; text-decoration: none; display: flex; align-items: end; justify-content: space-between; transition: background-color .25s ease, transform .25s cubic-bezier(.2,.8,.2,1); }
 a.bento-card:hover { background: var(--card-hover); transform: translateY(-3px); }
-.bento-card > span { font-size: 18px; font-weight: 600; }
+.bento-card > svg { position: absolute; top: 30px; right: 32px; }
+.bento-copy { display: grid; gap: 12px; max-width: 38ch; }
+.bento-copy strong { font-size: clamp(38px, 4vw, 64px); line-height: .92; letter-spacing: -.04em; }
+.bento-copy small { max-width: 38ch; font-size: 15px; line-height: 1.38; color: var(--muted); }
+.bento-copy em { width: fit-content; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 12px; line-height: 1; font-style: normal; font-weight: 600; color: var(--muted); }
 .about-card { grid-column: 1 / 4; grid-row: 1; }
 .projects-card { grid-column: 4 / 13; grid-row: 1; }
+.projects-card .bento-copy { max-width: 58ch; }
+.projects-card .bento-copy strong { font-size: clamp(62px, 7vw, 94px); }
 .contact-card { grid-column: 1 / 7; grid-row: 2; }
+.contact-card .bento-copy strong { font-size: clamp(48px, 5.5vw, 78px); }
 .portrait-card { grid-column: 7 / 10; grid-row: 2; background: #050505; }
 .portrait-card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 23%; }
 .right-stack { grid-column: 10 / 13; grid-row: 2; display: grid; grid-template-rows: .92fr 1fr; gap: 20px; min-width: 0; }
-.tools-card { align-items: center; justify-content: center; gap: 14px; padding: 20px; }
-.tool-mark { width: 58px; height: 58px; display: grid; place-items: center; border-radius: 14px; background: color-mix(in srgb, var(--ink) 5%, transparent); }
-.tool-mark .brand-icon { width: 28px; height: 28px; }
-.tool-mark strong { font-size: 16px; letter-spacing: -.04em; }
-.tool-microsoft i { width: 26px; height: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
-.tool-microsoft b:nth-child(1) { background: #f25022; }.tool-microsoft b:nth-child(2) { background: #7fba00; }.tool-microsoft b:nth-child(3) { background: #00a4ef; }.tool-microsoft b:nth-child(4) { background: #ffb900; }
-.tool-python { color: #3776ab; }.tool-docker { color: #2496ed; }
+.tools-card { display: grid; grid-template-rows: auto 1fr; align-items: center; gap: 10px; padding: 20px 0; }
+.tools-card > span { padding: 0 20px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.tool-viewport { width: 100%; overflow: hidden; }
+.tool-track { display: flex; width: max-content; animation: tool-marquee 24s linear infinite; }
+.tool-set { display: flex; align-items: center; gap: 10px; padding-right: 10px; }
+.tool-item { width: 92px; min-height: 72px; padding: 10px; display: grid; place-items: center; align-content: center; gap: 7px; border-radius: 14px; background: color-mix(in srgb, var(--ink) 5%, transparent); }
+.tool-item svg { width: 26px; height: 26px; fill: currentColor; }
+.tool-item b { font-size: 10px; line-height: 1.15; text-align: center; white-space: nowrap; }
+.tool-jira { color: #1868db; }.tool-entra { color: #6554c0; }.tool-intune { color: #0078d4; }.tool-kali { color: #557c94; }
+.microsoft-mark { width: 25px; height: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.microsoft-mark i:nth-child(1) { background: #f25022; }.microsoft-mark i:nth-child(2) { background: #7fba00; }.microsoft-mark i:nth-child(3) { background: #00a4ef; }.microsoft-mark i:nth-child(4) { background: #ffb900; }
+@keyframes tool-marquee { to { transform: translateX(-50%); } }
 .social-card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .social-card { align-items: center; justify-content: center; padding: 20px; }
 .brand-icon { width: 42px; height: 42px; }
@@ -131,7 +143,7 @@ a.bento-card:hover { background: var(--card-hover); transform: translateY(-3px);
   .bento-grid { grid-template-rows: 260px 300px; }
   .about-card { grid-column: 1 / 5; }.projects-card { grid-column: 5 / 13; }
   .contact-card { grid-column: 1 / 6; }.portrait-card { grid-column: 6 / 10; }.right-stack { grid-column: 10 / 13; }
-  .tools-card { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }.tool-mark { width: 46px; height: 46px; }
+  .tools-card { grid-template-columns: initial; grid-template-rows: auto 1fr; gap: 8px; }
   .capability-grid { grid-template-columns: 1fr 1fr; }
   .contact-layout { grid-template-columns: 1fr; gap: 34px; }.contact-profiles { grid-row: 2; }
 }
@@ -147,8 +159,10 @@ a.bento-card:hover { background: var(--card-hover); transform: translateY(-3px);
   .about-card { grid-column: 1; grid-row: 1; }.projects-card { grid-column: 2; grid-row: 1; }
   .contact-card { grid-column: 1 / -1; grid-row: 2; }.portrait-card { grid-column: 1 / -1; grid-row: 3; }
   .right-stack { grid-column: 1 / -1; grid-row: 4; display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: 1fr; gap: 12px; }
-  .tools-card { grid-template-columns: repeat(4, 1fr); }.social-card-row { gap: 12px; }
-  .bento-card { padding: 20px; }.bento-card > span { font-size: 15px; }
+  .tools-card { grid-template-columns: initial; grid-template-rows: auto 1fr; }.social-card-row { gap: 12px; }
+  .bento-card { padding: 20px; }.bento-card > svg { top: 20px; right: 20px; }
+  .bento-copy { gap: 8px; }.bento-copy strong, .projects-card .bento-copy strong { font-size: 32px; }.contact-card .bento-copy strong { font-size: 48px; }
+  .bento-copy small { font-size: 12px; }.bento-copy em { display: none; }
   .portrait-card img { object-position: 50% 20%; }
   .about-layout, .portfolio-layout, .contact-layout { padding-top: 30px; }
   .about-layout > h1 { font-size: clamp(68px, 24vw, 120px); }
@@ -166,4 +180,4 @@ a.bento-card:hover { background: var(--card-hover); transform: translateY(-3px);
   .social-footer { min-height: 110px; gap: 8px; }.social-footer a { width: 48px; height: 48px; }
 }
 
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }.tool-track { transform: translateX(-12%); } }

@@ -1,4 +1,5 @@
 import { FormEvent, ReactNode, useEffect, useState } from "react";
+import { siApple, siJira, siKalilinux, siLinux } from "simple-icons";
 import ThemeToggle from "./ThemeToggle";
 
 export type SitePage = "home" | "about" | "portfolio" | "contact";
@@ -20,13 +21,32 @@ function SocialMark({ type }: { type: "github" | "linkedin" }) {
   return <svg className="brand-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M5.37 3.5A2.18 2.18 0 1 1 1 3.5a2.18 2.18 0 0 1 4.37 0ZM1.4 8.1h3.94V21H1.4V8.1Zm6.43 0h3.78v1.76h.05c.53-1 1.81-2.05 3.73-2.05 3.99 0 4.73 2.63 4.73 6.05V21h-3.94v-6.33c0-1.51-.03-3.45-2.1-3.45-2.11 0-2.43 1.65-2.43 3.34V21H7.83V8.1Z" /></svg>;
 }
 
-function ToolMark({ type, label }: { type: "microsoft" | "github" | "python" | "docker"; label: string }) {
-  return <span className={`tool-mark tool-${type}`} title={label} aria-label={label}>
-    {type === "microsoft" && <i aria-hidden="true"><b /><b /><b /><b /></i>}
-    {type === "github" && <SocialMark type="github" />}
-    {type === "python" && <strong aria-hidden="true">Py</strong>}
-    {type === "docker" && <strong aria-hidden="true">Dk</strong>}
-  </span>;
+type ToolLogoName = "jira" | "entra" | "intune" | "microsoft365" | "apple" | "linux" | "kali";
+
+const toolStack: { name: string; logo: ToolLogoName }[] = [
+  { name: "Jira", logo: "jira" },
+  { name: "Entra ID", logo: "entra" },
+  { name: "Intune", logo: "intune" },
+  { name: "Microsoft 365", logo: "microsoft365" },
+  { name: "Apple", logo: "apple" },
+  { name: "Linux", logo: "linux" },
+  { name: "Kali Linux", logo: "kali" },
+];
+
+function ToolLogo({ type }: { type: ToolLogoName }) {
+  if (type === "microsoft365") return <span className="microsoft-mark" aria-hidden="true"><i /><i /><i /><i /></span>;
+  if (type === "entra") return <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2 3.4 7v10L12 22l8.6-5V7L12 2Zm0 3.7 5.4 3.1-2.2 1.3L12 8.2l-3.2 1.9-2.2-1.3L12 5.7Zm-6 5.4 4.5 2.6v5.2L6 16.3v-5.2Zm7.5 7.8v-5.2l4.5-2.6v5.2l-4.5 2.6Z" /></svg>;
+  if (type === "intune") return <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5l7-3v8l-7 1V5Zm9-3 7 3v6l-7-1V2ZM4 13l7 1v8l-7-3v-6Zm9 1 7-1v6l-7 3v-8Z" /></svg>;
+  const icon = type === "jira" ? siJira : type === "apple" ? siApple : type === "linux" ? siLinux : siKalilinux;
+  return <svg aria-hidden="true" viewBox="0 0 24 24"><path d={icon.path} /></svg>;
+}
+
+function ToolMarquee() {
+  return <div className="tool-viewport" aria-label="Outils utilisés">
+    <div className="tool-track">
+      {[0, 1].map(copy => <div className="tool-set" aria-hidden={copy === 1} key={copy}>{toolStack.map(tool => <span className={`tool-item tool-${tool.logo}`} key={`${copy}-${tool.name}`}><ToolLogo type={tool.logo} /><b>{tool.name}</b></span>)}</div>)}
+    </div>
+  </div>;
 }
 
 function useParisTime() {
@@ -68,14 +88,12 @@ function HomePage() {
   return <PageShell page="home"><section className="home-hero" aria-labelledby="home-title">
     <h1 id="home-title">Irphanoullah</h1>
     <div className="bento-grid">
-      <a className="bento-card about-card" href="/about/"><span>À propos</span><Arrow /></a>
-      <a className="bento-card projects-card" href="/portfolio/"><span>Projets</span><Arrow /></a>
-      <a className="bento-card contact-card" href="/contact/"><span>Contact</span><Arrow /></a>
+      <a className="bento-card about-card" href="/about/"><span className="bento-copy"><strong>À propos</strong><small>Du support utilisateur à la cybersécurité.</small></span><Arrow /></a>
+      <a className="bento-card projects-card" href="/portfolio/"><span className="bento-copy"><strong>Projets</strong><small>Labs, audits et systèmes documentés comme preuves de méthode.</small><em>05 réalisations</em></span><Arrow /></a>
+      <a className="bento-card contact-card" href="/contact/"><span className="bento-copy"><strong>Contact</strong><small>Un poste, une mission ou un problème à résoudre&nbsp;?</small><em>Disponible en Île-de-France</em></span><Arrow /></a>
       <figure className="portrait-card"><img src="/irphan-home-portrait.webp" alt="Portrait de profil d’Irphanoullah Mohamed Mustapha" width="1024" height="1280" /></figure>
       <div className="right-stack">
-        <div className="bento-card tools-card" aria-label="Outils principaux">
-          <ToolMark type="microsoft" label="Microsoft 365, Entra ID et Intune" /><ToolMark type="github" label="GitHub" /><ToolMark type="python" label="Python" /><ToolMark type="docker" label="Docker" />
-        </div>
+        <div className="bento-card tools-card"><span>Outils</span><ToolMarquee /></div>
         <div className="social-card-row">
           <a className="bento-card social-card" href={profiles.github} target="_blank" rel="me noreferrer" aria-label="GitHub"><SocialMark type="github" /></a>
           <a className="bento-card social-card" href={profiles.linkedin} target="_blank" rel="me noreferrer" aria-label="LinkedIn"><SocialMark type="linkedin" /></a>
