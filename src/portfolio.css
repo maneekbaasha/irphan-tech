@@ -77,6 +77,8 @@ html[data-theme="dark"] .tool-apple img { filter: invert(1); }
 .social-footer a { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; text-decoration: none; background: var(--card); transition: transform .2s ease, background .2s ease; }
 .social-footer a:hover { transform: translateY(-3px); background: var(--card-hover); }
 .social-footer .brand-icon { width: 25px; height: 25px; }
+.social-footer .brand-icon--tryhackme { width: 24px; height: 24px; }
+.social-footer .brand-icon--hackthebox { width: 27px; height: 27px; }
 .social-footer span { font-size: 12px; font-weight: 700; letter-spacing: -.03em; }
 
 .about-layout, .portfolio-layout, .contact-layout { padding: 42px 0 90px; }

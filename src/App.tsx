@@ -1,5 +1,5 @@
 import { FormEvent, ReactNode, useEffect, useState } from "react";
-import { siKalilinux } from "simple-icons";
+import { siHackthebox, siKalilinux, siTryhackme } from "simple-icons";
 import ThemeToggle from "./ThemeToggle";
 
 export type SitePage = "home" | "about" | "portfolio" | "contact";
@@ -16,9 +16,11 @@ function Arrow({ back = false }: { back?: boolean }) {
   return <svg aria-hidden="true" viewBox="0 0 24 24"><path d={back ? "M19 12H5m6-6-6 6 6 6" : "M7 17 17 7M8 7h9v9"} /></svg>;
 }
 
-function SocialMark({ type }: { type: "github" | "linkedin" }) {
+function SocialMark({ type }: { type: "github" | "linkedin" | "tryhackme" | "hackthebox" }) {
   if (type === "github") return <svg className="brand-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .7a11.6 11.6 0 0 0-3.67 22.6c.58.11.8-.25.8-.56v-2.25c-3.24.7-3.92-1.38-3.92-1.38-.53-1.35-1.3-1.71-1.3-1.71-1.06-.73.08-.72.08-.72 1.18.08 1.8 1.21 1.8 1.21 1.04 1.79 2.74 1.27 3.4.97.1-.76.4-1.27.74-1.56-2.59-.3-5.31-1.29-5.31-5.73 0-1.27.45-2.3 1.2-3.12-.12-.3-.52-1.48.11-3.08 0 0 .98-.31 3.19 1.19a11.1 11.1 0 0 1 5.8 0c2.22-1.5 3.2-1.19 3.2-1.19.63 1.6.23 2.78.11 3.08.75.82 1.2 1.85 1.2 3.12 0 4.45-2.73 5.43-5.32 5.72.42.36.79 1.07.79 2.16v3.2c0 .31.21.68.8.56A11.6 11.6 0 0 0 12 .7Z" /></svg>;
-  return <svg className="brand-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M5.37 3.5A2.18 2.18 0 1 1 1 3.5a2.18 2.18 0 0 1 4.37 0ZM1.4 8.1h3.94V21H1.4V8.1Zm6.43 0h3.78v1.76h.05c.53-1 1.81-2.05 3.73-2.05 3.99 0 4.73 2.63 4.73 6.05V21h-3.94v-6.33c0-1.51-.03-3.45-2.1-3.45-2.11 0-2.43 1.65-2.43 3.34V21H7.83V8.1Z" /></svg>;
+  if (type === "linkedin") return <svg className="brand-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M5.37 3.5A2.18 2.18 0 1 1 1 3.5a2.18 2.18 0 0 1 4.37 0ZM1.4 8.1h3.94V21H1.4V8.1Zm6.43 0h3.78v1.76h.05c.53-1 1.81-2.05 3.73-2.05 3.99 0 4.73 2.63 4.73 6.05V21h-3.94v-6.33c0-1.51-.03-3.45-2.1-3.45-2.11 0-2.43 1.65-2.43 3.34V21H7.83V8.1Z" /></svg>;
+  const icon = type === "tryhackme" ? siTryhackme : siHackthebox;
+  return <svg className={`brand-icon brand-icon--${type}`} aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d={icon.path} /></svg>;
 }
 
 type ToolLogoName = "jira" | "entra" | "intune" | "microsoft365" | "apple" | "linux" | "kali";
@@ -75,9 +77,9 @@ function SiteHeader({ page }: { page: SitePage }) {
 function SocialFooter() {
   return <footer className="social-footer" aria-label="Profils publics">
     <a href={profiles.github} target="_blank" rel="me noreferrer" aria-label="GitHub"><SocialMark type="github" /></a>
-    <a href={profiles.tryhackme} target="_blank" rel="me noreferrer" aria-label="TryHackMe"><span>THM</span></a>
+    <a href={profiles.tryhackme} target="_blank" rel="me noreferrer" aria-label="TryHackMe"><SocialMark type="tryhackme" /></a>
     <a href={profiles.rootme} target="_blank" rel="me noreferrer" aria-label="Root-Me"><span>RM</span></a>
-    <a href={profiles.hackthebox} target="_blank" rel="me noreferrer" aria-label="Hack The Box"><span>HTB</span></a>
+    <a href={profiles.hackthebox} target="_blank" rel="me noreferrer" aria-label="Hack The Box"><SocialMark type="hackthebox" /></a>
     <a href={profiles.linkedin} target="_blank" rel="me noreferrer" aria-label="LinkedIn"><SocialMark type="linkedin" /></a>
   </footer>;
 }
