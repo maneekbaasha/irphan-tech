@@ -61,8 +61,11 @@ a.bento-card:hover { background: var(--card-hover); transform: translateY(-3px);
 .tool-item { width: 92px; min-height: 72px; padding: 10px; display: grid; place-items: center; align-content: center; gap: 7px; border-radius: 14px; background: color-mix(in srgb, var(--ink) 5%, transparent); }
 .tool-item svg { width: 26px; height: 26px; fill: currentColor; }
 .tool-item img { display: block; width: 32px; height: 32px; object-fit: contain; }
+.tool-intune img { width: 36px; height: 36px; border-radius: 9px; }
+.tool-entra img { width: 31px; height: 31px; }
+.tool-jira img { width: 29px; height: 29px; }
 .tool-item b { font-size: 10px; line-height: 1.15; text-align: center; white-space: nowrap; }
-.tool-jira { color: #1868db; }.tool-entra { color: #6554c0; }.tool-intune { color: #0078d4; }.tool-kali { color: #557c94; }
+.tool-kali { color: #557c94; }
 html[data-theme="dark"] .tool-apple img { filter: invert(1); }
 .microsoft-mark { width: 25px; height: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 .microsoft-mark i:nth-child(1) { background: #f25022; }.microsoft-mark i:nth-child(2) { background: #7fba00; }.microsoft-mark i:nth-child(3) { background: #00a4ef; }.microsoft-mark i:nth-child(4) { background: #ffb900; }

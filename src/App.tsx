@@ -1,5 +1,5 @@
 import { FormEvent, ReactNode, useEffect, useState } from "react";
-import { siJira, siKalilinux } from "simple-icons";
+import { siKalilinux } from "simple-icons";
 import ThemeToggle from "./ThemeToggle";
 
 export type SitePage = "home" | "about" | "portfolio" | "contact";
@@ -35,12 +35,12 @@ const toolStack: { name: string; logo: ToolLogoName }[] = [
 
 function ToolLogo({ type }: { type: ToolLogoName }) {
   if (type === "microsoft365") return <span className="microsoft-mark" aria-hidden="true"><i /><i /><i /><i /></span>;
-  if (type === "entra") return <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2 3.4 7v10L12 22l8.6-5V7L12 2Zm0 3.7 5.4 3.1-2.2 1.3L12 8.2l-3.2 1.9-2.2-1.3L12 5.7Zm-6 5.4 4.5 2.6v5.2L6 16.3v-5.2Zm7.5 7.8v-5.2l4.5-2.6v5.2l-4.5 2.6Z" /></svg>;
-  if (type === "intune") return <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5l7-3v8l-7 1V5Zm9-3 7 3v6l-7-1V2ZM4 13l7 1v8l-7-3v-6Zm9 1 7-1v6l-7 3v-8Z" /></svg>;
+  if (type === "jira") return <img src="/brands/jira-original.svg" alt="" aria-hidden="true" />;
+  if (type === "entra") return <img src="/brands/entra-id-original.svg" alt="" aria-hidden="true" />;
+  if (type === "intune") return <img src="/brands/intune-original.webp" alt="" aria-hidden="true" />;
   if (type === "apple") return <img src="/brands/apple-original.svg" alt="" aria-hidden="true" />;
   if (type === "linux") return <img src="/brands/linux-original.svg" alt="" aria-hidden="true" />;
-  const icon = type === "jira" ? siJira : siKalilinux;
-  return <svg aria-hidden="true" viewBox="0 0 24 24"><path d={icon.path} /></svg>;
+  return <svg aria-hidden="true" viewBox="0 0 24 24"><path d={siKalilinux.path} /></svg>;
 }
 
 function ToolMarquee() {
