@@ -18,9 +18,8 @@ export default function NginxCaseStudy() {
 
   return (
     <main className="case-page">
-      <a className="skip-link" href="#case-content">Aller au contenu</a>
       <header className="case-topbar">
-        <a href="/#projects" className="case-back">← Portfolio</a>
+        <a href="/portfolio/" className="case-back">← Portfolio</a>
         <span>Étude de cas · Blue Team</span>
         <ThemeToggle />
       </header>
@@ -95,7 +94,7 @@ export default function NginxCaseStudy() {
       <section className="case-cta">
         <span>Preuve technique</span>
         <h2>Configuration, règles Wazuh, captures et tests<br />sont documentés dans le dépôt.</h2>
-        <div className="case-actions"><a className="pill-button light" href={repo} target="_blank" rel="noreferrer">Ouvrir GitHub <span>↗</span></a><a href="/#projects">Retour aux projets</a></div>
+        <div className="case-actions"><a className="pill-button light" href={repo} target="_blank" rel="noreferrer">Ouvrir GitHub <span>↗</span></a><a href="/portfolio/">Retour aux projets</a></div>
         <footer><span>© 2026 Irphanoullah Mohamed Mustapha</span><a href="#case-content">Retour en haut ↑</a></footer>
       </section>
     </main>

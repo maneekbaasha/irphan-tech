@@ -18,9 +18,8 @@ export default function AiSupportCaseStudy() {
 
   return (
     <main className="case-page">
-      <a className="skip-link" href="#case-content">Aller au contenu</a>
       <header className="case-topbar">
-        <a href="/#projects" className="case-back">← Portfolio</a>
+        <a href="/portfolio/" className="case-back">← Portfolio</a>
         <span>Étude de cas · IA & Support IT</span>
         <ThemeToggle />
       </header>
@@ -91,7 +90,7 @@ export default function AiSupportCaseStudy() {
       <section className="case-cta">
         <span>Approche</span>
         <h2>L’intérêt du projet n’est pas “l’IA”.<br />C’est la manière de la garder sous contrôle.</h2>
-        <div className="case-actions"><a href="/#projects" className="pill-button light">Retour aux projets</a></div>
+        <div className="case-actions"><a href="/portfolio/" className="pill-button light">Retour aux projets</a></div>
         <footer><span>© 2026 Irphanoullah Mohamed Mustapha</span><a href="#case-content">Retour en haut ↑</a></footer>
       </section>
     </main>

@@ -33,7 +33,7 @@ export default function NotFound() {
           <a className="not-found-primary" href="/">
             Retour à l’accueil <span aria-hidden="true">↗</span>
           </a>
-          <a href="/#projects">Voir les projets</a>
+          <a href="/portfolio/">Voir les projets</a>
         </nav>
       </section>
 

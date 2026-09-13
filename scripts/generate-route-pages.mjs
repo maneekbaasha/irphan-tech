@@ -9,6 +9,24 @@ const source = await readFile(sourcePath, "utf8");
 
 const routes = [
   {
+    path: "about",
+    title: "À propos — Irphanoullah Mohamed Mustapha",
+    description: "Parcours, expérience et compétences d’Irphanoullah Mohamed Mustapha en support IT, environnements Microsoft, cybersécurité et IA.",
+    url: "https://irphan.eu/about/",
+  },
+  {
+    path: "portfolio",
+    title: "Projets — Support IT, cybersécurité et IA | Irphanoullah",
+    description: "Découvrez des projets documentés en support IT Microsoft, détection Blue Team, cybersécurité et intelligence artificielle.",
+    url: "https://irphan.eu/portfolio/",
+  },
+  {
+    path: "contact",
+    title: "Contact — Irphanoullah Mohamed Mustapha",
+    description: "Contactez Irphanoullah Mohamed Mustapha pour une opportunité en support IT, environnement Microsoft, cybersécurité ou IA.",
+    url: "https://irphan.eu/contact/",
+  },
+  {
     path: "projets/modern-it-helpdesk-lab",
     title: "Modern IT Helpdesk Lab — Support IT & Microsoft | Irphanoullah",
     description: "Étude de cas d’un laboratoire de support IT moderne : Jira Service Management, Microsoft Entra ID, Intune, Microsoft 365, incidents Windows et documentation.",

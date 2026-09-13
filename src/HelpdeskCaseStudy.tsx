@@ -62,10 +62,9 @@ export default function HelpdeskCaseStudy() {
 
   return (
     <main className="case-page">
-      <a className="skip-link" href="#case-content">Aller au contenu</a>
 
       <header className="case-topbar">
-        <a href="/#projects" className="case-back">← Tous les projets</a>
+        <a href="/portfolio/" className="case-back">← Tous les projets</a>
         <span>Étude de cas · Support IT</span>
         <ThemeToggle />
       </header>
@@ -163,7 +162,7 @@ export default function HelpdeskCaseStudy() {
         <h2>Le dépôt contient les six tickets,<br />leurs solutions et la documentation.</h2>
         <div className="case-actions">
           <a className="pill-button light" href={repo} target="_blank" rel="noreferrer">Ouvrir GitHub <span>↗</span></a>
-          <a href="/">Retour au portfolio</a>
+          <a href="/portfolio/">Retour au portfolio</a>
         </div>
         <footer><span>© 2026 Irphanoullah Mohamed Mustapha</span><a href="#case-content">Retour en haut ↑</a></footer>
       </section>

@@ -1,21 +1,19 @@
-# Portfolio UX — September 2026
+# Portfolio UX — Framer direction, GitHub implementation
 
-The portfolio serves recruiters and technical peers: understand the person, inspect
-verifiable work, then start a conversation. Preserve the bilingual content, portrait,
-project routes, and system-aware theme preference.
+The Framer canvas is the visual reference; this React repository remains the source of
+truth and Cloudflare Workers remains the host. The site uses four explicit routes:
+home, about, portfolio and contact. Existing technical case studies are preserved.
 
-The homepage now uses native scrolling and shareable section anchors. Projects follow
-the introduction; the Helpdesk project is the primary proof, with documented ticket
-examples. About, experience, skills and contact follow. A sticky navigation indicates
-the visible section. At narrow widths, an explicit menu replaces the hidden overflow
-navigation; Escape closes it and restores focus.
+The visual system is deliberately neutral: a paper-white or charcoal background,
+large editorial typography, soft grey bento surfaces and one violet focus colour.
+The portrait uses neutral studio light without blue or purple illumination. Project
+covers and all portraits are stored locally so the production site has no Framer asset
+dependency.
 
-The visual system uses Geist served from the same origin, neutral surfaces and a
-restrained warm accent. One entrance animation is reserved for the hero, and respects
-reduced motion. Shared styles live in portfolio.css; seven superseded layers were
-removed. Case studies share the readable controls and neutral palette.
+The homepage works as a compact map rather than a long sales page. About carries the
+story, skills and experience. Portfolio carries the verifiable work. Contact prepares
+a structured email locally and never sends personal data to a third-party form service.
 
-Native links work without JavaScript. Build-time rendering includes the homepage and
-three case studies in their HTML for indexing and slow connections. React adds
-language, theme, mobile menu and active-section behavior. Preference storage failures
-do not prevent the page from loading. Case-study return links go directly to projects.
+Paris time is calculated in the browser with the Europe/Paris time zone. Theme choice
+is system-aware and persisted locally. All routes are rendered to static HTML during
+the build for indexing, resilient navigation and Cloudflare asset delivery.

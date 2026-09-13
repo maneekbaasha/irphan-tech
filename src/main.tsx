@@ -16,6 +16,9 @@ const path = window.location.pathname.replace(/\/$/, "");
 
 function Root() {
   if (path === "") return <App />;
+  if (path === "/about") return <App page="about" />;
+  if (path === "/portfolio") return <App page="portfolio" />;
+  if (path === "/contact") return <App page="contact" />;
   if (path === "/projets/modern-it-helpdesk-lab") return <HelpdeskCaseStudy />;
   if (path === "/projets/nginx-soc-detection-lab") return <NginxCaseStudy />;
   if (path === "/projets/ai-it-support-lab") return <AiSupportCaseStudy />;
