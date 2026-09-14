@@ -141,13 +141,19 @@ const certifications = {
       logo: "cisco" as CertificationLogoName,
     },
     {
-      title: "Blocs de compétences 2 et 3",
-      issuer: "Parcours RNCP niveau 6",
-      detail: "Blocs validés · titre complet non obtenu",
+      title: "Titre RNCP niveau 6",
+      issuer: "Parcours cybersécurité",
+      detail: "Blocs 2 et 3 validés",
       logo: "france-competences" as CertificationLogoName,
     },
   ],
   inProgress: [
+    {
+      title: "Titre RNCP niveau 6",
+      issuer: "Parcours cybersécurité",
+      detail: "Bloc 1 à valider",
+      logo: "france-competences" as CertificationLogoName,
+    },
     {
       title: "Google IT Support Certificate",
       issuer: "Google Career Certificates",
