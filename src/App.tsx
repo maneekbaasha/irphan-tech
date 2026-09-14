@@ -124,7 +124,7 @@ const experience = [
   ["En continu", "Développement professionnel", "Réseaux · Cloud · Sécurité", "Formation FullStack cybersécurité chez Jedha, Cisco Networking Basics et pratique régulière sur TryHackMe, Root-Me et Hack The Box."],
 ];
 
-type CertificationLogoName = "jedha" | "cisco" | "france-competences" | "google" | "comptia";
+type CertificationLogoName = "jedha" | "cisco" | "france-competences" | "google" | "comptia" | "infosec";
 
 const certifications = {
   obtained: [
@@ -139,6 +139,24 @@ const certifications = {
       issuer: "Cisco Networking Academy",
       detail: "Formation validée · 2026",
       logo: "cisco" as CertificationLogoName,
+    },
+    {
+      title: "Introduction to Cybersecurity",
+      issuer: "Cisco Networking Academy",
+      detail: "Formation et évaluation finale validées",
+      logo: "cisco" as CertificationLogoName,
+    },
+    {
+      title: "Technical Support Fundamentals",
+      issuer: "Google Career Certificates",
+      detail: "Certificat de formation obtenu",
+      logo: "google" as CertificationLogoName,
+    },
+    {
+      title: "Cybersecurity Foundations",
+      issuer: "Infosec",
+      detail: "Certificat de parcours obtenu",
+      logo: "infosec" as CertificationLogoName,
     },
     {
       title: "Titre RNCP niveau 6",
@@ -176,6 +194,9 @@ const certifications = {
 };
 
 function CertificationLogo({ type }: { type: CertificationLogoName }) {
+  if (type === "infosec") {
+    return <span className="cert-logo cert-logo--infosec" aria-hidden="true"><i>●</i><strong>INFOSEC</strong></span>;
+  }
   if (type === "comptia") {
     return <span className="cert-logo cert-logo--comptia" aria-hidden="true"><strong>CompTIA</strong><i>+</i></span>;
   }
@@ -224,8 +245,10 @@ function CertificationSection() {
 function AboutPage() {
   return <PageShell page="about"><article className="about-layout">
     <h1>À propos</h1>
-    <div className="about-intro"><p>Pendant près de huit ans chez Apple, j’ai appris qu’un problème technique commence toujours par une personne qui essaie d’avancer.</p><p>Écouter, reformuler, diagnostiquer puis expliquer : cette méthode m’a conduit du support utilisateur vers les systèmes, les réseaux et la cybersécurité.</p><p>Mon profil est transversal parce qu’un incident réel ne respecte pas les frontières entre poste de travail, identité, réseau, sécurité et expérience utilisateur.</p></div>
-    <figure className="about-portrait"><img src="/irphan-about-portrait-bw.webp" alt="Portrait en noir et blanc d’Irphanoullah" width="1024" height="1280" /></figure>
+    <div className="about-profile">
+      <div className="about-intro"><p>Pendant près de huit ans chez Apple, j’ai appris qu’un problème technique commence toujours par une personne qui essaie d’avancer.</p><p>Écouter, reformuler, diagnostiquer puis expliquer : cette méthode m’a conduit du support utilisateur vers les systèmes, les réseaux et la cybersécurité.</p><p>Mon profil est transversal parce qu’un incident réel ne respecte pas les frontières entre poste de travail, identité, réseau, sécurité et expérience utilisateur.</p></div>
+      <figure className="about-portrait"><img src="/irphan-about-portrait-bw.webp" alt="Portrait en noir et blanc d’Irphanoullah" width="1024" height="1280" /></figure>
+    </div>
     <section className="capability-grid" aria-label="Compétences">{capabilities.map(([title, text, tools]) => <article key={title}><span aria-hidden="true">“</span><h2>{text}</h2><p><strong>{title}</strong> {tools}</p></article>)}</section>
     <section className="experience-list" aria-label="Expérience">{experience.map(([date, role, company, text]) => <article key={date}><time>{date}</time><h2>{role}<small>{company}</small></h2><p>{text}</p></article>)}</section>
     <CertificationSection />
