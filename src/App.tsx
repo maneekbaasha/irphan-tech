@@ -149,7 +149,7 @@ const certifications = {
   ],
   inProgress: [
     {
-      title: "Google IT Support",
+      title: "Google IT Support Certificate",
       issuer: "Google Career Certificates",
       detail: "En cours d’obtention",
       logo: "google" as CertificationLogoName,
