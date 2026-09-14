@@ -328,3 +328,10 @@ html[data-theme="dark"] .tool-apple img { filter: invert(1); }
     margin-left: auto;
   }
 }
+
+
+/* The longer landing label keeps its hierarchy without crowding the compact card. */
+.about-card .bento-copy strong { font-size: clamp(32px, 3.2vw, 52px); }
+@media (max-width: 700px) {
+  .about-card .bento-copy strong { font-size: 27px; line-height: .94; }
+}

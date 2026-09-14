@@ -94,7 +94,7 @@ function HomePage() {
   return <PageShell page="home"><section className="home-hero" aria-labelledby="home-title">
     <h1 id="home-title">Irphanoullah</h1>
     <div className="bento-grid">
-      <a className="bento-card about-card" href="/en/about/"><span className="bento-copy"><strong>About</strong><small>From user support to cybersecurity.</small></span><Arrow /></a>
+      <a className="bento-card about-card" href="/en/about/"><span className="bento-copy"><strong>About me</strong><small>From user support to cybersecurity.</small></span><Arrow /></a>
       <a className="bento-card projects-card" href="/en/portfolio/"><span className="bento-copy"><strong>Projects</strong><small>Labs, audits and systems documented as evidence of method.</small><em>05 case studies</em></span><Arrow /></a>
       <a className="bento-card contact-card" href="/en/contact/"><span className="bento-copy"><strong>Contact</strong><small>A role, a project or a problem to solve?</small><em>Available in the Paris region</em></span><Arrow /></a>
       <figure className="portrait-card"><img src="/irphan-home-portrait.webp" alt="Profile portrait of Irphanoullah Mohamed Mustapha" width="1024" height="1280" /></figure>
