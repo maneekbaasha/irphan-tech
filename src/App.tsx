@@ -124,7 +124,7 @@ const experience = [
   ["En continu", "Développement professionnel", "Réseaux · Cloud · Sécurité", "Formation FullStack cybersécurité chez Jedha, Cisco Networking Basics et pratique régulière sur TryHackMe, Root-Me et Hack The Box."],
 ];
 
-type CertificationLogoName = "jedha" | "cisco" | "france-competences" | "google";
+type CertificationLogoName = "jedha" | "cisco" | "france-competences" | "google" | "comptia";
 
 const certifications = {
   obtained: [
@@ -160,10 +160,25 @@ const certifications = {
       detail: "En cours d’obtention",
       logo: "google" as CertificationLogoName,
     },
+    {
+      title: "CompTIA A+",
+      issuer: "CompTIA",
+      detail: "En cours d’obtention",
+      logo: "comptia" as CertificationLogoName,
+    },
+    {
+      title: "CompTIA Security+",
+      issuer: "CompTIA",
+      detail: "En cours d’obtention",
+      logo: "comptia" as CertificationLogoName,
+    },
   ],
 };
 
 function CertificationLogo({ type }: { type: CertificationLogoName }) {
+  if (type === "comptia") {
+    return <span className="cert-logo cert-logo--comptia" aria-hidden="true"><strong>CompTIA</strong><i>+</i></span>;
+  }
   if (type === "google") {
     return <span className="cert-logo cert-logo--google" aria-hidden="true">
       <i>G</i><b>o</b><em>o</em><strong>g</strong><i>l</i><b>e</b>
