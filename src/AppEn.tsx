@@ -217,7 +217,7 @@ const projects = [
   { title: "Nginx SOC Detection Lab", tag: "Blue Team · Detection", image: "/labs/project-nginx-soc-detection.webp", href: "/en/projects/nginx-soc-detection-lab/" },
   { title: "AI IT Support Lab", tag: "AI · IT Support", image: "/labs/project-ai-it-support.webp", href: "/en/projects/ai-it-support-lab/", wide: true },
   { title: "irphan.eu", tag: "Portfolio · Personal product", image: "/labs/project-irphan-eu.webp", href: profiles.github },
-  { title: "Cybersecurity maturity audit", tag: "Audit · Risque · Azure", image: "/labs/project-cyber-maturity-audit.webp", href: "/contact/" },
+  { title: "Cybersecurity maturity audit", tag: "Audit · Risk · Azure", image: "/labs/project-cyber-maturity-audit.webp", href: "/en/contact/" },
 ];
 
 function PortfolioPage() {
@@ -232,7 +232,7 @@ function ContactForm() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const subject = String(data.get("need") || "Contact from irphan.eu");
-    const body = [`Name: ${data.get("name") || ""}`, `Email: ${data.get("email") || ""}`, `Type of conversation : ${data.get("exchange") || ""}`, "", String(data.get("message") || "")].join("\n");
+    const body = [`Name: ${data.get("name") || ""}`, `Email: ${data.get("email") || ""}`, `Type of conversation: ${data.get("exchange") || ""}`, "", String(data.get("message") || "")].join("\n");
     window.location.href = `mailto:mohamed.irphan09@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
   return <form className="contact-form" onSubmit={submit}>
