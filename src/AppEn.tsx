@@ -124,7 +124,7 @@ const experience = [
   ["Ongoing", "Professional development", "Networks · Cloud · Security", "FullStack Cybersecurity training at Jedha, Cisco Networking Basics and regular practice on TryHackMe, Root-Me and Hack The Box."],
 ];
 
-type CertificationLogoName = "jedha" | "cisco" | "france-competences" | "google";
+type CertificationLogoName = "jedha" | "cisco" | "france-competences" | "google" | "comptia";
 
 const certifications = {
   obtained: [
@@ -141,23 +141,44 @@ const certifications = {
       logo: "cisco" as CertificationLogoName,
     },
     {
-      title: "Competency blocks 2 and 3",
-      issuer: "RNCP level 6 pathway",
-      detail: "Blocks validated · full qualification not awarded",
+      title: "RNCP level 6 qualification",
+      issuer: "Cybersecurity pathway",
+      detail: "Competency blocks 2 and 3 validated",
       logo: "france-competences" as CertificationLogoName,
     },
   ],
   inProgress: [
+    {
+      title: "RNCP level 6 qualification",
+      issuer: "Cybersecurity pathway",
+      detail: "Competency block 1 to validate",
+      logo: "france-competences" as CertificationLogoName,
+    },
     {
       title: "Google IT Support Certificate",
       issuer: "Google Career Certificates",
       detail: "In progress",
       logo: "google" as CertificationLogoName,
     },
+    {
+      title: "CompTIA A+",
+      issuer: "CompTIA",
+      detail: "Certification in progress",
+      logo: "comptia" as CertificationLogoName,
+    },
+    {
+      title: "CompTIA Security+",
+      issuer: "CompTIA",
+      detail: "Certification in progress",
+      logo: "comptia" as CertificationLogoName,
+    },
   ],
 };
 
 function CertificationLogo({ type }: { type: CertificationLogoName }) {
+  if (type === "comptia") {
+    return <span className="cert-logo cert-logo--comptia" aria-hidden="true"><strong>CompTIA</strong><i>+</i></span>;
+  }
   if (type === "google") {
     return <span className="cert-logo cert-logo--google" aria-hidden="true">
       <i>G</i><b>o</b><em>o</em><strong>g</strong><i>l</i><b>e</b>
