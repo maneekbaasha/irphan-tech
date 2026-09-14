@@ -246,6 +246,9 @@ html[data-theme="dark"] .tool-apple img { filter: invert(1); }
 .cert-logo--france { width: 150px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: .9; letter-spacing: -.035em; }
 .cert-logo--france i { color: #0055a4; font-size: 14px; font-style: normal; font-weight: 800; }
 .cert-logo--france strong { color: #ef4135; font-size: 15px; }
+.cert-logo--comptia { gap: 2px; color: #c8202f; font-family: Arial, sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -.045em; }
+.cert-logo--comptia strong { font: inherit; }
+.cert-logo--comptia i { font-size: 25px; font-style: normal; font-weight: 900; }
 .cert-logo--google { gap: 0; font-family: Arial, sans-serif; font-size: 25px; font-weight: 600; letter-spacing: -.09em; }
 .cert-logo--google i, .cert-logo--google b, .cert-logo--google em, .cert-logo--google strong { font: inherit; font-style: normal; }
 .cert-logo--google i:first-child, .cert-logo--google i:nth-last-child(2) { color: #4285f4; }
