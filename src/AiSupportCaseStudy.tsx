@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitch from "./LanguageSwitch";
 
 const tests = [
   ["01", "Documentation d’abord", "Le modèle local ne peut pas remplacer une première étape déjà documentée par une réponse improvisée."],
@@ -21,6 +22,7 @@ export default function AiSupportCaseStudy() {
       <header className="case-topbar">
         <a href="/portfolio/" className="case-back">← Portfolio</a>
         <span>Étude de cas · IA & Support IT</span>
+        <LanguageSwitch language="fr" />
         <ThemeToggle />
       </header>
 
