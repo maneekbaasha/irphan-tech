@@ -174,3 +174,11 @@ html[data-theme="light"] .not-found-footer { border-top-color: rgba(17,19,26,.08
 @media (prefers-reduced-motion: reduce) {
   .not-found-actions a { transition: none; }
 }
+
+
+.not-found-language {
+  position: absolute;
+  top: clamp(22px, 4vw, 46px);
+  right: clamp(22px, 5vw, 72px);
+  z-index: 2;
+}
