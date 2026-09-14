@@ -22,7 +22,7 @@ export default function NginxCaseStudy() {
       <header className="case-topbar">
         <a href="/portfolio/" className="case-back">← Portfolio</a>
         <span>Étude de cas · Blue Team</span>
-        <LanguageSwitch language="fr" />
+        <LanguageSwitch language="fr" href="/en/projects/nginx-soc-detection-lab/" />
         <ThemeToggle />
       </header>
 
