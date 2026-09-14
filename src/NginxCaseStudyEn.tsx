@@ -54,8 +54,8 @@ export default function NginxCaseStudy() {
         </div>
         <div className="case-architecture" aria-label="Lab architecture">
           <div><span>01</span><strong>Vulnerable Nginx</strong><small>Port 8080 · controlled exposure</small></div><i>→</i>
-          <div><span>02</span><strong>JSON logs</strong><small>IP · méthode · path · status</small></div><i>→</i>
-          <div><span>03</span><strong>Wazuh</strong><small>Detection & corrélation</small></div><i>→</i>
+          <div><span>02</span><strong>JSON logs</strong><small>IP · method · path · status</small></div><i>→</i>
+          <div><span>03</span><strong>Wazuh</strong><small>Detection & correlation</small></div><i>→</i>
           <div><span>04</span><strong>Hardened Nginx</strong><small>Port 8081 · validation</small></div>
         </div>
       </section>
