@@ -141,9 +141,9 @@ function replaceMeta(html, route) {
   const frenchUrl = route.language === "fr" ? route.url : route.alternate;
   const englishUrl = route.language === "en" ? route.url : route.alternate;
   const alternates = [
-    `    <link rel="alternate" hrefLang="fr" href="${frenchUrl}" />`,
-    `    <link rel="alternate" hrefLang="en" href="${englishUrl}" />`,
-    `    <link rel="alternate" hrefLang="x-default" href="${frenchUrl}" />`,
+    `    <link rel="alternate" hreflang="fr" href="${frenchUrl}" />`,
+    `    <link rel="alternate" hreflang="en" href="${englishUrl}" />`,
+    `    <link rel="alternate" hreflang="x-default" href="${frenchUrl}" />`,
   ].join("\n");
 
   return html
@@ -157,7 +157,7 @@ function replaceMeta(html, route) {
     .replace(/<meta name="twitter:title" content="[^"]*"\s*\/?>/, `<meta name="twitter:title" content="${route.title}" />`)
     .replace(/<meta name="twitter:description" content="[^"]*"\s*\/?>/, `<meta name="twitter:description" content="${route.description}" />`)
     .replace(/<link rel="canonical" href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${route.url}" />`)
-    .replace(/\s*<link rel="alternate" hrefLang="[^"]*" href="[^"]*"\s*\/?>/g, "")
+    .replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*"\s*\/?>/g, "")
     .replace("</head>", `${alternates}\n  </head>`);
 }
 
