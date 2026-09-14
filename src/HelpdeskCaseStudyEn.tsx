@@ -67,7 +67,7 @@ export default function HelpdeskCaseStudy() {
       <header className="case-topbar">
         <a href="/en/portfolio/" className="case-back">← All projects</a>
         <span>Case study · IT Support</span>
-        <LanguageSwitch language="en" />
+        <LanguageSwitch language="en" href="/projets/modern-it-helpdesk-lab/" />
         <ThemeToggle />
       </header>
 
