@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitch from "./LanguageSwitch";
 
 const repo = "https://github.com/maneekbaasha/nginx-soc-detection-lab";
 
@@ -21,6 +22,7 @@ export default function NginxCaseStudy() {
       <header className="case-topbar">
         <a href="/portfolio/" className="case-back">← Portfolio</a>
         <span>Étude de cas · Blue Team</span>
+        <LanguageSwitch language="fr" />
         <ThemeToggle />
       </header>
 
