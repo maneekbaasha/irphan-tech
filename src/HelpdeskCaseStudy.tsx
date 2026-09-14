@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitch from "./LanguageSwitch";
 
 const repo = "https://github.com/maneekbaasha/modern-it-helpdesk-lab";
 
@@ -66,6 +67,7 @@ export default function HelpdeskCaseStudy() {
       <header className="case-topbar">
         <a href="/portfolio/" className="case-back">← Tous les projets</a>
         <span>Étude de cas · Support IT</span>
+        <LanguageSwitch language="fr" />
         <ThemeToggle />
       </header>
 
