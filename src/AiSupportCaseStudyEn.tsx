@@ -22,7 +22,7 @@ export default function AiSupportCaseStudy() {
       <header className="case-topbar">
         <a href="/en/portfolio/" className="case-back">← Portfolio</a>
         <span>Case study · AI & IT Support</span>
-        <LanguageSwitch language="en" />
+        <LanguageSwitch language="en" href="/projets/ai-it-support-lab/" />
         <ThemeToggle />
       </header>
 
