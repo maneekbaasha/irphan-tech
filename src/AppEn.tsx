@@ -9,7 +9,7 @@ const profiles = {
   github: "https://github.com/maneekbaasha",
   linkedin: "https://www.linkedin.com/in/irphan-mohamed-mustapha/",
   tryhackme: "https://tryhackme.com/p/maneekbaasha",
-  rootme: "https://www.root-me.org/maneekbaasha?lang=fr",
+  rootme: "https://www.root-me.org/maneekbaasha?lang=en",
   hackthebox: "https://profile.hackthebox.com/profile/019fa470-4b52-70d3-ad9d-ca778a6b0d6a",
 };
 
@@ -47,7 +47,7 @@ function ToolLogo({ type }: { type: ToolLogoName }) {
 }
 
 function ToolMarquee() {
-  return <div className="tool-viewport" aria-label="Outils utilisés">
+  return <div className="tool-viewport" aria-label="Tools used">
     <div className="tool-track">
       {[0, 1].map(copy => <div className="tool-set" aria-hidden={copy === 1} key={copy}>{toolStack.map(tool => <span className={`tool-item tool-${tool.logo}`} key={`${copy}-${tool.name}`}><ToolLogo type={tool.logo} /><b>{tool.name}</b></span>)}</div>)}
     </div>
@@ -57,7 +57,7 @@ function ToolMarquee() {
 function useParisTime() {
   const [time, setTime] = useState("--:--");
   useEffect(() => {
-    const update = () => setTime(new Intl.DateTimeFormat("fr-FR", { timeZone: "Europe/Paris", hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date()));
+    const update = () => setTime(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Paris", hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date()));
     update();
     const timer = window.setInterval(update, 30_000);
     return () => window.clearInterval(timer);
@@ -68,16 +68,16 @@ function useParisTime() {
 function SiteHeader({ page }: { page: SitePage }) {
   const time = useParisTime();
   return <header className="site-header">
-    <a className="identity" href="/" aria-label="Accueil">{page !== "home" && <Arrow back />}<span>Irphanoullah M.</span></a>
-    <span className="position">Support IT · Cybersécurité · IA</span>
+    <a className="identity" href="/en/" aria-label="Home">{page !== "home" && <Arrow back />}<span>Irphanoullah M.</span></a>
+    <span className="position">IT Support · Cybersecurity · AI</span>
     <time className="paris-time" dateTime={time === "--:--" ? undefined : time}>Paris · {time}</time>
-    <LanguageSwitch language="fr" href={page === "home" ? "/en/" : `/en/${page}/`} />
+    <LanguageSwitch language="en" href={page === "home" ? "/" : `/${page}/`} />
     <ThemeToggle />
   </header>;
 }
 
 function SocialFooter() {
-  return <footer className="social-footer" aria-label="Profils publics">
+  return <footer className="social-footer" aria-label="Public profiles">
     <a href={profiles.github} target="_blank" rel="me noreferrer" aria-label="GitHub"><SocialMark type="github" /></a>
     <a href={profiles.tryhackme} target="_blank" rel="me noreferrer" aria-label="TryHackMe"><SocialMark type="tryhackme" /></a>
     <a href={profiles.rootme} target="_blank" rel="me noreferrer" aria-label="Root-Me"><span>RM</span></a>
@@ -94,12 +94,12 @@ function HomePage() {
   return <PageShell page="home"><section className="home-hero" aria-labelledby="home-title">
     <h1 id="home-title">Irphanoullah</h1>
     <div className="bento-grid">
-      <a className="bento-card about-card" href="/about/"><span className="bento-copy"><strong>À propos</strong><small>Du support utilisateur à la cybersécurité.</small></span><Arrow /></a>
-      <a className="bento-card projects-card" href="/portfolio/"><span className="bento-copy"><strong>Projets</strong><small>Labs, audits et systèmes documentés comme preuves de méthode.</small><em>05 réalisations</em></span><Arrow /></a>
-      <a className="bento-card contact-card" href="/contact/"><span className="bento-copy"><strong>Contact</strong><small>Un poste, une mission ou un problème à résoudre&nbsp;?</small><em>Disponible en Île-de-France</em></span><Arrow /></a>
-      <figure className="portrait-card"><img src="/irphan-home-portrait.webp" alt="Portrait de profil d’Irphanoullah Mohamed Mustapha" width="1024" height="1280" /></figure>
+      <a className="bento-card about-card" href="/en/about/"><span className="bento-copy"><strong>About</strong><small>From user support to cybersecurity.</small></span><Arrow /></a>
+      <a className="bento-card projects-card" href="/en/portfolio/"><span className="bento-copy"><strong>Projects</strong><small>Labs, audits and systems documented as evidence of method.</small><em>05 case studies</em></span><Arrow /></a>
+      <a className="bento-card contact-card" href="/en/contact/"><span className="bento-copy"><strong>Contact</strong><small>A role, a project or a problem to solve?</small><em>Available in the Paris region</em></span><Arrow /></a>
+      <figure className="portrait-card"><img src="/irphan-home-portrait.webp" alt="Profile portrait of Irphanoullah Mohamed Mustapha" width="1024" height="1280" /></figure>
       <div className="right-stack">
-        <div className="bento-card tools-card"><span>Outils</span><ToolMarquee /></div>
+        <div className="bento-card tools-card"><span>Tools</span><ToolMarquee /></div>
         <div className="social-card-row">
           <a className="bento-card social-card" href={profiles.github} target="_blank" rel="me noreferrer" aria-label="GitHub"><SocialMark type="github" /></a>
           <a className="bento-card social-card" href={profiles.linkedin} target="_blank" rel="me noreferrer" aria-label="LinkedIn"><SocialMark type="linkedin" /></a>
@@ -110,18 +110,18 @@ function HomePage() {
 }
 
 const capabilities = [
-  ["Support utilisateur", "Comprendre vite, expliquer clairement et remettre l’utilisateur en mouvement.", "Windows · macOS · Microsoft 365 · Jira · troubleshooting · documentation."],
-  ["Identité & terminaux", "Relier les identités et les terminaux pour résoudre l’incident dans son ensemble.", "Entra ID · Intune · IAM · RBAC · device management."],
-  ["Systèmes & réseaux", "Comprendre les flux avant de toucher aux outils.", "TCP/IP · DNS · DHCP · Wireshark · Nmap · cartographie."],
-  ["Cybersécurité", "Observer, réduire l’exposition et transformer le risque en actions compréhensibles.", "OSINT · Wazuh · Sigma · OWASP · ISO 27001 · NIST."],
-  ["Intelligence artificielle", "Utiliser l’IA comme copilote, avec des garde-fous et une validation humaine explicite.", "LLM · agents · RAG · Python · workflows."],
+  ["User support", "Understand quickly, explain clearly and get the user moving again.", "Windows · macOS · Microsoft 365 · Jira · troubleshooting · documentation."],
+  ["Identity & endpoints", "Connect identity and endpoint signals to resolve the incident as a whole.", "Entra ID · Intune · IAM · RBAC · device management."],
+  ["Systems & networks", "Understand the flows before touching the tools.", "TCP/IP · DNS · DHCP · Wireshark · Nmap · mapping."],
+  ["Cybersecurity", "Observe, reduce exposure and turn risk into clear actions.", "OSINT · Wazuh · Sigma · OWASP · ISO 27001 · NIST."],
+  ["Artificial intelligence", "Use AI as a copilot, with guardrails and explicit human validation.", "LLM · agents · RAG · Python · workflows."],
 ];
 
 const experience = [
-  ["Près de 8 ans", "Conseiller de vente & support utilisateur", "Apple", "Contact utilisateur, écoute, diagnostic, pédagogie, résolution, retours produit et exigence de qualité."],
-  ["Mai 2025 — Jan. 2026", "Mission d’audit cybersécurité", "CECCA", "OSINT, cartographie, surface d’attaque, vulnérabilités, évaluation de maturité NIST/ISO 27001 et restitution."],
-  ["Aujourd’hui", "Labs & projets personnels", "Support IT · Cyber · IA", "Environnements reproductibles, incidents documentés, automatisation et dépôts publics comme preuves de méthode."],
-  ["En continu", "Développement professionnel", "Réseaux · Cloud · Sécurité", "Formation FullStack cybersécurité chez Jedha, Cisco Networking Basics et pratique régulière sur TryHackMe, Root-Me et Hack The Box."],
+  ["Nearly 8 years", "Sales Advisor & user support", "Apple", "User-facing support, active listening, diagnosis, clear guidance, resolution, product feedback and a high quality bar."],
+  ["May 2025 — Jan. 2026", "Cybersecurity audit engagement", "CECCA", "OSINT, mapping, attack surface, vulnerabilities, NIST/ISO 27001 maturity assessment and executive reporting."],
+  ["Today", "Labs & personal projects", "IT Support · Cyber · AI", "Reproducible environments, documented incidents, automation and public repositories as evidence of method."],
+  ["Ongoing", "Professional development", "Networks · Cloud · Security", "FullStack Cybersecurity training at Jedha, Cisco Networking Basics and regular practice on TryHackMe, Root-Me and Hack The Box."],
 ];
 
 type CertificationLogoName = "jedha" | "cisco" | "france-competences" | "google";
@@ -129,21 +129,21 @@ type CertificationLogoName = "jedha" | "cisco" | "france-competences" | "google"
 const certifications = {
   obtained: [
     {
-      title: "Formation FullStack Cybersécurité",
+      title: "FullStack Cybersecurity Training",
       issuer: "Jedha Bootcamp",
-      detail: "Formation intensive · 2025",
+      detail: "Intensive training · 2025",
       logo: "jedha" as CertificationLogoName,
     },
     {
       title: "Networking Basics",
       issuer: "Cisco Networking Academy",
-      detail: "Formation validée · 2026",
+      detail: "Completed course · 2026",
       logo: "cisco" as CertificationLogoName,
     },
     {
-      title: "Blocs de compétences 2 et 3",
-      issuer: "Parcours RNCP niveau 6",
-      detail: "Blocs validés · titre complet non obtenu",
+      title: "Competency blocks 2 and 3",
+      issuer: "RNCP level 6 pathway",
+      detail: "Blocks validated · full qualification not awarded",
       logo: "france-competences" as CertificationLogoName,
     },
   ],
@@ -151,7 +151,7 @@ const certifications = {
     {
       title: "Google IT Support Certificate",
       issuer: "Google Career Certificates",
-      detail: "En cours d’obtention",
+      detail: "In progress",
       logo: "google" as CertificationLogoName,
     },
   ],
@@ -185,16 +185,16 @@ function CertificationSection() {
 
   return <section className="certifications-section" aria-labelledby="certifications-title">
     <div className="certifications-heading">
-      <span>Parcours vérifiable</span>
-      <h2 id="certifications-title">Certifications & formations</h2>
-      <p>Ce qui est acquis est séparé de ce qui est encore en construction.</p>
+      <span>Verifiable learning</span>
+      <h2 id="certifications-title">Certifications & training</h2>
+      <p>Completed credentials are clearly separated from ongoing learning.</p>
     </div>
     <div className="certification-group">
-      <h3>Obtenues</h3>
+      <h3>Completed</h3>
       <div className="certification-grid">{certifications.obtained.map(renderCard)}</div>
     </div>
     <div className="certification-group">
-      <h3>En cours d’obtention</h3>
+      <h3>In progress</h3>
       <div className="certification-grid">{certifications.inProgress.map(renderCard)}</div>
     </div>
   </section>;
@@ -202,27 +202,27 @@ function CertificationSection() {
 
 function AboutPage() {
   return <PageShell page="about"><article className="about-layout">
-    <h1>À propos</h1>
-    <div className="about-intro"><p>Pendant près de huit ans chez Apple, j’ai appris qu’un problème technique commence toujours par une personne qui essaie d’avancer.</p><p>Écouter, reformuler, diagnostiquer puis expliquer : cette méthode m’a conduit du support utilisateur vers les systèmes, les réseaux et la cybersécurité.</p><p>Mon profil est transversal parce qu’un incident réel ne respecte pas les frontières entre poste de travail, identité, réseau, sécurité et expérience utilisateur.</p></div>
-    <figure className="about-portrait"><img src="/irphan-about-portrait-bw.webp" alt="Portrait en noir et blanc d’Irphanoullah" width="1024" height="1280" /></figure>
-    <section className="capability-grid" aria-label="Compétences">{capabilities.map(([title, text, tools]) => <article key={title}><span aria-hidden="true">“</span><h2>{text}</h2><p><strong>{title}</strong> {tools}</p></article>)}</section>
-    <section className="experience-list" aria-label="Expérience">{experience.map(([date, role, company, text]) => <article key={date}><time>{date}</time><h2>{role}<small>{company}</small></h2><p>{text}</p></article>)}</section>
+    <h1>About</h1>
+    <div className="about-intro"><p>During nearly eight years at Apple, I learned that every technical problem starts with a person trying to move forward.</p><p>Listen, reframe, diagnose, then explain: this method led me from user support to systems, networks and cybersecurity.</p><p>My background is cross-functional because real incidents do not respect boundaries between endpoints, identity, networks, security and user experience.</p></div>
+    <figure className="about-portrait"><img src="/irphan-about-portrait-bw.webp" alt="Black-and-white portrait of Irphanoullah" width="1024" height="1280" /></figure>
+    <section className="capability-grid" aria-label="Skills">{capabilities.map(([title, text, tools]) => <article key={title}><span aria-hidden="true">“</span><h2>{text}</h2><p><strong>{title}</strong> {tools}</p></article>)}</section>
+    <section className="experience-list" aria-label="Experience">{experience.map(([date, role, company, text]) => <article key={date}><time>{date}</time><h2>{role}<small>{company}</small></h2><p>{text}</p></article>)}</section>
     <CertificationSection />
-    <div className="expertise-ticker" aria-hidden="true">Support IT — Microsoft — Cybersécurité — IA — Support IT — Microsoft — Cybersécurité — IA</div>
+    <div className="expertise-ticker" aria-hidden="true">IT Support — Microsoft — Cybersecurity — AI — IT Support — Microsoft — Cybersecurity — AI</div>
   </article></PageShell>;
 }
 
 const projects = [
-  { title: "Modern IT Helpdesk Lab", tag: "Support IT · Microsoft 365", image: "/labs/project-modern-it-helpdesk.webp", href: "/projets/modern-it-helpdesk-lab/" },
-  { title: "Nginx SOC Detection Lab", tag: "Blue Team · Détection", image: "/labs/project-nginx-soc-detection.webp", href: "/projets/nginx-soc-detection-lab/" },
-  { title: "AI IT Support Lab", tag: "IA · Support IT", image: "/labs/project-ai-it-support.webp", href: "/projets/ai-it-support-lab/", wide: true },
-  { title: "irphan.eu", tag: "Portfolio · Produit personnel", image: "/labs/project-irphan-eu.webp", href: profiles.github },
-  { title: "Audit de maturité cyber", tag: "Audit · Risque · Azure", image: "/labs/project-cyber-maturity-audit.webp", href: "/contact/" },
+  { title: "Modern IT Helpdesk Lab", tag: "IT Support · Microsoft 365", image: "/labs/project-modern-it-helpdesk.webp", href: "/en/projects/modern-it-helpdesk-lab/" },
+  { title: "Nginx SOC Detection Lab", tag: "Blue Team · Detection", image: "/labs/project-nginx-soc-detection.webp", href: "/en/projects/nginx-soc-detection-lab/" },
+  { title: "AI IT Support Lab", tag: "AI · IT Support", image: "/labs/project-ai-it-support.webp", href: "/en/projects/ai-it-support-lab/", wide: true },
+  { title: "irphan.eu", tag: "Portfolio · Personal product", image: "/labs/project-irphan-eu.webp", href: profiles.github },
+  { title: "Cybersecurity maturity audit", tag: "Audit · Risk · Azure", image: "/labs/project-cyber-maturity-audit.webp", href: "/en/contact/" },
 ];
 
 function PortfolioPage() {
   return <PageShell page="portfolio"><section className="portfolio-layout">
-    <h1>Des projets conçus comme des preuves : contexte, environnement, décisions et résultat.</h1>
+    <h1>Projects designed as evidence: context, environment, decisions and outcomes.</h1>
     <div className="project-gallery">{projects.map(project => <a className={project.wide ? "project-card is-wide" : "project-card"} key={project.title} href={project.href} target={project.href.startsWith("http") ? "_blank" : undefined} rel={project.href.startsWith("http") ? "noreferrer" : undefined}><img src={project.image} alt="" width="1200" height="800" loading="lazy" /><span><strong>{project.title}</strong><small>{project.tag}</small></span></a>)}</div>
   </section></PageShell>;
 }
@@ -231,26 +231,26 @@ function ContactForm() {
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const subject = String(data.get("need") || "Prise de contact depuis irphan.eu");
-    const body = [`Nom : ${data.get("name") || ""}`, `Email : ${data.get("email") || ""}`, `Type d’échange : ${data.get("exchange") || ""}`, "", String(data.get("message") || "")].join("\n");
+    const subject = String(data.get("need") || "Contact from irphan.eu");
+    const body = [`Name: ${data.get("name") || ""}`, `Email: ${data.get("email") || ""}`, `Type of conversation: ${data.get("exchange") || ""}`, "", String(data.get("message") || "")].join("\n");
     window.location.href = `mailto:mohamed.irphan09@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
   return <form className="contact-form" onSubmit={submit}>
-    <label>Nom complet<input name="name" type="text" placeholder="ex. Irphan Mohamed" required /></label>
-    <label>E-mail<input name="email" type="email" placeholder="votre@email.fr" required /></label>
+    <label>Full name<input name="name" type="text" placeholder="e.g. Irphan Mohamed" required /></label>
+    <label>E-mail<input name="email" type="email" placeholder="you@email.com" required /></label>
     <div className="form-columns">
-      <fieldset><legend>Quel est votre besoin ?</legend>{["Support IT / Microsoft 365", "Cybersécurité / Blue Team", "Audit / sécurité", "IA / automatisation"].map(value => <label key={value}><input type="radio" name="need" value={value} required />{value}</label>)}</fieldset>
-      <fieldset><legend>Type d’échange</legend>{["Opportunité CDI / CDD", "Alternance", "Mission / freelance", "Autre"].map(value => <label key={value}><input type="radio" name="exchange" value={value} required />{value}</label>)}</fieldset>
+      <fieldset><legend>What do you need?</legend>{["Support IT / Microsoft 365", "Cybersecurity / Blue Team", "Audit / security", "AI / automation"].map(value => <label key={value}><input type="radio" name="need" value={value} required />{value}</label>)}</fieldset>
+      <fieldset><legend>Type of conversation</legend>{["Permanent / fixed-term role", "Apprenticeship", "Project / freelance", "Other"].map(value => <label key={value}><input type="radio" name="exchange" value={value} required />{value}</label>)}</fieldset>
     </div>
-    <label>Plus de détails<textarea name="message" placeholder="Décrivez votre besoin…" rows={5} required /></label>
-    <button type="submit">Préparer l’e-mail <Arrow /></button>
-    <p className="availability"><i />Ouvert aux opportunités · Île-de-France</p>
+    <label>More details<textarea name="message" placeholder="Tell me about your needs…" rows={5} required /></label>
+    <button type="submit">Prepare email <Arrow /></button>
+    <p className="availability"><i />Open to opportunities · Paris region</p>
   </form>;
 }
 
 function ContactPage() {
   return <PageShell page="contact"><section className="contact-layout">
-    <h1>Support IT, environnement Microsoft, cybersécurité ou projet mêlant technologie et IA : je suis ouvert aux conversations qui débouchent sur du concret.</h1>
+    <h1>IT support, Microsoft environments, cybersecurity or projects combining technology and AI: I am open to conversations that lead to concrete outcomes.</h1>
     <aside className="contact-profiles"><a href={profiles.linkedin} target="_blank" rel="me noreferrer"><SocialMark type="linkedin" /><span>LinkedIn</span></a><a href={profiles.github} target="_blank" rel="me noreferrer"><SocialMark type="github" /><span>GitHub</span></a></aside>
     <ContactForm />
   </section></PageShell>;

@@ -188,3 +188,88 @@ html[data-theme="dark"] .tool-apple img { filter: invert(1); }
 }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }.tool-track { transform: translateX(-12%); } }
+
+
+/* Language and certification additions */
+.site-header { grid-template-columns: 1fr 1.3fr 1fr auto auto; }
+.language-switch {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.language-switch:hover { background: var(--card); border-color: var(--muted); transform: translateY(-1px); }
+.case-topbar .language-switch { margin-left: auto; }
+
+.certifications-section {
+  margin: 110px 0 0;
+  padding: 78px clamp(22px, 4vw, 58px);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.certifications-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .8fr); gap: 14px 60px; margin-bottom: 62px; }
+.certifications-heading > span { grid-column: 1 / -1; color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.certifications-heading h2 { margin: 0; font-size: clamp(38px, 5vw, 72px); line-height: .95; letter-spacing: -.045em; }
+.certifications-heading p { margin: 4px 0 0; align-self: end; color: var(--muted); font-size: 15px; line-height: 1.55; }
+.certification-group + .certification-group { margin-top: 52px; padding-top: 42px; border-top: 1px solid var(--line); }
+.certification-group > h3 { margin: 0 0 20px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+.certification-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.certification-card {
+  min-height: 250px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 42px;
+}
+.certification-card h3 { margin: 0 0 7px; font-size: 20px; line-height: 1.1; letter-spacing: -.025em; }
+.certification-card p { margin: 0 0 9px; color: var(--ink); font-size: 14px; }
+.certification-card small { display: block; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.cert-logo { height: 48px; max-width: 160px; display: inline-flex; align-items: center; background: transparent; font-style: normal; }
+.cert-logo--jedha { color: #14b87a; font-size: 25px; font-weight: 800; letter-spacing: -.055em; }
+.cert-logo--jedha span { margin-left: 5px; font-size: 13px; transform: rotate(45deg); }
+.cert-logo--cisco { width: 95px; display: grid; grid-template-rows: 26px 16px; justify-items: center; color: #049fd9; }
+.cert-logo--cisco svg { width: 76px; height: 27px; fill: none; stroke: currentColor; stroke-width: 3.2; stroke-linecap: round; }
+.cert-logo--cisco strong { font-size: 15px; line-height: 1; letter-spacing: .16em; }
+.cert-logo--france { width: 150px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: .9; letter-spacing: -.035em; }
+.cert-logo--france i { color: #0055a4; font-size: 14px; font-style: normal; font-weight: 800; }
+.cert-logo--france strong { color: #ef4135; font-size: 15px; }
+.cert-logo--google { gap: 0; font-family: Arial, sans-serif; font-size: 25px; font-weight: 600; letter-spacing: -.09em; }
+.cert-logo--google i, .cert-logo--google b, .cert-logo--google em, .cert-logo--google strong { font: inherit; font-style: normal; }
+.cert-logo--google i:first-child, .cert-logo--google i:nth-last-child(2) { color: #4285f4; }
+.cert-logo--google b:nth-child(2), .cert-logo--google b:last-child { color: #ea4335; }
+.cert-logo--google em { color: #fbbc05; }
+.cert-logo--google strong { color: #34a853; }
+
+@media (max-width: 980px) {
+  .site-header { grid-template-columns: 1fr 1fr auto auto; }
+  .certification-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 700px) {
+  .site-header { grid-template-columns: 1fr auto auto auto; }
+  .language-switch { min-width: 34px; height: 34px; padding-inline: 8px; }
+  .certifications-section { margin-top: 70px; padding: 42px 18px; }
+  .certifications-heading { grid-template-columns: 1fr; gap: 18px; margin-bottom: 40px; }
+  .certifications-heading > span { grid-column: auto; }
+  .certifications-heading p { margin: 0; }
+  .certification-grid { grid-template-columns: 1fr; }
+  .certification-card { min-height: 210px; }
+}
+
+@media (max-width: 460px) {
+  .paris-time { display: none; }
+  .site-header { grid-template-columns: 1fr auto auto; }
+}

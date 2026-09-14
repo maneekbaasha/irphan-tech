@@ -1,7 +1,14 @@
 https://irphan.eu/
+https://irphan.eu/en/
 https://irphan.eu/about/
+https://irphan.eu/en/about/
 https://irphan.eu/portfolio/
+https://irphan.eu/en/portfolio/
 https://irphan.eu/contact/
+https://irphan.eu/en/contact/
 https://irphan.eu/projets/modern-it-helpdesk-lab/
+https://irphan.eu/en/projects/modern-it-helpdesk-lab/
 https://irphan.eu/projets/nginx-soc-detection-lab/
+https://irphan.eu/en/projects/nginx-soc-detection-lab/
 https://irphan.eu/projets/ai-it-support-lab/
+https://irphan.eu/en/projects/ai-it-support-lab/

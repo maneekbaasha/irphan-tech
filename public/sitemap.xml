@@ -1,44 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://irphan.eu/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/" />
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://irphan.eu/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/" />
+    <lastmod>2026-09-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://irphan.eu/about/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/about/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/about/" />
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://irphan.eu/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/about/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/about/" />
+    <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://irphan.eu/portfolio/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/portfolio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/portfolio/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/portfolio/" />
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://irphan.eu/en/portfolio/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/portfolio/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/portfolio/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/portfolio/" />
+    <lastmod>2026-09-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://irphan.eu/contact/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/contact/" />
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://irphan.eu/en/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/contact/" />
+    <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://irphan.eu/projets/modern-it-helpdesk-lab/</loc>
-    <lastmod>2026-09-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/projets/modern-it-helpdesk-lab/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/projects/modern-it-helpdesk-lab/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/projets/modern-it-helpdesk-lab/" />
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://irphan.eu/en/projects/modern-it-helpdesk-lab/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/projets/modern-it-helpdesk-lab/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/projects/modern-it-helpdesk-lab/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/projets/modern-it-helpdesk-lab/" />
+    <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://irphan.eu/projets/nginx-soc-detection-lab/</loc>
-    <lastmod>2026-09-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/projets/nginx-soc-detection-lab/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/projects/nginx-soc-detection-lab/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/projets/nginx-soc-detection-lab/" />
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://irphan.eu/en/projects/nginx-soc-detection-lab/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/projets/nginx-soc-detection-lab/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/projects/nginx-soc-detection-lab/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/projets/nginx-soc-detection-lab/" />
+    <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://irphan.eu/projets/ai-it-support-lab/</loc>
-    <lastmod>2026-09-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/projets/ai-it-support-lab/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/projects/ai-it-support-lab/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/projets/ai-it-support-lab/" />
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://irphan.eu/en/projects/ai-it-support-lab/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://irphan.eu/projets/ai-it-support-lab/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://irphan.eu/en/projects/ai-it-support-lab/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://irphan.eu/projets/ai-it-support-lab/" />
+    <lastmod>2026-09-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
