@@ -33,7 +33,7 @@ function Root() {
   if (path === "/en/projects/modern-it-helpdesk-lab") return <HelpdeskCaseStudyEn />;
   if (path === "/en/projects/nginx-soc-detection-lab") return <NginxCaseStudyEn />;
   if (path === "/en/projects/ai-it-support-lab") return <AiSupportCaseStudyEn />;
-  return <NotFound />;
+  return <NotFound language={path.startsWith("/en") ? "en" : "fr"} />;
 }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
