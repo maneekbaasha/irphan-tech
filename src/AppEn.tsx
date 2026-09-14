@@ -160,7 +160,7 @@ const certifications = {
     },
     {
       title: "RNCP level 6 qualification",
-      issuer: "Cybersecurity pathway",
+      issuer: "Secure Infrastructure Administrator",
       detail: "Competency blocks 2 and 3 validated",
       logo: "france-competences" as CertificationLogoName,
     },
@@ -168,7 +168,7 @@ const certifications = {
   inProgress: [
     {
       title: "RNCP level 6 qualification",
-      issuer: "Cybersecurity pathway",
+      issuer: "Secure Infrastructure Administrator",
       detail: "Competency block 1 to validate",
       logo: "france-competences" as CertificationLogoName,
     },
@@ -178,16 +178,19 @@ const certifications = {
       detail: "In progress",
       logo: "google" as CertificationLogoName,
     },
+
+  ],
+  future: [
     {
       title: "CompTIA A+",
       issuer: "CompTIA",
-      detail: "Certification in progress",
+      detail: "Certification target",
       logo: "comptia" as CertificationLogoName,
     },
     {
       title: "CompTIA Security+",
       issuer: "CompTIA",
-      detail: "Certification in progress",
+      detail: "Certification target",
       logo: "comptia" as CertificationLogoName,
     },
   ],
@@ -229,7 +232,7 @@ function CertificationSection() {
     <div className="certifications-heading">
       <span>Verifiable learning</span>
       <h2 id="certifications-title">Certifications & training</h2>
-      <p>Completed credentials are clearly separated from ongoing learning.</p>
+      <p>Completed credentials, current learning and future goals are clearly separated.</p>
     </div>
     <div className="certification-group">
       <h3>Completed</h3>
@@ -238,6 +241,10 @@ function CertificationSection() {
     <div className="certification-group">
       <h3>In progress</h3>
       <div className="certification-grid">{certifications.inProgress.map(renderCard)}</div>
+    </div>
+    <div className="certification-group">
+      <h3>Target certifications</h3>
+      <div className="certification-grid">{certifications.future.map(renderCard)}</div>
     </div>
   </section>;
 }
