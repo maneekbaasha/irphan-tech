@@ -71,7 +71,7 @@ function SiteHeader({ page }: { page: SitePage }) {
     <a className="identity" href="/en/" aria-label="Home">{page !== "home" && <Arrow back />}<span>Irphanoullah M.</span></a>
     <span className="position">IT Support · Cybersecurity · AI</span>
     <time className="paris-time" dateTime={time === "--:--" ? undefined : time}>Paris · {time}</time>
-    <LanguageSwitch language="en" />
+    <LanguageSwitch language="en" href={page === "home" ? "/" : `/${page}/`} />
     <ThemeToggle />
   </header>;
 }
