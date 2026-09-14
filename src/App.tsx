@@ -160,7 +160,7 @@ const certifications = {
     },
     {
       title: "Titre RNCP niveau 6",
-      issuer: "Parcours cybersécurité",
+      issuer: "Administrateur d’infrastructures sécurisées",
       detail: "Blocs 2 et 3 validés",
       logo: "france-competences" as CertificationLogoName,
     },
@@ -168,7 +168,7 @@ const certifications = {
   inProgress: [
     {
       title: "Titre RNCP niveau 6",
-      issuer: "Parcours cybersécurité",
+      issuer: "Administrateur d’infrastructures sécurisées",
       detail: "Bloc 1 à valider",
       logo: "france-competences" as CertificationLogoName,
     },
@@ -178,16 +178,19 @@ const certifications = {
       detail: "En cours d’obtention",
       logo: "google" as CertificationLogoName,
     },
+
+  ],
+  future: [
     {
       title: "CompTIA A+",
       issuer: "CompTIA",
-      detail: "En cours d’obtention",
+      detail: "Certification visée",
       logo: "comptia" as CertificationLogoName,
     },
     {
       title: "CompTIA Security+",
       issuer: "CompTIA",
-      detail: "En cours d’obtention",
+      detail: "Certification visée",
       logo: "comptia" as CertificationLogoName,
     },
   ],
@@ -229,7 +232,7 @@ function CertificationSection() {
     <div className="certifications-heading">
       <span>Parcours vérifiable</span>
       <h2 id="certifications-title">Certifications & formations</h2>
-      <p>Ce qui est acquis est séparé de ce qui est encore en construction.</p>
+      <p>Les acquis, les parcours en cours et les objectifs futurs sont clairement distingués.</p>
     </div>
     <div className="certification-group">
       <h3>Obtenues</h3>
@@ -238,6 +241,10 @@ function CertificationSection() {
     <div className="certification-group">
       <h3>En cours d’obtention</h3>
       <div className="certification-grid">{certifications.inProgress.map(renderCard)}</div>
+    </div>
+    <div className="certification-group">
+      <h3>Certifications visées</h3>
+      <div className="certification-grid">{certifications.future.map(renderCard)}</div>
     </div>
   </section>;
 }
