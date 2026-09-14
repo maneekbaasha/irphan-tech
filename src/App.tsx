@@ -1,6 +1,7 @@
 import { FormEvent, ReactNode, useEffect, useState } from "react";
 import { siHackthebox, siKalilinux, siTryhackme } from "simple-icons";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitch from "./LanguageSwitch";
 
 export type SitePage = "home" | "about" | "portfolio" | "contact";
 
@@ -70,6 +71,7 @@ function SiteHeader({ page }: { page: SitePage }) {
     <a className="identity" href="/" aria-label="Accueil">{page !== "home" && <Arrow back />}<span>Irphanoullah M.</span></a>
     <span className="position">Support IT · Cybersécurité · IA</span>
     <time className="paris-time" dateTime={time === "--:--" ? undefined : time}>Paris · {time}</time>
+    <LanguageSwitch language="fr" />
     <ThemeToggle />
   </header>;
 }
@@ -122,6 +124,82 @@ const experience = [
   ["En continu", "Développement professionnel", "Réseaux · Cloud · Sécurité", "Formation FullStack cybersécurité chez Jedha, Cisco Networking Basics et pratique régulière sur TryHackMe, Root-Me et Hack The Box."],
 ];
 
+type CertificationLogoName = "jedha" | "cisco" | "france-competences" | "google";
+
+const certifications = {
+  obtained: [
+    {
+      title: "Formation FullStack Cybersécurité",
+      issuer: "Jedha Bootcamp",
+      detail: "Formation intensive · 2025",
+      logo: "jedha" as CertificationLogoName,
+    },
+    {
+      title: "Networking Basics",
+      issuer: "Cisco Networking Academy",
+      detail: "Formation validée · 2026",
+      logo: "cisco" as CertificationLogoName,
+    },
+    {
+      title: "Blocs de compétences 2 et 3",
+      issuer: "Parcours RNCP niveau 6",
+      detail: "Blocs validés · titre complet non obtenu",
+      logo: "france-competences" as CertificationLogoName,
+    },
+  ],
+  inProgress: [
+    {
+      title: "Google IT Support",
+      issuer: "Google Career Certificates",
+      detail: "En cours d’obtention",
+      logo: "google" as CertificationLogoName,
+    },
+  ],
+};
+
+function CertificationLogo({ type }: { type: CertificationLogoName }) {
+  if (type === "google") {
+    return <span className="cert-logo cert-logo--google" aria-hidden="true">
+      <i>G</i><b>o</b><em>o</em><strong>g</strong><i>l</i><b>e</b>
+    </span>;
+  }
+  if (type === "cisco") {
+    return <span className="cert-logo cert-logo--cisco" aria-hidden="true">
+      <svg viewBox="0 0 88 48"><path d="M8 19v10M15 13v22M22 8v32M29 15v18M36 19v10M43 15v18M50 8v32M57 13v22M64 19v10M71 15v18M78 19v10" /></svg>
+      <strong>CISCO</strong>
+    </span>;
+  }
+  if (type === "france-competences") {
+    return <span className="cert-logo cert-logo--france" aria-hidden="true"><i>FRANCE</i><strong>COMPÉTENCES</strong></span>;
+  }
+  return <span className="cert-logo cert-logo--jedha" aria-hidden="true">JEDHA<span>◆</span></span>;
+}
+
+function CertificationSection() {
+  const renderCard = (item: (typeof certifications.obtained)[number]) => (
+    <article className="certification-card" key={item.title}>
+      <CertificationLogo type={item.logo} />
+      <div><h3>{item.title}</h3><p>{item.issuer}</p><small>{item.detail}</small></div>
+    </article>
+  );
+
+  return <section className="certifications-section" aria-labelledby="certifications-title">
+    <div className="certifications-heading">
+      <span>Parcours vérifiable</span>
+      <h2 id="certifications-title">Certifications & formations</h2>
+      <p>Ce qui est acquis est séparé de ce qui est encore en construction.</p>
+    </div>
+    <div className="certification-group">
+      <h3>Obtenues</h3>
+      <div className="certification-grid">{certifications.obtained.map(renderCard)}</div>
+    </div>
+    <div className="certification-group">
+      <h3>En cours d’obtention</h3>
+      <div className="certification-grid">{certifications.inProgress.map(renderCard)}</div>
+    </div>
+  </section>;
+}
+
 function AboutPage() {
   return <PageShell page="about"><article className="about-layout">
     <h1>À propos</h1>
@@ -129,6 +207,7 @@ function AboutPage() {
     <figure className="about-portrait"><img src="/irphan-about-portrait-bw.webp" alt="Portrait en noir et blanc d’Irphanoullah" width="1024" height="1280" /></figure>
     <section className="capability-grid" aria-label="Compétences">{capabilities.map(([title, text, tools]) => <article key={title}><span aria-hidden="true">“</span><h2>{text}</h2><p><strong>{title}</strong> {tools}</p></article>)}</section>
     <section className="experience-list" aria-label="Expérience">{experience.map(([date, role, company, text]) => <article key={date}><time>{date}</time><h2>{role}<small>{company}</small></h2><p>{text}</p></article>)}</section>
+    <CertificationSection />
     <div className="expertise-ticker" aria-hidden="true">Support IT — Microsoft — Cybersécurité — IA — Support IT — Microsoft — Cybersécurité — IA</div>
   </article></PageShell>;
 }
