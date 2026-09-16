@@ -6,7 +6,10 @@ on:
       - main
   push:
     branches:
-      - studio/hero-projects-redesign
+      - main
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -18,11 +21,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+
+      - name: Build and validate security/SEO controls
+        run: npm run check

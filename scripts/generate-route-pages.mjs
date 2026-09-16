@@ -173,4 +173,16 @@ const homeHtml = replaceMeta(source, home)
   .replace('<div id="root"></div>', `<div id="root">${renderPage("")}</div>`);
 await writeFile(sourcePath, homeHtml);
 
-console.log(`Generated ${routes.length + 1} localized route pages with SEO metadata.`);
+const notFoundHtml = source
+  .replace(/<html lang="[^"]*">/, '<html lang="fr">')
+  .replace(/<title>[^<]*<\/title>/, '<title>404 — Page introuvable | Irphanoullah</title>')
+  .replace(/<meta name="description" content="[^"]*"\s*\/?>/, '<meta name="description" content="Cette page n’existe pas ou n’est plus disponible." />')
+  .replace(/\s*<meta property="og:[^>]+>/g, '')
+  .replace(/\s*<meta name="twitter:[^>]+>/g, '')
+  .replace(/\s*<link rel="canonical"[^>]+>/g, '')
+  .replace(/\s*<link rel="alternate"[^>]+>/g, '')
+  .replace('</head>', '    <meta name="robots" content="noindex, follow" />\n  </head>')
+  .replace('<div id="root"></div>', `<div id="root">${renderPage("404")}</div>`);
+await writeFile(join(dist, "404.html"), notFoundHtml);
+
+console.log(`Generated ${routes.length + 1} localized route pages and a custom 404 page.`);

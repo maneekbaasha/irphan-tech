@@ -7,9 +7,11 @@ import AiSupportCaseStudy from './AiSupportCaseStudy';
 import HelpdeskCaseStudyEn from './HelpdeskCaseStudyEn';
 import NginxCaseStudyEn from './NginxCaseStudyEn';
 import AiSupportCaseStudyEn from './AiSupportCaseStudyEn';
+import NotFound from './NotFound';
 
 // Static, readable HTML for crawlers, slow connections and disabled JavaScript.
 export function renderPage(path: string) {
+  if (path === '404') return renderToString(<NotFound />);
   if (path === 'en') return renderToString(<AppEn />);
   if (path === 'en/about') return renderToString(<AppEn page="about" />);
   if (path === 'en/portfolio') return renderToString(<AppEn page="portfolio" />);
