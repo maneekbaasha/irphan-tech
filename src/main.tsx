@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import TvIntro from "./TvIntro";
 import AppEn from "./AppEn";
 import HelpdeskCaseStudy from "./HelpdeskCaseStudy";
 import NginxCaseStudy from "./NginxCaseStudy";
@@ -37,5 +38,5 @@ function Root() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode><Root /></React.StrictMode>,
+  <React.StrictMode><Root /><TvIntro /></React.StrictMode>,
 );

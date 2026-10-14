@@ -1,0 +1,30 @@
+/* Isolated CRT introduction. Coordinates refer to the full supplied 1408 × 768 PNG. */
+.ir-tv-intro, .ir-tv-intro * { box-sizing: border-box; }
+.ir-tv-intro { position: fixed; inset: 0; z-index: 10000; isolation: isolate; overflow: hidden; background: #fff; color: #111; font-family: Arial, sans-serif; }
+.ir-tv-stage { position: absolute; inset: 0; display: grid; place-items: center; perspective: 1000px; perspective-origin: 47% 49%; }
+.ir-tv-device { position: relative; width: min(170vw, 1600px, calc(100svh * 1.833333)); aspect-ratio: 1408 / 768; transform-origin: 46.6% 49.3%; transform: translateZ(0); }
+.ir-tv-image { display: block; width: 100%; height: 100%; pointer-events: none; user-select: none; mask-image: radial-gradient(ellipse 49% 49% at 50% 51%, #000 58%, transparent 100%); }
+.ir-tv-screen { position: absolute; top: 28.4%; left: 31.7%; width: 29.8%; height: 41.8%; border-radius: 48% / 11%; overflow: hidden; display: block; border: 0; padding: 0; margin: 0; appearance: none; background: #06100d; color: #b1ffd0; cursor: pointer; text-align: center; font: inherit; line-height: normal; -webkit-tap-highlight-color: transparent; }
+.ir-tv-screen:focus-visible { outline: 3px solid #157440; outline-offset: 5px; }
+.ir-tv-terminal, .ir-tv-scanlines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.ir-tv-terminal { opacity: .75; }
+.ir-tv-scanlines { z-index: 2; opacity: .22; background: repeating-linear-gradient(to bottom, transparent 0 2px, #000 2px 3px); }
+.ir-tv-copy { position: absolute; inset: 8%; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: .7em; padding-bottom: 5%; font-family: 'Courier New', monospace; font-size: clamp(9px, 1.15vw, 17px); text-shadow: 0 0 6px #0b542b; pointer-events: none; }
+.ir-tv-title { font-size: 2.3em; letter-spacing: .14em; font-weight: 700; }
+.ir-tv-subtitle { font-size: .78em; }
+.ir-tv-prompt { margin-top: .5em; font-size: .9em; font-weight: 700; color: #9dffb8; animation: ir-tv-blink 1.5s ease-in-out infinite; }
+.ir-tv-boot .ir-tv-screen { animation: ir-tv-power 650ms ease-out both; }
+.ir-tv-boot .ir-tv-copy { opacity: 0; }
+.ir-tv-tunnel { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.ir-tv-skip { position: absolute; z-index: 3; right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); padding: 12px 16px; border: 1px solid #aaa; border-radius: 4px; background: #fff; color: #333; cursor: pointer; font: 13px Arial, sans-serif; }
+.ir-tv-skip:hover { background: #f3f3f1; }
+.ir-tv-skip:focus-visible { outline: 3px solid #157440; outline-offset: 4px; }
+.ir-tv-caption { position: absolute; left: 24px; bottom: max(29px, env(safe-area-inset-bottom)); margin: 0; color: #555; font: 13px Arial, sans-serif; }
+.ir-tv-entering .ir-tv-device { will-change: transform, filter, opacity; animation: ir-tv-hyperdrive 1300ms cubic-bezier(.9,.02,.98,.35) both; }
+.ir-tv-entering .ir-tv-prompt { animation: none; }
+.ir-tv-entering .ir-tv-skip, .ir-tv-entering .ir-tv-caption { visibility: hidden; }
+@keyframes ir-tv-hyperdrive { 0% { transform: translateZ(0); filter: blur(0); opacity: 1; } 75% { opacity: 1; } 100% { transform: translateZ(940px); filter: blur(12px); opacity: 0; } }
+@keyframes ir-tv-power { 0% { transform: scaleY(.015) scaleX(.5); filter: brightness(2); } 35% { transform: scaleY(.015) scaleX(1); } 100% { transform: scaleY(1) scaleX(1); filter: brightness(1); } }
+@keyframes ir-tv-blink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+@media (max-width: 600px) { .ir-tv-copy { font-size: 10px; } .ir-tv-caption { bottom: 90px; left: 0; width: 100%; text-align: center; } }
+@media (prefers-reduced-motion: reduce) { .ir-tv-intro .ir-tv-screen, .ir-tv-intro .ir-tv-prompt, .ir-tv-intro .ir-tv-device { animation: none; } .ir-tv-tunnel { display: none; } .ir-tv-boot .ir-tv-copy { opacity: 1; } }
