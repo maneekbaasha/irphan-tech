@@ -108,8 +108,8 @@ export default function TvIntro() {
       const draw = (now: number) => {
         if (disposed || complete) return;
         if (now - lastDraw > 80) {
-          context.fillStyle = '#06100d';
-          context.fillRect(0, 0, 640, 480);
+          // Keep the original glass color and reflections visible underneath.
+          context.clearRect(0, 0, 640, 480);
           const elapsed = now - started;
           if (elapsed < 650 && !reduced.matches) {
             const pixels = context.createImageData(160, 120);
@@ -120,7 +120,9 @@ export default function TvIntro() {
             }
             // Small offscreen canvas keeps noise cheap at any device pixel ratio.
             grain.getContext('2d')?.putImageData(pixels, 0, 0);
+            context.globalAlpha = 0.35;
             context.drawImage(grain, 0, 0, 640, 480);
+            context.globalAlpha = 1;
           } else {
             context.font = '20px monospace';
             context.fillStyle = '#77c99b';
