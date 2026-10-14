@@ -100,12 +100,11 @@ export default function TvIntro() {
     if (canvas && context) {
       canvas.width = 640;
       canvas.height = 480;
-      const lines = [
-        'IRPHAN / PERSONAL SYSTEM', 'BIOS REV. 2026.10', '',
-        '> INITIALIZING INTERFACE...', '  MEMORY CHECK ........... OK',
-        '  NETWORK STACK .......... OK', '  DIAGNOSTICS ............ OK',
-        '  SECURITY MODULE ........ OK', '', '> SYSTEM READY',
-      ];
+      const lines = english
+        ? ['> LOADING PORTFOLIO', '> INTERFACE READY', '> CONNECTION ESTABLISHED']
+        : ['> CHARGEMENT DU PORTFOLIO', '> INTERFACE PRÊTE', '> CONNEXION ÉTABLIE'];
+      const grain = document.createElement('canvas');
+      grain.width = 160; grain.height = 120;
       const draw = (now: number) => {
         if (disposed || complete) return;
         if (now - lastDraw > 80) {
@@ -120,19 +119,22 @@ export default function TvIntro() {
               pixels.data[i + 3] = 255;
             }
             // Small offscreen canvas keeps noise cheap at any device pixel ratio.
-            const grain = document.createElement('canvas');
-            grain.width = 160; grain.height = 120;
             grain.getContext('2d')?.putImageData(pixels, 0, 0);
             context.drawImage(grain, 0, 0, 640, 480);
           } else {
-            context.font = '17px monospace';
+            context.font = '20px monospace';
             context.fillStyle = '#77c99b';
-            const count = reduced.matches ? lines.length : Math.min(lines.length, Math.floor((elapsed - 650) / 160) + 1);
-            lines.slice(0, count).forEach((line, index) => context.fillText(line, 46, 52 + index * 25));
-            context.globalAlpha = 0.25;
-            context.fillText('LOCAL SESSION / NO REMOTE CONNECTION', 46, 428);
+            const booting = elapsed < 2700 && !reduced.matches;
+            if (booting) {
+              const count = Math.min(lines.length, Math.floor((elapsed - 650) / 400) + 1);
+              context.globalAlpha = 0.7;
+              lines.slice(0, count).forEach((line, index) => context.fillText(line, 64, 66 + index * 30));
+            } else {
+              context.globalAlpha = 0.55;
+              context.fillText(english ? 'SYSTEM ONLINE' : 'SYSTÈME EN LIGNE', 64, 66);
+              if (reduced.matches || Math.floor(elapsed / 650) % 2 === 0) context.fillRect(550, 50, 12, 16);
+            }
             context.globalAlpha = 1;
-            if (reduced.matches || Math.floor(elapsed / 650) % 2 === 0) context.fillRect(46, 330, 12, 18);
             if (!reduced.matches) {
               context.fillStyle = 'rgba(160,255,195,0.025)';
               context.fillRect(0, ((elapsed / 30) % 520) - 40, 640, 35);
@@ -243,7 +245,11 @@ export default function TvIntro() {
           <button ref={screen} className="ir-tv-screen" type="button" aria-label={english ? 'Enter the portfolio' : 'Entrer dans le portfolio'}>
             <canvas ref={terminal} className="ir-tv-terminal" aria-hidden="true" />
             <span className="ir-tv-scanlines" aria-hidden="true" />
-            <span className="ir-tv-copy"><span className="ir-tv-title">IRPHAN</span><span className="ir-tv-subtitle">SUPPORT IT / CYBERSÉCURITÉ</span><span className="ir-tv-prompt">{english ? 'CLICK TO ENTER' : 'CLIQUER POUR ENTRER'}</span></span>
+            <span className="ir-tv-copy">
+              <span className="ir-tv-title">IRPHAN</span>
+              <span className="ir-tv-subtitle"><span>SUPPORT IT</span><span>{english ? 'CYBERSECURITY' : 'CYBERSÉCURITÉ'}</span></span>
+              <span className="ir-tv-prompt">{english ? 'CLICK TO ENTER' : 'CLIQUER POUR ENTRER'}</span>
+            </span>
           </button>
         </div>
       </div>
