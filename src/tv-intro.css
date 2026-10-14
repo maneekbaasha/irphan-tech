@@ -5,7 +5,8 @@
 .ir-tv-device { position: relative; width: min(170vw, 1600px, calc(100svh * 1.833333)); aspect-ratio: 1408 / 768; transform-origin: 46.6% 49.3%; transform: translateZ(0); }
 .ir-tv-image { display: block; width: 100%; height: 100%; pointer-events: none; user-select: none; mask-image: radial-gradient(ellipse 49% 49% at 50% 51%, #000 58%, transparent 100%); }
 .ir-tv-screen { position: absolute; top: 28.4%; left: 31.7%; width: 29.8%; height: 41.8%; border-radius: 48% / 11%; overflow: hidden; display: block; border: 0; padding: 0; margin: 0; appearance: none; background: #06100d; color: #b1ffd0; cursor: pointer; text-align: center; font: inherit; line-height: normal; -webkit-tap-highlight-color: transparent; }
-.ir-tv-screen:focus-visible { outline: 3px solid #157440; outline-offset: 5px; }
+.ir-tv-screen:focus { outline: none; }
+.ir-tv-screen:focus-visible .ir-tv-prompt { text-decoration: underline; text-underline-offset: .3em; }
 .ir-tv-terminal, .ir-tv-scanlines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .ir-tv-terminal { opacity: .75; }
 .ir-tv-scanlines { z-index: 2; opacity: .22; background: repeating-linear-gradient(to bottom, transparent 0 2px, #000 2px 3px); }
