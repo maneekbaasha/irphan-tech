@@ -1,3 +1,4 @@
+declare global { interface Window { turnstile?: { render: (element: HTMLElement, options: { sitekey: string }) => string; getResponse: () => string; reset: () => void; remove: (id: string) => void } } }
 import { FormEvent, ReactNode, useEffect, useState } from "react";
 import { siHackthebox, siKalilinux, siTryhackme } from "simple-icons";
 import ThemeToggle from "./ThemeToggle";
@@ -279,12 +280,36 @@ function PortfolioPage() {
 }
 
 function ContactForm() {
-  function submit(event: FormEvent<HTMLFormElement>) {
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [feedback, setFeedback] = useState("");
+  const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+  useEffect(() => {
+    if (!siteKey) return;
+    let cancelled = false;
+    let widgetId: string | undefined;
+    const mount = () => {
+      const node = document.getElementById("contact-turnstile");
+      if (cancelled || !node || !window.turnstile || node.childElementCount) return;
+      widgetId = window.turnstile.render(node, { sitekey: siteKey });
+    };
+    const timer = window.setInterval(mount, 250);
+    mount();
+    return () => { cancelled = true; window.clearInterval(timer); if (widgetId && window.turnstile) window.turnstile.remove(widgetId); };
+  }, [siteKey]);
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const subject = String(data.get("need") || "Contact from irphan.eu");
-    const body = [`Name: ${data.get("name") || ""}`, `Email: ${data.get("email") || ""}`, `Type of conversation: ${data.get("exchange") || ""}`, "", String(data.get("message") || "")].join("\n");
-    window.location.href = `mailto:mohamed.irphan09@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const token = window.turnstile?.getResponse() || "";
+    if (!siteKey || !token) { setState("error"); setFeedback("Please complete the security check."); return; }
+    setState("sending"); setFeedback("");
+    try {
+      const response = await fetch("/api/contact", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: data.get("name"), email: data.get("email"), need: data.get("need"), exchange: data.get("exchange"), message: data.get("message"), website: data.get("website"), turnstileToken: token }) });
+      if (!response.ok) throw new Error("Contact delivery failed");
+      setState("sent"); setFeedback("Your message has been sent."); form.reset();
+    } catch {
+      setState("error"); setFeedback("Sending failed. Please try again.");
+    } finally { window.turnstile?.reset(); }
   }
   return <form className="contact-form" onSubmit={submit}>
     <label>Full name<input name="name" type="text" placeholder="e.g. Irphan Mohamed" required /></label>
@@ -294,7 +319,10 @@ function ContactForm() {
       <fieldset><legend>Type of conversation</legend>{["Permanent / fixed-term role", "Apprenticeship", "Project / freelance", "Other"].map(value => <label key={value}><input type="radio" name="exchange" value={value} required />{value}</label>)}</fieldset>
     </div>
     <label>More details<textarea name="message" placeholder="Tell me about your needs…" rows={5} required /></label>
-    <button type="submit">Prepare email <Arrow /></button>
+    <label className="contact-honeypot" aria-hidden="true" style={{ position: "absolute", left: "-10000px" }}>Website<input name="website" type="text" tabIndex={-1} autoComplete="off" /></label>
+    <div id="contact-turnstile" />
+    <button type="submit" disabled={state === "sending"}>Send message <Arrow /></button>
+    <p role="status" aria-live="polite">{feedback}</p>
     <p className="availability"><i />Open to opportunities · Paris region</p>
   </form>;
 }
